@@ -1,0 +1,3857 @@
+{
+  "users": [
+    {
+      "id": "user_student_aarav",
+      "name": "Aarav Reddy",
+      "email": "aarav.reddy@campus.edu",
+      "role": "student",
+      "avatar": "AR",
+      "title": "B.Tech CSE · 2026",
+      "department": "Computer Science & Engineering",
+      "createdAt": "2026-08-01T09:00:00Z"
+    },
+    {
+      "id": "user_student_bishnu",
+      "name": "Bishnu Sahoo",
+      "email": "sahoobishnu8249@gmail.com",
+      "role": "student",
+      "avatar": "BS",
+      "title": "Final Year B.Tech CSE",
+      "department": "Computer Science & Engineering",
+      "createdAt": "2026-08-01T10:00:00Z"
+    },
+    {
+      "id": "user_student_priya",
+      "name": "Priya Sharma",
+      "email": "priya.sharma@campus.edu",
+      "role": "student",
+      "avatar": "PS",
+      "title": "Final Year B.Tech AI & DS",
+      "department": "Artificial Intelligence & Data Science",
+      "createdAt": "2026-08-05T11:00:00Z"
+    },
+    {
+      "id": "user_student_rahul",
+      "name": "Rahul Verma",
+      "email": "rahul.verma@campus.edu",
+      "role": "student",
+      "avatar": "RV",
+      "title": "Final Year B.Tech IT",
+      "department": "Information Technology",
+      "createdAt": "2026-08-10T12:00:00Z"
+    },
+    {
+      "id": "user_student_ananya",
+      "name": "Ananya Patel",
+      "email": "ananya.patel@campus.edu",
+      "role": "student",
+      "avatar": "AP",
+      "title": "Final Year B.Tech ECE",
+      "department": "Electronics & Communication",
+      "createdAt": "2026-08-12T09:00:00Z"
+    },
+    {
+      "id": "user_officer_rajesh",
+      "name": "Dr. Rajesh Rao",
+      "email": "placement.cell@campus.edu",
+      "role": "tpo",
+      "avatar": "RR",
+      "title": "Head of Training & Placement Cell",
+      "department": "University Placement Office",
+      "createdAt": "2026-06-15T08:00:00Z"
+    },
+    {
+      "id": "user_recruiter_sarah",
+      "name": "Sarah Jenkins",
+      "email": "sarah.jenkins@microsoft.com",
+      "role": "recruiter",
+      "avatar": "SJ",
+      "title": "Senior University Talent Lead",
+      "department": "Global Campus Recruitment",
+      "createdAt": "2026-07-20T09:00:00Z"
+    },
+    {
+      "id": "user_recruiter_arjun",
+      "name": "Arjun Mehta",
+      "email": "arjun.mehta@google.com",
+      "role": "recruiter",
+      "avatar": "AM",
+      "title": "Staff University Recruiter",
+      "department": "Engineering Hiring",
+      "createdAt": "2026-07-25T14:30:00Z"
+    },
+    {
+      "id": "user_recruiter_neha",
+      "name": "Neha Kapoor",
+      "email": "neha.kapoor@technova.io",
+      "role": "recruiter",
+      "avatar": "NK",
+      "title": "Talent Acquisition Director",
+      "department": "People Operations",
+      "createdAt": "2026-07-28T10:00:00Z"
+    },
+    {
+      "id": "user_student_04f09642c6a87d71ee333813",
+      "name": "Pooja Verma",
+      "email": "pooja.verma@nit.edu",
+      "role": "student",
+      "avatar": "PV",
+      "title": "Final Year B.Tech Computer Science & Engineering",
+      "department": "Computer Science & Engineering",
+      "createdAt": "2026-09-28T10:05:33.738Z"
+    }
+  ],
+  "studentProfiles": [
+    {
+      "userId": "user_student_aarav",
+      "fullName": "Aarav Reddy",
+      "email": "aarav.reddy@campus.edu",
+      "phone": "+91 9810000000",
+      "university": "National Institute of Technology",
+      "rollNumber": "2022UGComputer001",
+      "degree": "B.Tech",
+      "branch": "Computer Science & Engineering",
+      "graduationYear": 2026,
+      "cgpa": 8.78,
+      "maxCgpa": 10,
+      "backlogs": 0,
+      "skills": [
+        "Python",
+        "Machine Learning",
+        "React",
+        "SQL",
+        "Data Structures",
+        "Docker",
+        "FastAPI"
+      ],
+      "bio": "Driven final year Computer Science & Engineering undergraduate committed to software craftsmanship, scalable systems, and continuous technological learning.",
+      "github": "https://github.com/aaravreddy",
+      "linkedin": "https://linkedin.com/in/aarav-reddy",
+      "portfolio": "https://aaravreddy.dev",
+      "resumeFilename": "Aarav_Reddy_Official_Resume.pdf",
+      "resumeUrl": "#preview-resume",
+      "resumeScore": 81,
+      "projects": [
+        {
+          "id": "proj_0_1",
+          "title": "Python Cloud Service",
+          "tech": "Python, Machine Learning, React",
+          "description": "Microservices architecture with automated CI/CD and secure token authentication.",
+          "githubLink": "https://github.com/project-repo",
+          "liveLink": "https://demo-app.dev"
+        },
+        {
+          "id": "proj_0_2",
+          "title": "Intelligent Query Engine",
+          "tech": "Python, REST APIs, SQL",
+          "description": "Fast query caching layer reducing database retrieval latency by 45%.",
+          "githubLink": "https://github.com/fast-query"
+        }
+      ],
+      "experience": [
+        {
+          "id": "exp_0",
+          "role": "Summer Software Engineering Intern",
+          "company": "Infosys Springboard",
+          "duration": "May 2025 - July 2025",
+          "description": "Implemented backend microservices in Node/Express and automated unit test coverage."
+        }
+      ],
+      "certifications": [
+        "AWS Certified Cloud Practitioner",
+        "MongoDB Certified Associate"
+      ],
+      "targetRoles": [
+        "Software Engineer",
+        "Full Stack Developer",
+        "Cloud Engineer"
+      ],
+      "aptitudeScore": 85,
+      "mockInterviewScore": 84,
+      "communicationScore": 86,
+      "readinessScore": 81,
+      "readinessLevel": "READY",
+      "readinessBreakdown": {
+        "technical": 89,
+        "academic": 88,
+        "projects": 73,
+        "certifications": 50,
+        "aptitude": 85,
+        "communication": 86,
+        "interview": 84
+      },
+      "isVerified": true,
+      "placementStatus": "In Process"
+    },
+    {
+      "userId": "user_student_bishnu",
+      "fullName": "Bishnu Sahoo",
+      "email": "sahoobishnu8249@gmail.com",
+      "phone": "+91 9810087654",
+      "university": "National Institute of Technology",
+      "rollNumber": "2022UGComputer002",
+      "degree": "B.Tech",
+      "branch": "Computer Science & Engineering",
+      "graduationYear": 2026,
+      "cgpa": 8.92,
+      "maxCgpa": 10,
+      "backlogs": 0,
+      "skills": [
+        "Python",
+        "React",
+        "Node.js",
+        "TypeScript",
+        "SQL",
+        "Docker",
+        "Git"
+      ],
+      "bio": "Driven final year Computer Science & Engineering undergraduate committed to software craftsmanship, scalable systems, and continuous technological learning.",
+      "github": "https://github.com/bishnusahoo",
+      "linkedin": "https://linkedin.com/in/bishnu-sahoo",
+      "portfolio": "https://bishnusahoo.dev",
+      "resumeFilename": "Bishnu_Sahoo_Official_Resume.pdf",
+      "resumeUrl": "#preview-resume",
+      "resumeScore": 79,
+      "projects": [
+        {
+          "id": "proj_1_1",
+          "title": "Python Cloud Service",
+          "tech": "Python, React, Node.js",
+          "description": "Microservices architecture with automated CI/CD and secure token authentication.",
+          "githubLink": "https://github.com/project-repo",
+          "liveLink": "https://demo-app.dev"
+        },
+        {
+          "id": "proj_1_2",
+          "title": "Intelligent Query Engine",
+          "tech": "Python, REST APIs, SQL",
+          "description": "Fast query caching layer reducing database retrieval latency by 45%.",
+          "githubLink": "https://github.com/fast-query"
+        }
+      ],
+      "experience": [],
+      "certifications": [
+        "Google Cloud Associate Cloud Engineer"
+      ],
+      "targetRoles": [
+        "Software Engineer",
+        "Full Stack Developer",
+        "Cloud Engineer"
+      ],
+      "aptitudeScore": 88,
+      "mockInterviewScore": 86,
+      "communicationScore": 84,
+      "readinessScore": 79,
+      "readinessLevel": "READY",
+      "readinessBreakdown": {
+        "technical": 89,
+        "academic": 89,
+        "projects": 73,
+        "certifications": 25,
+        "aptitude": 88,
+        "communication": 84,
+        "interview": 86
+      },
+      "isVerified": true,
+      "placementStatus": "In Process"
+    },
+    {
+      "userId": "user_student_priya",
+      "fullName": "Priya Sharma",
+      "email": "priya.sharma@campus.edu",
+      "phone": "+91 9810175308",
+      "university": "National Institute of Technology",
+      "rollNumber": "2022UGArtificial003",
+      "degree": "B.Tech",
+      "branch": "Artificial Intelligence & Data Science",
+      "graduationYear": 2026,
+      "cgpa": 9.4,
+      "maxCgpa": 10,
+      "backlogs": 0,
+      "skills": [
+        "Python",
+        "PyTorch",
+        "TensorFlow",
+        "SQL",
+        "FastAPI",
+        "Pandas",
+        "AWS"
+      ],
+      "bio": "Driven final year Artificial Intelligence & Data Science undergraduate committed to software craftsmanship, scalable systems, and continuous technological learning.",
+      "github": "https://github.com/priyasharma",
+      "linkedin": "https://linkedin.com/in/priya-sharma",
+      "portfolio": "https://priyasharma.dev",
+      "resumeFilename": "Priya_Sharma_Official_Resume.pdf",
+      "resumeUrl": "#preview-resume",
+      "resumeScore": 85,
+      "projects": [
+        {
+          "id": "proj_2_1",
+          "title": "Python Cloud Service",
+          "tech": "Python, PyTorch, TensorFlow",
+          "description": "Microservices architecture with automated CI/CD and secure token authentication.",
+          "githubLink": "https://github.com/project-repo",
+          "liveLink": "https://demo-app.dev"
+        },
+        {
+          "id": "proj_2_2",
+          "title": "Intelligent Query Engine",
+          "tech": "Python, REST APIs, SQL",
+          "description": "Fast query caching layer reducing database retrieval latency by 45%.",
+          "githubLink": "https://github.com/fast-query"
+        }
+      ],
+      "experience": [],
+      "certifications": [
+        "AWS Certified Cloud Practitioner",
+        "MongoDB Certified Associate"
+      ],
+      "targetRoles": [
+        "Software Engineer",
+        "Full Stack Developer",
+        "Cloud Engineer"
+      ],
+      "aptitudeScore": 94,
+      "mockInterviewScore": 92,
+      "communicationScore": 90,
+      "readinessScore": 85,
+      "readinessLevel": "READY",
+      "readinessBreakdown": {
+        "technical": 89,
+        "academic": 94,
+        "projects": 73,
+        "certifications": 50,
+        "aptitude": 94,
+        "communication": 90,
+        "interview": 92
+      },
+      "isVerified": true,
+      "placementStatus": "Placed",
+      "placedCompany": "Google India",
+      "placedPackage": "₹34.5 LPA"
+    },
+    {
+      "userId": "user_student_rahul",
+      "fullName": "Rahul Verma",
+      "email": "rahul.verma@campus.edu",
+      "phone": "+91 9810262962",
+      "university": "National Institute of Technology",
+      "rollNumber": "2022UGInformation004",
+      "degree": "B.Tech",
+      "branch": "Information Technology",
+      "graduationYear": 2026,
+      "cgpa": 8.45,
+      "maxCgpa": 10,
+      "backlogs": 0,
+      "skills": [
+        "Java",
+        "Spring Boot",
+        "SQL",
+        "Microservices",
+        "Docker",
+        "Kubernetes"
+      ],
+      "bio": "Driven final year Information Technology undergraduate committed to software craftsmanship, scalable systems, and continuous technological learning.",
+      "github": "https://github.com/rahulverma",
+      "linkedin": "https://linkedin.com/in/rahul-verma",
+      "portfolio": "https://rahulverma.dev",
+      "resumeFilename": "Rahul_Verma_Official_Resume.pdf",
+      "resumeUrl": "#preview-resume",
+      "resumeScore": 71,
+      "projects": [
+        {
+          "id": "proj_3_1",
+          "title": "Java Cloud Service",
+          "tech": "Java, Spring Boot, SQL",
+          "description": "Microservices architecture with automated CI/CD and secure token authentication.",
+          "githubLink": "https://github.com/project-repo",
+          "liveLink": "https://demo-app.dev"
+        },
+        {
+          "id": "proj_3_2",
+          "title": "Intelligent Query Engine",
+          "tech": "Python, REST APIs, SQL",
+          "description": "Fast query caching layer reducing database retrieval latency by 45%.",
+          "githubLink": "https://github.com/fast-query"
+        }
+      ],
+      "experience": [
+        {
+          "id": "exp_3",
+          "role": "Summer Software Engineering Intern",
+          "company": "Infosys Springboard",
+          "duration": "May 2025 - July 2025",
+          "description": "Implemented backend microservices in Node/Express and automated unit test coverage."
+        }
+      ],
+      "certifications": [
+        "Google Cloud Associate Cloud Engineer"
+      ],
+      "targetRoles": [
+        "Software Engineer",
+        "Full Stack Developer",
+        "Cloud Engineer"
+      ],
+      "aptitudeScore": 82,
+      "mockInterviewScore": 80,
+      "communicationScore": 78,
+      "readinessScore": 70,
+      "readinessLevel": "DEVELOPING",
+      "readinessBreakdown": {
+        "technical": 64,
+        "academic": 85,
+        "projects": 73,
+        "certifications": 25,
+        "aptitude": 82,
+        "communication": 78,
+        "interview": 80
+      },
+      "isVerified": true,
+      "placementStatus": "In Process"
+    },
+    {
+      "userId": "user_student_ananya",
+      "fullName": "Ananya Patel",
+      "email": "ananya.patel@campus.edu",
+      "phone": "+91 9810350616",
+      "university": "National Institute of Technology",
+      "rollNumber": "2022UGElectronics005",
+      "degree": "B.Tech",
+      "branch": "Electronics & Communication",
+      "graduationYear": 2026,
+      "cgpa": 8.65,
+      "maxCgpa": 10,
+      "backlogs": 0,
+      "skills": [
+        "C++",
+        "Python",
+        "Embedded Systems",
+        "IoT",
+        "MATLAB",
+        "Git"
+      ],
+      "bio": "Driven final year Electronics & Communication undergraduate committed to software craftsmanship, scalable systems, and continuous technological learning.",
+      "github": "https://github.com/ananyapatel",
+      "linkedin": "https://linkedin.com/in/ananya-patel",
+      "portfolio": "https://ananyapatel.dev",
+      "resumeFilename": "Ananya_Patel_Official_Resume.pdf",
+      "resumeUrl": "#preview-resume",
+      "resumeScore": 78,
+      "projects": [
+        {
+          "id": "proj_4_1",
+          "title": "C++ Cloud Service",
+          "tech": "C++, Python, Embedded Systems",
+          "description": "Microservices architecture with automated CI/CD and secure token authentication.",
+          "githubLink": "https://github.com/project-repo",
+          "liveLink": "https://demo-app.dev"
+        },
+        {
+          "id": "proj_4_2",
+          "title": "Intelligent Query Engine",
+          "tech": "Python, REST APIs, SQL",
+          "description": "Fast query caching layer reducing database retrieval latency by 45%.",
+          "githubLink": "https://github.com/fast-query"
+        }
+      ],
+      "experience": [],
+      "certifications": [
+        "AWS Certified Cloud Practitioner",
+        "MongoDB Certified Associate"
+      ],
+      "targetRoles": [
+        "Software Engineer",
+        "Full Stack Developer",
+        "Cloud Engineer"
+      ],
+      "aptitudeScore": 84,
+      "mockInterviewScore": 82,
+      "communicationScore": 86,
+      "readinessScore": 78,
+      "readinessLevel": "READY",
+      "readinessBreakdown": {
+        "technical": 79,
+        "academic": 87,
+        "projects": 73,
+        "certifications": 50,
+        "aptitude": 84,
+        "communication": 86,
+        "interview": 82
+      },
+      "isVerified": true,
+      "placementStatus": "In Process"
+    },
+    {
+      "userId": "user_student_karan",
+      "fullName": "Karan Malhotra",
+      "email": "karan.m@campus.edu",
+      "phone": "+91 9810438270",
+      "university": "National Institute of Technology",
+      "rollNumber": "2022UGComputer006",
+      "degree": "B.Tech",
+      "branch": "Computer Science & Engineering",
+      "graduationYear": 2026,
+      "cgpa": 7.9,
+      "maxCgpa": 10,
+      "backlogs": 0,
+      "skills": [
+        "JavaScript",
+        "React",
+        "HTML/CSS",
+        "Tailwind",
+        "Node.js"
+      ],
+      "bio": "Driven final year Computer Science & Engineering undergraduate committed to software craftsmanship, scalable systems, and continuous technological learning.",
+      "github": "https://github.com/karanmalhotra",
+      "linkedin": "https://linkedin.com/in/karan-malhotra",
+      "portfolio": "https://karanmalhotra.dev",
+      "resumeFilename": "Karan_Malhotra_Official_Resume.pdf",
+      "resumeUrl": "#preview-resume",
+      "resumeScore": 69,
+      "projects": [
+        {
+          "id": "proj_5_1",
+          "title": "JavaScript Cloud Service",
+          "tech": "JavaScript, React, HTML/CSS",
+          "description": "Microservices architecture with automated CI/CD and secure token authentication.",
+          "githubLink": "https://github.com/project-repo",
+          "liveLink": "https://demo-app.dev"
+        },
+        {
+          "id": "proj_5_2",
+          "title": "Intelligent Query Engine",
+          "tech": "Python, REST APIs, SQL",
+          "description": "Fast query caching layer reducing database retrieval latency by 45%.",
+          "githubLink": "https://github.com/fast-query"
+        }
+      ],
+      "experience": [],
+      "certifications": [
+        "Google Cloud Associate Cloud Engineer"
+      ],
+      "targetRoles": [
+        "Software Engineer",
+        "Full Stack Developer",
+        "Cloud Engineer"
+      ],
+      "aptitudeScore": 74,
+      "mockInterviewScore": 72,
+      "communicationScore": 75,
+      "readinessScore": 68,
+      "readinessLevel": "DEVELOPING",
+      "readinessBreakdown": {
+        "technical": 68,
+        "academic": 79,
+        "projects": 73,
+        "certifications": 25,
+        "aptitude": 74,
+        "communication": 75,
+        "interview": 72
+      },
+      "isVerified": true,
+      "placementStatus": "In Process"
+    },
+    {
+      "userId": "user_student_sneha",
+      "fullName": "Sneha Kulkarni",
+      "email": "sneha.k@campus.edu",
+      "phone": "+91 9810525924",
+      "university": "National Institute of Technology",
+      "rollNumber": "2022UGComputer007",
+      "degree": "B.Tech",
+      "branch": "Computer Science & Engineering",
+      "graduationYear": 2026,
+      "cgpa": 9.15,
+      "maxCgpa": 10,
+      "backlogs": 0,
+      "skills": [
+        "Python",
+        "FastAPI",
+        "PostgreSQL",
+        "Docker",
+        "AWS",
+        "Redis",
+        "Kafka"
+      ],
+      "bio": "Driven final year Computer Science & Engineering undergraduate committed to software craftsmanship, scalable systems, and continuous technological learning.",
+      "github": "https://github.com/snehakulkarni",
+      "linkedin": "https://linkedin.com/in/sneha-kulkarni",
+      "portfolio": "https://snehakulkarni.dev",
+      "resumeFilename": "Sneha_Kulkarni_Official_Resume.pdf",
+      "resumeUrl": "#preview-resume",
+      "resumeScore": 83,
+      "projects": [
+        {
+          "id": "proj_6_1",
+          "title": "Python Cloud Service",
+          "tech": "Python, FastAPI, PostgreSQL",
+          "description": "Microservices architecture with automated CI/CD and secure token authentication.",
+          "githubLink": "https://github.com/project-repo",
+          "liveLink": "https://demo-app.dev"
+        },
+        {
+          "id": "proj_6_2",
+          "title": "Intelligent Query Engine",
+          "tech": "Python, REST APIs, SQL",
+          "description": "Fast query caching layer reducing database retrieval latency by 45%.",
+          "githubLink": "https://github.com/fast-query"
+        }
+      ],
+      "experience": [
+        {
+          "id": "exp_6",
+          "role": "Summer Software Engineering Intern",
+          "company": "Infosys Springboard",
+          "duration": "May 2025 - July 2025",
+          "description": "Implemented backend microservices in Node/Express and automated unit test coverage."
+        }
+      ],
+      "certifications": [
+        "AWS Certified Cloud Practitioner",
+        "MongoDB Certified Associate"
+      ],
+      "targetRoles": [
+        "Software Engineer",
+        "Full Stack Developer",
+        "Cloud Engineer"
+      ],
+      "aptitudeScore": 90,
+      "mockInterviewScore": 88,
+      "communicationScore": 88,
+      "readinessScore": 83,
+      "readinessLevel": "READY",
+      "readinessBreakdown": {
+        "technical": 89,
+        "academic": 92,
+        "projects": 73,
+        "certifications": 50,
+        "aptitude": 90,
+        "communication": 88,
+        "interview": 88
+      },
+      "isVerified": true,
+      "placementStatus": "Placed",
+      "placedCompany": "Microsoft India",
+      "placedPackage": "₹28.0 LPA"
+    },
+    {
+      "userId": "user_student_aditya",
+      "fullName": "Aditya Sen",
+      "email": "aditya.sen@campus.edu",
+      "phone": "+91 9810613578",
+      "university": "National Institute of Technology",
+      "rollNumber": "2022UGMechanical008",
+      "degree": "B.Tech",
+      "branch": "Mechanical Engineering",
+      "graduationYear": 2026,
+      "cgpa": 7.2,
+      "maxCgpa": 10,
+      "backlogs": 1,
+      "skills": [
+        "Python",
+        "AutoCAD",
+        "SolidWorks",
+        "MATLAB",
+        "C"
+      ],
+      "bio": "Driven final year Mechanical Engineering undergraduate committed to software craftsmanship, scalable systems, and continuous technological learning.",
+      "github": "https://github.com/adityasen",
+      "linkedin": "https://linkedin.com/in/aditya-sen",
+      "portfolio": "https://adityasen.dev",
+      "resumeFilename": "Aditya_Sen_Official_Resume.pdf",
+      "resumeUrl": "#preview-resume",
+      "resumeScore": 62,
+      "projects": [
+        {
+          "id": "proj_7_1",
+          "title": "Python Cloud Service",
+          "tech": "Python, AutoCAD, SolidWorks",
+          "description": "Microservices architecture with automated CI/CD and secure token authentication.",
+          "githubLink": "https://github.com/project-repo",
+          "liveLink": "https://demo-app.dev"
+        },
+        {
+          "id": "proj_7_2",
+          "title": "Intelligent Query Engine",
+          "tech": "Python, REST APIs, SQL",
+          "description": "Fast query caching layer reducing database retrieval latency by 45%.",
+          "githubLink": "https://github.com/fast-query"
+        }
+      ],
+      "experience": [],
+      "certifications": [
+        "Google Cloud Associate Cloud Engineer"
+      ],
+      "targetRoles": [
+        "Software Engineer",
+        "Full Stack Developer",
+        "Cloud Engineer"
+      ],
+      "aptitudeScore": 65,
+      "mockInterviewScore": 60,
+      "communicationScore": 68,
+      "readinessScore": 61,
+      "readinessLevel": "DEVELOPING",
+      "readinessBreakdown": {
+        "technical": 68,
+        "academic": 57,
+        "projects": 73,
+        "certifications": 25,
+        "aptitude": 65,
+        "communication": 68,
+        "interview": 60
+      },
+      "isVerified": true,
+      "placementStatus": "Not Placed"
+    },
+    {
+      "userId": "user_student_ritika",
+      "fullName": "Ritika Roy",
+      "email": "ritika.roy@campus.edu",
+      "phone": "+91 9810701232",
+      "university": "National Institute of Technology",
+      "rollNumber": "2022UGInformation009",
+      "degree": "B.Tech",
+      "branch": "Information Technology",
+      "graduationYear": 2026,
+      "cgpa": 8.8,
+      "maxCgpa": 10,
+      "backlogs": 0,
+      "skills": [
+        "Python",
+        "React",
+        "MongoDB",
+        "Express",
+        "Node.js",
+        "Next.js"
+      ],
+      "bio": "Driven final year Information Technology undergraduate committed to software craftsmanship, scalable systems, and continuous technological learning.",
+      "github": "https://github.com/ritikaroy",
+      "linkedin": "https://linkedin.com/in/ritika-roy",
+      "portfolio": "https://ritikaroy.dev",
+      "resumeFilename": "Ritika_Roy_Official_Resume.pdf",
+      "resumeUrl": "#preview-resume",
+      "resumeScore": 79,
+      "projects": [
+        {
+          "id": "proj_8_1",
+          "title": "Python Cloud Service",
+          "tech": "Python, React, MongoDB",
+          "description": "Microservices architecture with automated CI/CD and secure token authentication.",
+          "githubLink": "https://github.com/project-repo",
+          "liveLink": "https://demo-app.dev"
+        },
+        {
+          "id": "proj_8_2",
+          "title": "Intelligent Query Engine",
+          "tech": "Python, REST APIs, SQL",
+          "description": "Fast query caching layer reducing database retrieval latency by 45%.",
+          "githubLink": "https://github.com/fast-query"
+        }
+      ],
+      "experience": [],
+      "certifications": [
+        "AWS Certified Cloud Practitioner",
+        "MongoDB Certified Associate"
+      ],
+      "targetRoles": [
+        "Software Engineer",
+        "Full Stack Developer",
+        "Cloud Engineer"
+      ],
+      "aptitudeScore": 86,
+      "mockInterviewScore": 85,
+      "communicationScore": 88,
+      "readinessScore": 79,
+      "readinessLevel": "READY",
+      "readinessBreakdown": {
+        "technical": 79,
+        "academic": 88,
+        "projects": 73,
+        "certifications": 50,
+        "aptitude": 86,
+        "communication": 88,
+        "interview": 85
+      },
+      "isVerified": true,
+      "placementStatus": "In Process"
+    },
+    {
+      "userId": "user_student_vikram",
+      "fullName": "Vikram Joshi",
+      "email": "vikram.j@campus.edu",
+      "phone": "+91 9810788886",
+      "university": "National Institute of Technology",
+      "rollNumber": "2022UGComputer010",
+      "degree": "B.Tech",
+      "branch": "Computer Science & Engineering",
+      "graduationYear": 2026,
+      "cgpa": 6.85,
+      "maxCgpa": 10,
+      "backlogs": 0,
+      "skills": [
+        "Java",
+        "SQL",
+        "HTML/CSS",
+        "Git"
+      ],
+      "bio": "Driven final year Computer Science & Engineering undergraduate committed to software craftsmanship, scalable systems, and continuous technological learning.",
+      "github": "https://github.com/vikramjoshi",
+      "linkedin": "https://linkedin.com/in/vikram-joshi",
+      "portfolio": "https://vikramjoshi.dev",
+      "resumeFilename": "Vikram_Joshi_Official_Resume.pdf",
+      "resumeUrl": "#preview-resume",
+      "resumeScore": 59,
+      "projects": [
+        {
+          "id": "proj_9_1",
+          "title": "Java Cloud Service",
+          "tech": "Java, SQL, HTML/CSS",
+          "description": "Microservices architecture with automated CI/CD and secure token authentication.",
+          "githubLink": "https://github.com/project-repo",
+          "liveLink": "https://demo-app.dev"
+        },
+        {
+          "id": "proj_9_2",
+          "title": "Intelligent Query Engine",
+          "tech": "Python, REST APIs, SQL",
+          "description": "Fast query caching layer reducing database retrieval latency by 45%.",
+          "githubLink": "https://github.com/fast-query"
+        }
+      ],
+      "experience": [
+        {
+          "id": "exp_9",
+          "role": "Summer Software Engineering Intern",
+          "company": "Infosys Springboard",
+          "duration": "May 2025 - July 2025",
+          "description": "Implemented backend microservices in Node/Express and automated unit test coverage."
+        }
+      ],
+      "certifications": [
+        "Google Cloud Associate Cloud Engineer"
+      ],
+      "targetRoles": [
+        "Software Engineer",
+        "Full Stack Developer",
+        "Cloud Engineer"
+      ],
+      "aptitudeScore": 68,
+      "mockInterviewScore": 64,
+      "communicationScore": 70,
+      "readinessScore": 58,
+      "readinessLevel": "NOT READY",
+      "readinessBreakdown": {
+        "technical": 43,
+        "academic": 69,
+        "projects": 73,
+        "certifications": 25,
+        "aptitude": 68,
+        "communication": 70,
+        "interview": 64
+      },
+      "isVerified": true,
+      "placementStatus": "Not Placed"
+    },
+    {
+      "userId": "user_student_tanvi",
+      "fullName": "Tanvi Nair",
+      "email": "tanvi.nair@campus.edu",
+      "phone": "+91 9810876540",
+      "university": "National Institute of Technology",
+      "rollNumber": "2022UGArtificial011",
+      "degree": "B.Tech",
+      "branch": "Artificial Intelligence & Data Science",
+      "graduationYear": 2026,
+      "cgpa": 8.75,
+      "maxCgpa": 10,
+      "backlogs": 0,
+      "skills": [
+        "Python",
+        "R",
+        "Machine Learning",
+        "SQL",
+        "Tableau",
+        "PowerBI"
+      ],
+      "bio": "Driven final year Artificial Intelligence & Data Science undergraduate committed to software craftsmanship, scalable systems, and continuous technological learning.",
+      "github": "https://github.com/tanvinair",
+      "linkedin": "https://linkedin.com/in/tanvi-nair",
+      "portfolio": "https://tanvinair.dev",
+      "resumeFilename": "Tanvi_Nair_Official_Resume.pdf",
+      "resumeUrl": "#preview-resume",
+      "resumeScore": 79,
+      "projects": [
+        {
+          "id": "proj_10_1",
+          "title": "Python Cloud Service",
+          "tech": "Python, R, Machine Learning",
+          "description": "Microservices architecture with automated CI/CD and secure token authentication.",
+          "githubLink": "https://github.com/project-repo",
+          "liveLink": "https://demo-app.dev"
+        },
+        {
+          "id": "proj_10_2",
+          "title": "Intelligent Query Engine",
+          "tech": "Python, REST APIs, SQL",
+          "description": "Fast query caching layer reducing database retrieval latency by 45%.",
+          "githubLink": "https://github.com/fast-query"
+        }
+      ],
+      "experience": [],
+      "certifications": [
+        "AWS Certified Cloud Practitioner",
+        "MongoDB Certified Associate"
+      ],
+      "targetRoles": [
+        "Software Engineer",
+        "Full Stack Developer",
+        "Cloud Engineer"
+      ],
+      "aptitudeScore": 85,
+      "mockInterviewScore": 84,
+      "communicationScore": 86,
+      "readinessScore": 79,
+      "readinessLevel": "READY",
+      "readinessBreakdown": {
+        "technical": 79,
+        "academic": 88,
+        "projects": 73,
+        "certifications": 50,
+        "aptitude": 85,
+        "communication": 86,
+        "interview": 84
+      },
+      "isVerified": true,
+      "placementStatus": "In Process"
+    },
+    {
+      "userId": "user_student_rohit",
+      "fullName": "Rohit Deshmukh",
+      "email": "rohit.d@campus.edu",
+      "phone": "+91 9810964194",
+      "university": "National Institute of Technology",
+      "rollNumber": "2022UGElectronics012",
+      "degree": "B.Tech",
+      "branch": "Electronics & Communication",
+      "graduationYear": 2026,
+      "cgpa": 7.4,
+      "maxCgpa": 10,
+      "backlogs": 0,
+      "skills": [
+        "C",
+        "C++",
+        "Verilog",
+        "VLSI",
+        "Linux"
+      ],
+      "bio": "Driven final year Electronics & Communication undergraduate committed to software craftsmanship, scalable systems, and continuous technological learning.",
+      "github": "https://github.com/rohitdeshmukh",
+      "linkedin": "https://linkedin.com/in/rohit-deshmukh",
+      "portfolio": "https://rohitdeshmukh.dev",
+      "resumeFilename": "Rohit_Deshmukh_Official_Resume.pdf",
+      "resumeUrl": "#preview-resume",
+      "resumeScore": 64,
+      "projects": [
+        {
+          "id": "proj_11_1",
+          "title": "C Cloud Service",
+          "tech": "C, C++, Verilog",
+          "description": "Microservices architecture with automated CI/CD and secure token authentication.",
+          "githubLink": "https://github.com/project-repo",
+          "liveLink": "https://demo-app.dev"
+        },
+        {
+          "id": "proj_11_2",
+          "title": "Intelligent Query Engine",
+          "tech": "Python, REST APIs, SQL",
+          "description": "Fast query caching layer reducing database retrieval latency by 45%.",
+          "githubLink": "https://github.com/fast-query"
+        }
+      ],
+      "experience": [],
+      "certifications": [
+        "Google Cloud Associate Cloud Engineer"
+      ],
+      "targetRoles": [
+        "Software Engineer",
+        "Full Stack Developer",
+        "Cloud Engineer"
+      ],
+      "aptitudeScore": 72,
+      "mockInterviewScore": 70,
+      "communicationScore": 68,
+      "readinessScore": 63,
+      "readinessLevel": "DEVELOPING",
+      "readinessBreakdown": {
+        "technical": 53,
+        "academic": 74,
+        "projects": 73,
+        "certifications": 25,
+        "aptitude": 72,
+        "communication": 68,
+        "interview": 70
+      },
+      "isVerified": true,
+      "placementStatus": "Not Placed"
+    },
+    {
+      "userId": "user_student_divya",
+      "fullName": "Divya Iyer",
+      "email": "divya.iyer@campus.edu",
+      "phone": "+91 9811051848",
+      "university": "National Institute of Technology",
+      "rollNumber": "2022UGComputer013",
+      "degree": "B.Tech",
+      "branch": "Computer Science & Engineering",
+      "graduationYear": 2026,
+      "cgpa": 9.3,
+      "maxCgpa": 10,
+      "backlogs": 0,
+      "skills": [
+        "Go",
+        "Kubernetes",
+        "Docker",
+        "AWS",
+        "Linux",
+        "Distributed Systems"
+      ],
+      "bio": "Driven final year Computer Science & Engineering undergraduate committed to software craftsmanship, scalable systems, and continuous technological learning.",
+      "github": "https://github.com/divyaiyer",
+      "linkedin": "https://linkedin.com/in/divya-iyer",
+      "portfolio": "https://divyaiyer.dev",
+      "resumeFilename": "Divya_Iyer_Official_Resume.pdf",
+      "resumeUrl": "#preview-resume",
+      "resumeScore": 78,
+      "projects": [
+        {
+          "id": "proj_12_1",
+          "title": "Go Cloud Service",
+          "tech": "Go, Kubernetes, Docker",
+          "description": "Microservices architecture with automated CI/CD and secure token authentication.",
+          "githubLink": "https://github.com/project-repo",
+          "liveLink": "https://demo-app.dev"
+        },
+        {
+          "id": "proj_12_2",
+          "title": "Intelligent Query Engine",
+          "tech": "Python, REST APIs, SQL",
+          "description": "Fast query caching layer reducing database retrieval latency by 45%.",
+          "githubLink": "https://github.com/fast-query"
+        }
+      ],
+      "experience": [
+        {
+          "id": "exp_12",
+          "role": "Summer Software Engineering Intern",
+          "company": "Infosys Springboard",
+          "duration": "May 2025 - July 2025",
+          "description": "Implemented backend microservices in Node/Express and automated unit test coverage."
+        }
+      ],
+      "certifications": [
+        "AWS Certified Cloud Practitioner",
+        "MongoDB Certified Associate"
+      ],
+      "targetRoles": [
+        "Software Engineer",
+        "Full Stack Developer",
+        "Cloud Engineer"
+      ],
+      "aptitudeScore": 92,
+      "mockInterviewScore": 90,
+      "communicationScore": 92,
+      "readinessScore": 78,
+      "readinessLevel": "READY",
+      "readinessBreakdown": {
+        "technical": 64,
+        "academic": 93,
+        "projects": 73,
+        "certifications": 50,
+        "aptitude": 92,
+        "communication": 92,
+        "interview": 90
+      },
+      "isVerified": true,
+      "placementStatus": "Placed",
+      "placedCompany": "Amazon Web Services",
+      "placedPackage": "₹32.0 LPA"
+    },
+    {
+      "userId": "user_student_manish",
+      "fullName": "Manish Pandey",
+      "email": "manish.p@campus.edu",
+      "phone": "+91 9811139502",
+      "university": "National Institute of Technology",
+      "rollNumber": "2022UGInformation014",
+      "degree": "B.Tech",
+      "branch": "Information Technology",
+      "graduationYear": 2026,
+      "cgpa": 6.4,
+      "maxCgpa": 10,
+      "backlogs": 2,
+      "skills": [
+        "HTML",
+        "CSS",
+        "JavaScript"
+      ],
+      "bio": "Driven final year Information Technology undergraduate committed to software craftsmanship, scalable systems, and continuous technological learning.",
+      "github": "https://github.com/manishpandey",
+      "linkedin": "https://linkedin.com/in/manish-pandey",
+      "portfolio": "https://manishpandey.dev",
+      "resumeFilename": "Manish_Pandey_Official_Resume.pdf",
+      "resumeUrl": "#preview-resume",
+      "resumeScore": 46,
+      "projects": [
+        {
+          "id": "proj_13_1",
+          "title": "HTML Cloud Service",
+          "tech": "HTML, CSS, JavaScript",
+          "description": "Microservices architecture with automated CI/CD and secure token authentication.",
+          "githubLink": "https://github.com/project-repo",
+          "liveLink": "https://demo-app.dev"
+        },
+        {
+          "id": "proj_13_2",
+          "title": "Intelligent Query Engine",
+          "tech": "Python, REST APIs, SQL",
+          "description": "Fast query caching layer reducing database retrieval latency by 45%.",
+          "githubLink": "https://github.com/fast-query"
+        }
+      ],
+      "experience": [],
+      "certifications": [
+        "Google Cloud Associate Cloud Engineer"
+      ],
+      "targetRoles": [
+        "Software Engineer",
+        "Full Stack Developer",
+        "Cloud Engineer"
+      ],
+      "aptitudeScore": 54,
+      "mockInterviewScore": 50,
+      "communicationScore": 55,
+      "readinessScore": 44,
+      "readinessLevel": "NOT READY",
+      "readinessBreakdown": {
+        "technical": 32,
+        "academic": 34,
+        "projects": 73,
+        "certifications": 25,
+        "aptitude": 54,
+        "communication": 55,
+        "interview": 50
+      },
+      "isVerified": true,
+      "placementStatus": "Not Placed"
+    },
+    {
+      "userId": "user_student_pooja",
+      "fullName": "Pooja Hegde",
+      "email": "pooja.h@campus.edu",
+      "phone": "+91 9811227156",
+      "university": "National Institute of Technology",
+      "rollNumber": "2022UGComputer015",
+      "degree": "B.Tech",
+      "branch": "Computer Science & Engineering",
+      "graduationYear": 2026,
+      "cgpa": 8.5,
+      "maxCgpa": 10,
+      "backlogs": 0,
+      "skills": [
+        "Flutter",
+        "Dart",
+        "Firebase",
+        "React Native",
+        "Mobile Security"
+      ],
+      "bio": "Driven final year Computer Science & Engineering undergraduate committed to software craftsmanship, scalable systems, and continuous technological learning.",
+      "github": "https://github.com/poojahegde",
+      "linkedin": "https://linkedin.com/in/pooja-hegde",
+      "portfolio": "https://poojahegde.dev",
+      "resumeFilename": "Pooja_Hegde_Official_Resume.pdf",
+      "resumeUrl": "#preview-resume",
+      "resumeScore": 71,
+      "projects": [
+        {
+          "id": "proj_14_1",
+          "title": "Flutter Cloud Service",
+          "tech": "Flutter, Dart, Firebase",
+          "description": "Microservices architecture with automated CI/CD and secure token authentication.",
+          "githubLink": "https://github.com/project-repo",
+          "liveLink": "https://demo-app.dev"
+        },
+        {
+          "id": "proj_14_2",
+          "title": "Intelligent Query Engine",
+          "tech": "Python, REST APIs, SQL",
+          "description": "Fast query caching layer reducing database retrieval latency by 45%.",
+          "githubLink": "https://github.com/fast-query"
+        }
+      ],
+      "experience": [],
+      "certifications": [
+        "AWS Certified Cloud Practitioner",
+        "MongoDB Certified Associate"
+      ],
+      "targetRoles": [
+        "Software Engineer",
+        "Full Stack Developer",
+        "Cloud Engineer"
+      ],
+      "aptitudeScore": 82,
+      "mockInterviewScore": 80,
+      "communicationScore": 84,
+      "readinessScore": 71,
+      "readinessLevel": "DEVELOPING",
+      "readinessBreakdown": {
+        "technical": 53,
+        "academic": 85,
+        "projects": 73,
+        "certifications": 50,
+        "aptitude": 82,
+        "communication": 84,
+        "interview": 80
+      },
+      "isVerified": true,
+      "placementStatus": "In Process"
+    },
+    {
+      "userId": "user_student_siddharth",
+      "fullName": "Siddharth Rao",
+      "email": "siddharth.r@campus.edu",
+      "phone": "+91 9811314810",
+      "university": "National Institute of Technology",
+      "rollNumber": "2022UGMechanical016",
+      "degree": "B.Tech",
+      "branch": "Mechanical Engineering",
+      "graduationYear": 2026,
+      "cgpa": 8.1,
+      "maxCgpa": 10,
+      "backlogs": 0,
+      "skills": [
+        "MATLAB",
+        "Python",
+        "ANSYS",
+        "CATIA",
+        "Robotics"
+      ],
+      "bio": "Driven final year Mechanical Engineering undergraduate committed to software craftsmanship, scalable systems, and continuous technological learning.",
+      "github": "https://github.com/siddharthrao",
+      "linkedin": "https://linkedin.com/in/siddharth-rao",
+      "portfolio": "https://siddharthrao.dev",
+      "resumeFilename": "Siddharth_Rao_Official_Resume.pdf",
+      "resumeUrl": "#preview-resume",
+      "resumeScore": 71,
+      "projects": [
+        {
+          "id": "proj_15_1",
+          "title": "MATLAB Cloud Service",
+          "tech": "MATLAB, Python, ANSYS",
+          "description": "Microservices architecture with automated CI/CD and secure token authentication.",
+          "githubLink": "https://github.com/project-repo",
+          "liveLink": "https://demo-app.dev"
+        },
+        {
+          "id": "proj_15_2",
+          "title": "Intelligent Query Engine",
+          "tech": "Python, REST APIs, SQL",
+          "description": "Fast query caching layer reducing database retrieval latency by 45%.",
+          "githubLink": "https://github.com/fast-query"
+        }
+      ],
+      "experience": [
+        {
+          "id": "exp_15",
+          "role": "Summer Software Engineering Intern",
+          "company": "Infosys Springboard",
+          "duration": "May 2025 - July 2025",
+          "description": "Implemented backend microservices in Node/Express and automated unit test coverage."
+        }
+      ],
+      "certifications": [
+        "Google Cloud Associate Cloud Engineer"
+      ],
+      "targetRoles": [
+        "Software Engineer",
+        "Full Stack Developer",
+        "Cloud Engineer"
+      ],
+      "aptitudeScore": 78,
+      "mockInterviewScore": 75,
+      "communicationScore": 76,
+      "readinessScore": 70,
+      "readinessLevel": "DEVELOPING",
+      "readinessBreakdown": {
+        "technical": 68,
+        "academic": 81,
+        "projects": 73,
+        "certifications": 25,
+        "aptitude": 78,
+        "communication": 76,
+        "interview": 75
+      },
+      "isVerified": true,
+      "placementStatus": "In Process"
+    },
+    {
+      "userId": "user_student_megha",
+      "fullName": "Megha Bansal",
+      "email": "megha.b@campus.edu",
+      "phone": "+91 9811402464",
+      "university": "National Institute of Technology",
+      "rollNumber": "2022UGElectronics017",
+      "degree": "B.Tech",
+      "branch": "Electronics & Communication",
+      "graduationYear": 2026,
+      "cgpa": 8.9,
+      "maxCgpa": 10,
+      "backlogs": 0,
+      "skills": [
+        "C++",
+        "Digital Signal Processing",
+        "Python",
+        "Embedded C",
+        "RTOS"
+      ],
+      "bio": "Driven final year Electronics & Communication undergraduate committed to software craftsmanship, scalable systems, and continuous technological learning.",
+      "github": "https://github.com/meghabansal",
+      "linkedin": "https://linkedin.com/in/megha-bansal",
+      "portfolio": "https://meghabansal.dev",
+      "resumeFilename": "Megha_Bansal_Official_Resume.pdf",
+      "resumeUrl": "#preview-resume",
+      "resumeScore": 77,
+      "projects": [
+        {
+          "id": "proj_16_1",
+          "title": "C++ Cloud Service",
+          "tech": "C++, Digital Signal Processing, Python",
+          "description": "Microservices architecture with automated CI/CD and secure token authentication.",
+          "githubLink": "https://github.com/project-repo",
+          "liveLink": "https://demo-app.dev"
+        },
+        {
+          "id": "proj_16_2",
+          "title": "Intelligent Query Engine",
+          "tech": "Python, REST APIs, SQL",
+          "description": "Fast query caching layer reducing database retrieval latency by 45%.",
+          "githubLink": "https://github.com/fast-query"
+        }
+      ],
+      "experience": [],
+      "certifications": [
+        "AWS Certified Cloud Practitioner",
+        "MongoDB Certified Associate"
+      ],
+      "targetRoles": [
+        "Software Engineer",
+        "Full Stack Developer",
+        "Cloud Engineer"
+      ],
+      "aptitudeScore": 88,
+      "mockInterviewScore": 86,
+      "communicationScore": 85,
+      "readinessScore": 77,
+      "readinessLevel": "READY",
+      "readinessBreakdown": {
+        "technical": 68,
+        "academic": 89,
+        "projects": 73,
+        "certifications": 50,
+        "aptitude": 88,
+        "communication": 85,
+        "interview": 86
+      },
+      "isVerified": true,
+      "placementStatus": "Placed",
+      "placedCompany": "Cisco Systems",
+      "placedPackage": "₹22.5 LPA"
+    },
+    {
+      "userId": "user_student_abhishek",
+      "fullName": "Abhishek Kumar",
+      "email": "abhishek.k@campus.edu",
+      "phone": "+91 9811490118",
+      "university": "National Institute of Technology",
+      "rollNumber": "2022UGInformation018",
+      "degree": "B.Tech",
+      "branch": "Information Technology",
+      "graduationYear": 2026,
+      "cgpa": 7.7,
+      "maxCgpa": 10,
+      "backlogs": 0,
+      "skills": [
+        "PHP",
+        "Laravel",
+        "MySQL",
+        "JavaScript",
+        "Bootstrap"
+      ],
+      "bio": "Driven final year Information Technology undergraduate committed to software craftsmanship, scalable systems, and continuous technological learning.",
+      "github": "https://github.com/abhishekkumar",
+      "linkedin": "https://linkedin.com/in/abhishek-kumar",
+      "portfolio": "https://abhishekkumar.dev",
+      "resumeFilename": "Abhishek_Kumar_Official_Resume.pdf",
+      "resumeUrl": "#preview-resume",
+      "resumeScore": 64,
+      "projects": [
+        {
+          "id": "proj_17_1",
+          "title": "PHP Cloud Service",
+          "tech": "PHP, Laravel, MySQL",
+          "description": "Microservices architecture with automated CI/CD and secure token authentication.",
+          "githubLink": "https://github.com/project-repo",
+          "liveLink": "https://demo-app.dev"
+        },
+        {
+          "id": "proj_17_2",
+          "title": "Intelligent Query Engine",
+          "tech": "Python, REST APIs, SQL",
+          "description": "Fast query caching layer reducing database retrieval latency by 45%.",
+          "githubLink": "https://github.com/fast-query"
+        }
+      ],
+      "experience": [],
+      "certifications": [
+        "Google Cloud Associate Cloud Engineer"
+      ],
+      "targetRoles": [
+        "Software Engineer",
+        "Full Stack Developer",
+        "Cloud Engineer"
+      ],
+      "aptitudeScore": 72,
+      "mockInterviewScore": 68,
+      "communicationScore": 72,
+      "readinessScore": 63,
+      "readinessLevel": "DEVELOPING",
+      "readinessBreakdown": {
+        "technical": 53,
+        "academic": 77,
+        "projects": 73,
+        "certifications": 25,
+        "aptitude": 72,
+        "communication": 72,
+        "interview": 68
+      },
+      "isVerified": true,
+      "placementStatus": "In Process"
+    },
+    {
+      "userId": "user_student_swati",
+      "fullName": "Swati Mishra",
+      "email": "swati.m@campus.edu",
+      "phone": "+91 9811577772",
+      "university": "National Institute of Technology",
+      "rollNumber": "2022UGArtificial019",
+      "degree": "B.Tech",
+      "branch": "Artificial Intelligence & Data Science",
+      "graduationYear": 2026,
+      "cgpa": 9.05,
+      "maxCgpa": 10,
+      "backlogs": 0,
+      "skills": [
+        "Python",
+        "NLP",
+        "Computer Vision",
+        "PyTorch",
+        "Transformers",
+        "FastAPI"
+      ],
+      "bio": "Driven final year Artificial Intelligence & Data Science undergraduate committed to software craftsmanship, scalable systems, and continuous technological learning.",
+      "github": "https://github.com/swatimishra",
+      "linkedin": "https://linkedin.com/in/swati-mishra",
+      "portfolio": "https://swatimishra.dev",
+      "resumeFilename": "Swati_Mishra_Official_Resume.pdf",
+      "resumeUrl": "#preview-resume",
+      "resumeScore": 81,
+      "projects": [
+        {
+          "id": "proj_18_1",
+          "title": "Python Cloud Service",
+          "tech": "Python, NLP, Computer Vision",
+          "description": "Microservices architecture with automated CI/CD and secure token authentication.",
+          "githubLink": "https://github.com/project-repo",
+          "liveLink": "https://demo-app.dev"
+        },
+        {
+          "id": "proj_18_2",
+          "title": "Intelligent Query Engine",
+          "tech": "Python, REST APIs, SQL",
+          "description": "Fast query caching layer reducing database retrieval latency by 45%.",
+          "githubLink": "https://github.com/fast-query"
+        }
+      ],
+      "experience": [
+        {
+          "id": "exp_18",
+          "role": "Summer Software Engineering Intern",
+          "company": "Infosys Springboard",
+          "duration": "May 2025 - July 2025",
+          "description": "Implemented backend microservices in Node/Express and automated unit test coverage."
+        }
+      ],
+      "certifications": [
+        "AWS Certified Cloud Practitioner",
+        "MongoDB Certified Associate"
+      ],
+      "targetRoles": [
+        "Software Engineer",
+        "Full Stack Developer",
+        "Cloud Engineer"
+      ],
+      "aptitudeScore": 90,
+      "mockInterviewScore": 89,
+      "communicationScore": 88,
+      "readinessScore": 81,
+      "readinessLevel": "READY",
+      "readinessBreakdown": {
+        "technical": 79,
+        "academic": 91,
+        "projects": 73,
+        "certifications": 50,
+        "aptitude": 90,
+        "communication": 88,
+        "interview": 89
+      },
+      "isVerified": true,
+      "placementStatus": "In Process"
+    },
+    {
+      "userId": "user_student_aravind",
+      "fullName": "Aravind Swaminathan",
+      "email": "aravind.s@campus.edu",
+      "phone": "+91 9811665426",
+      "university": "National Institute of Technology",
+      "rollNumber": "2022UGComputer020",
+      "degree": "B.Tech",
+      "branch": "Computer Science & Engineering",
+      "graduationYear": 2026,
+      "cgpa": 5.9,
+      "maxCgpa": 10,
+      "backlogs": 3,
+      "skills": [
+        "C",
+        "Java Basics"
+      ],
+      "bio": "Driven final year Computer Science & Engineering undergraduate committed to software craftsmanship, scalable systems, and continuous technological learning.",
+      "github": "https://github.com/aravindswaminathan",
+      "linkedin": "https://linkedin.com/in/aravind-swaminathan",
+      "portfolio": "https://aravindswaminathan.dev",
+      "resumeFilename": "Aravind_Swaminathan_Official_Resume.pdf",
+      "resumeUrl": "#preview-resume",
+      "resumeScore": 38,
+      "projects": [
+        {
+          "id": "proj_19_1",
+          "title": "C Cloud Service",
+          "tech": "C, Java Basics",
+          "description": "Microservices architecture with automated CI/CD and secure token authentication.",
+          "githubLink": "https://github.com/project-repo",
+          "liveLink": "https://demo-app.dev"
+        },
+        {
+          "id": "proj_19_2",
+          "title": "Intelligent Query Engine",
+          "tech": "Python, REST APIs, SQL",
+          "description": "Fast query caching layer reducing database retrieval latency by 45%.",
+          "githubLink": "https://github.com/fast-query"
+        }
+      ],
+      "experience": [],
+      "certifications": [
+        "Google Cloud Associate Cloud Engineer"
+      ],
+      "targetRoles": [
+        "Software Engineer",
+        "Full Stack Developer",
+        "Cloud Engineer"
+      ],
+      "aptitudeScore": 48,
+      "mockInterviewScore": 42,
+      "communicationScore": 50,
+      "readinessScore": 36,
+      "readinessLevel": "NOT READY",
+      "readinessBreakdown": {
+        "technical": 21,
+        "academic": 14,
+        "projects": 73,
+        "certifications": 25,
+        "aptitude": 48,
+        "communication": 50,
+        "interview": 42
+      },
+      "isVerified": true,
+      "placementStatus": "Not Placed"
+    },
+    {
+      "userId": "user_student_isha",
+      "fullName": "Isha Reddy",
+      "email": "isha.reddy@campus.edu",
+      "phone": "+91 9811753080",
+      "university": "National Institute of Technology",
+      "rollNumber": "2022UGComputer021",
+      "degree": "B.Tech",
+      "branch": "Computer Science & Engineering",
+      "graduationYear": 2026,
+      "cgpa": 8.85,
+      "maxCgpa": 10,
+      "backlogs": 0,
+      "skills": [
+        "React",
+        "TypeScript",
+        "Node.js",
+        "GraphQL",
+        "PostgreSQL",
+        "Tailwind"
+      ],
+      "bio": "Driven final year Computer Science & Engineering undergraduate committed to software craftsmanship, scalable systems, and continuous technological learning.",
+      "github": "https://github.com/ishareddy",
+      "linkedin": "https://linkedin.com/in/isha-reddy",
+      "portfolio": "https://ishareddy.dev",
+      "resumeFilename": "Isha_Reddy_Official_Resume.pdf",
+      "resumeUrl": "#preview-resume",
+      "resumeScore": 79,
+      "projects": [
+        {
+          "id": "proj_20_1",
+          "title": "React Cloud Service",
+          "tech": "React, TypeScript, Node.js",
+          "description": "Microservices architecture with automated CI/CD and secure token authentication.",
+          "githubLink": "https://github.com/project-repo",
+          "liveLink": "https://demo-app.dev"
+        },
+        {
+          "id": "proj_20_2",
+          "title": "Intelligent Query Engine",
+          "tech": "Python, REST APIs, SQL",
+          "description": "Fast query caching layer reducing database retrieval latency by 45%.",
+          "githubLink": "https://github.com/fast-query"
+        }
+      ],
+      "experience": [],
+      "certifications": [
+        "AWS Certified Cloud Practitioner",
+        "MongoDB Certified Associate"
+      ],
+      "targetRoles": [
+        "Software Engineer",
+        "Full Stack Developer",
+        "Cloud Engineer"
+      ],
+      "aptitudeScore": 87,
+      "mockInterviewScore": 85,
+      "communicationScore": 86,
+      "readinessScore": 79,
+      "readinessLevel": "READY",
+      "readinessBreakdown": {
+        "technical": 79,
+        "academic": 89,
+        "projects": 73,
+        "certifications": 50,
+        "aptitude": 87,
+        "communication": 86,
+        "interview": 85
+      },
+      "isVerified": true,
+      "placementStatus": "In Process"
+    },
+    {
+      "userId": "user_student_deepak",
+      "fullName": "Deepak Choudhary",
+      "email": "deepak.c@campus.edu",
+      "phone": "+91 9811840734",
+      "university": "National Institute of Technology",
+      "rollNumber": "2022UGMechanical022",
+      "degree": "B.Tech",
+      "branch": "Mechanical Engineering",
+      "graduationYear": 2026,
+      "cgpa": 6.95,
+      "maxCgpa": 10,
+      "backlogs": 1,
+      "skills": [
+        "AutoCAD",
+        "SolidWorks",
+        "Manufacturing"
+      ],
+      "bio": "Driven final year Mechanical Engineering undergraduate committed to software craftsmanship, scalable systems, and continuous technological learning.",
+      "github": "https://github.com/deepakchoudhary",
+      "linkedin": "https://linkedin.com/in/deepak-choudhary",
+      "portfolio": "https://deepakchoudhary.dev",
+      "resumeFilename": "Deepak_Choudhary_Official_Resume.pdf",
+      "resumeUrl": "#preview-resume",
+      "resumeScore": 52,
+      "projects": [
+        {
+          "id": "proj_21_1",
+          "title": "AutoCAD Cloud Service",
+          "tech": "AutoCAD, SolidWorks, Manufacturing",
+          "description": "Microservices architecture with automated CI/CD and secure token authentication.",
+          "githubLink": "https://github.com/project-repo",
+          "liveLink": "https://demo-app.dev"
+        },
+        {
+          "id": "proj_21_2",
+          "title": "Intelligent Query Engine",
+          "tech": "Python, REST APIs, SQL",
+          "description": "Fast query caching layer reducing database retrieval latency by 45%.",
+          "githubLink": "https://github.com/fast-query"
+        }
+      ],
+      "experience": [
+        {
+          "id": "exp_21",
+          "role": "Summer Software Engineering Intern",
+          "company": "Infosys Springboard",
+          "duration": "May 2025 - July 2025",
+          "description": "Implemented backend microservices in Node/Express and automated unit test coverage."
+        }
+      ],
+      "certifications": [
+        "Google Cloud Associate Cloud Engineer"
+      ],
+      "targetRoles": [
+        "Software Engineer",
+        "Full Stack Developer",
+        "Cloud Engineer"
+      ],
+      "aptitudeScore": 62,
+      "mockInterviewScore": 58,
+      "communicationScore": 60,
+      "readinessScore": 50,
+      "readinessLevel": "NOT READY",
+      "readinessBreakdown": {
+        "technical": 32,
+        "academic": 55,
+        "projects": 73,
+        "certifications": 25,
+        "aptitude": 62,
+        "communication": 60,
+        "interview": 58
+      },
+      "isVerified": true,
+      "placementStatus": "Not Placed"
+    },
+    {
+      "userId": "user_student_04f09642c6a87d71ee333813",
+      "fullName": "Pooja Verma",
+      "email": "pooja.verma@nit.edu",
+      "phone": "+91 98765 00000",
+      "university": "National Institute of Technology",
+      "rollNumber": "2022UG4542",
+      "degree": "B.Tech",
+      "branch": "Computer Science & Engineering",
+      "graduationYear": 2026,
+      "cgpa": 8.9,
+      "maxCgpa": 10,
+      "backlogs": 0,
+      "skills": [
+        "Python",
+        "React",
+        "SQL",
+        "PyTorch"
+      ],
+      "bio": "Enthusiastic computer science undergraduate eager to solve real-world problems and deliver high-performance software.",
+      "github": "https://github.com/poojaverma",
+      "linkedin": "https://linkedin.com/in/pooja-verma",
+      "portfolio": "https://poojaverma.dev",
+      "resumeFilename": "Pooja_Verma_Resume.pdf",
+      "resumeUrl": "#preview-resume",
+      "projects": [
+        {
+          "id": "proj_new_1",
+          "title": "Campus System Portal",
+          "tech": "React, Node.js, SQL",
+          "description": "Interactive placement application with automated eligibility verification."
+        }
+      ],
+      "experience": [],
+      "certifications": [
+        "AWS Cloud Practitioner"
+      ],
+      "targetRoles": [
+        "Software Engineer",
+        "Full Stack Developer"
+      ],
+      "aptitudeScore": 82,
+      "mockInterviewScore": 80,
+      "communicationScore": 82,
+      "readinessScore": 65,
+      "readinessLevel": "DEVELOPING",
+      "readinessBreakdown": {
+        "technical": 58,
+        "academic": 89,
+        "projects": 37,
+        "certifications": 25,
+        "aptitude": 82,
+        "communication": 82,
+        "interview": 80
+      },
+      "isVerified": true
+    }
+  ],
+  "recruiterProfiles": [
+    {
+      "userId": "user_recruiter_sarah",
+      "companyId": "comp_microsoft",
+      "companyName": "Microsoft India",
+      "recruiterName": "Sarah Jenkins",
+      "title": "Senior University Talent Acquisition Lead",
+      "email": "sarah.jenkins@microsoft.com",
+      "phone": "+91 98765 11223",
+      "companyWebsite": "https://careers.microsoft.com",
+      "companyLogo": "MSFT",
+      "industry": "Cloud & Software Engineering",
+      "headquarters": "Redmond, WA · India IDC Hyderabad",
+      "companyBio": "Overseeing graduate and intern recruitment for Microsoft IDC across India premier campuses.",
+      "activeDrivesCount": 1
+    },
+    {
+      "userId": "user_recruiter_arjun",
+      "companyId": "comp_google",
+      "companyName": "Google India",
+      "recruiterName": "Arjun Mehta",
+      "title": "Staff University Recruiter",
+      "email": "arjun.mehta@google.com",
+      "phone": "+91 98765 44332",
+      "companyWebsite": "https://buildyourfuture.withgoogle.com",
+      "companyLogo": "GOOG",
+      "industry": "Internet & Artificial Intelligence",
+      "headquarters": "Mountain View, CA · Bangalore",
+      "companyBio": "Partnering with academic institutions to identify exceptional future engineers for Google Engineering.",
+      "activeDrivesCount": 1
+    },
+    {
+      "userId": "user_recruiter_neha",
+      "companyId": "comp_technova",
+      "companyName": "TechNova Solutions",
+      "recruiterName": "Neha Kapoor",
+      "title": "Talent Acquisition Director",
+      "email": "neha.kapoor@technova.io",
+      "phone": "+91 98765 88990",
+      "companyWebsite": "https://technova.io",
+      "companyLogo": "TECH",
+      "industry": "Enterprise Software & Cloud Platforms",
+      "headquarters": "Bangalore, India",
+      "companyBio": "Leading early-career university hiring and strategic placement partnerships across top-tier campuses.",
+      "activeDrivesCount": 2
+    }
+  ],
+  "companies": [
+    {
+      "id": "comp_meridian",
+      "name": "Meridian Labs",
+      "industry": "Machine Learning & Applied AI",
+      "location": "Bangalore / Hybrid",
+      "website": "https://meridianlabs.ai",
+      "logo": "MV",
+      "recruiterId": "user_recruiter_sarah",
+      "recruiterName": "Elena Rostova",
+      "recruiterEmail": "elena@meridianlabs.ai",
+      "hiringStatus": "Active",
+      "description": "Pioneering multimodal foundation models, high-throughput transformer inference, and synthetic data engines.",
+      "activeDrivesCount": 1,
+      "totalHires": 8
+    },
+    {
+      "id": "comp_northwind",
+      "name": "Northwind Fintech",
+      "industry": "Financial Technology & Quantitative Analytics",
+      "location": "Mumbai / Bangalore",
+      "website": "https://northwindfin.com",
+      "logo": "NF",
+      "recruiterId": "user_recruiter_neha",
+      "recruiterName": "Rohan Deshmukh",
+      "recruiterEmail": "rohan@northwindfin.com",
+      "hiringStatus": "Active",
+      "description": "Next-generation algorithmic trading rails, credit risk scoring platforms, and real-time payment settlement networks.",
+      "activeDrivesCount": 1,
+      "totalHires": 12
+    },
+    {
+      "id": "comp_cedar",
+      "name": "Cedar Solutions",
+      "industry": "Data Infrastructure & Cloud Analytics",
+      "location": "Hyderabad / Remote",
+      "website": "https://cedarsolutions.io",
+      "logo": "CS",
+      "recruiterId": "user_recruiter_arjun",
+      "recruiterName": "Tara Sengupta",
+      "recruiterEmail": "tara@cedarsolutions.io",
+      "hiringStatus": "Active",
+      "description": "Enterprise data lakes, automated ETL pipelines, and real-time business telemetry for global healthcare & retail.",
+      "activeDrivesCount": 1,
+      "totalHires": 15
+    },
+    {
+      "id": "comp_helio",
+      "name": "Helio Robotics",
+      "industry": "Autonomous Systems & Embedded AI",
+      "location": "Bangalore / Pune",
+      "website": "https://heliorobotics.tech",
+      "logo": "HL",
+      "recruiterId": "user_recruiter_sarah",
+      "recruiterName": "Vikram Seth",
+      "recruiterEmail": "vikram@heliorobotics.tech",
+      "hiringStatus": "Active",
+      "description": "Building autonomous warehouse robotics, sensor fusion platforms, and computer vision guidance stacks.",
+      "activeDrivesCount": 1,
+      "totalHires": 6
+    },
+    {
+      "id": "comp_technova",
+      "name": "TechNova Solutions",
+      "industry": "Enterprise Software & Cloud Platforms",
+      "location": "Bangalore / Hyderabad / Pune",
+      "website": "https://technova.io",
+      "logo": "TECH",
+      "recruiterId": "user_recruiter_neha",
+      "recruiterName": "Neha Kapoor",
+      "recruiterEmail": "neha.kapoor@technova.io",
+      "hiringStatus": "Active",
+      "description": "Pioneering enterprise AI platforms and scalable cloud orchestration systems for Fortune 500 businesses.",
+      "activeDrivesCount": 2,
+      "totalHires": 14
+    },
+    {
+      "id": "comp_microsoft",
+      "name": "Microsoft India",
+      "industry": "Cloud Infrastructure & Product Engineering",
+      "location": "Hyderabad / Bangalore / Noida",
+      "website": "https://careers.microsoft.com",
+      "logo": "MSFT",
+      "recruiterId": "user_recruiter_sarah",
+      "recruiterName": "Sarah Jenkins",
+      "recruiterEmail": "sarah.jenkins@microsoft.com",
+      "hiringStatus": "Active",
+      "description": "Empowering every person and organization on the planet to achieve more with Azure, Office, and Windows engineering.",
+      "activeDrivesCount": 1,
+      "totalHires": 22
+    },
+    {
+      "id": "comp_google",
+      "name": "Google India",
+      "industry": "Search, AI Systems & Global Infrastructure",
+      "location": "Bangalore / Hyderabad",
+      "website": "https://buildyourfuture.withgoogle.com",
+      "logo": "GOOG",
+      "recruiterId": "user_recruiter_arjun",
+      "recruiterName": "Arjun Mehta",
+      "recruiterEmail": "arjun.mehta@google.com",
+      "hiringStatus": "Active",
+      "description": "Building world-scale AI, Android, YouTube, and Cloud systems serving billions of daily active users.",
+      "activeDrivesCount": 1,
+      "totalHires": 12
+    },
+    {
+      "id": "comp_aws",
+      "name": "Amazon Web Services",
+      "industry": "Cloud Computing & Distributed Systems",
+      "location": "Hyderabad / Bangalore / Chennai",
+      "website": "https://amazon.jobs",
+      "logo": "AWS",
+      "recruiterId": "user_recruiter_sarah",
+      "recruiterName": "Anand Krishnan",
+      "recruiterEmail": "anand.k@amazon.com",
+      "hiringStatus": "Active",
+      "description": "The world’s most comprehensive and broadly adopted cloud platform offering over 200 fully featured services.",
+      "activeDrivesCount": 1,
+      "totalHires": 18
+    },
+    {
+      "id": "comp_cisco",
+      "name": "Cisco Systems",
+      "industry": "Networking, Cyber Security & IoT",
+      "location": "Bangalore",
+      "website": "https://jobs.cisco.com",
+      "logo": "CSCO",
+      "recruiterId": "user_recruiter_neha",
+      "recruiterName": "Priyanka Verma",
+      "recruiterEmail": "p.verma@cisco.com",
+      "hiringStatus": "Active",
+      "description": "Transforming how people connect, communicate, and collaborate securely across globally distributed networks.",
+      "activeDrivesCount": 1,
+      "totalHires": 15
+    }
+  ],
+  "jobs": [
+    {
+      "id": "job_meridian_ml",
+      "companyId": "comp_meridian",
+      "recruiterId": "user_recruiter_sarah",
+      "companyName": "Meridian Labs",
+      "companyLogo": "MV",
+      "title": "ML Engineer Intern",
+      "department": "Applied Machine Learning & GenAI",
+      "location": "Bangalore / Hybrid",
+      "type": "Internship",
+      "workplaceType": "Hybrid",
+      "ctcOrStipend": "₹80,000 / mo (PPO ₹26 LPA)",
+      "minCgpa": 8,
+      "allowedBranches": [
+        "Computer Science & Engineering",
+        "Artificial Intelligence & Data Science",
+        "Information Technology"
+      ],
+      "maxBacklogs": 0,
+      "targetBatches": [
+        2026
+      ],
+      "description": "Work on foundational deep learning models, transformer fine-tuning, and scalable inference microservices.",
+      "responsibilities": [
+        "Design PyTorch and TensorFlow distributed training scripts",
+        "Optimize LLM inference latency with TensorRT and ONNX",
+        "Deploy FastAPI model inference endpoints behind Kubernetes clusters"
+      ],
+      "requirements": [
+        "Strong proficiency in Python, PyTorch, and linear algebra",
+        "Understanding of transformers, attention mechanisms, and embeddings",
+        "Minimum CGPA 8.0 with zero backlogs"
+      ],
+      "skills": [
+        "Python",
+        "PyTorch",
+        "Machine Learning",
+        "FastAPI",
+        "Docker"
+      ],
+      "status": "Active",
+      "applicationDeadline": "2026-10-25",
+      "openingsCount": 4,
+      "applicantCount": 38,
+      "driveDate": "2026-10-30",
+      "driveTime": "09:00 AM - 05:00 PM",
+      "venue": "AI Computing Hub",
+      "createdAt": "2026-08-10T10:00:00Z",
+      "updatedAt": "2026-08-10T10:00:00Z"
+    },
+    {
+      "id": "job_northwind_analyst",
+      "companyId": "comp_northwind",
+      "recruiterId": "user_recruiter_neha",
+      "companyName": "Northwind Fintech",
+      "companyLogo": "NF",
+      "title": "Product Analyst",
+      "department": "Growth Analytics & Algorithmic Settlement",
+      "location": "Mumbai / Bangalore",
+      "type": "Full-Time",
+      "workplaceType": "Hybrid",
+      "ctcOrStipend": "₹14.0 - ₹18.5 LPA",
+      "minCgpa": 7.5,
+      "allowedBranches": [
+        "Computer Science & Engineering",
+        "Information Technology",
+        "All Engineering Disciplines"
+      ],
+      "maxBacklogs": 0,
+      "targetBatches": [
+        2026
+      ],
+      "description": "Conduct quantitative cohort analysis, conversion funnel instrumentation, and algorithmic user segmentation.",
+      "responsibilities": [
+        "Author complex SQL queries for transaction stream aggregations",
+        "Develop real-time business telemetry in Tableau and Metabase",
+        "Collaborate with Product Managers to launch experiments and A/B tests"
+      ],
+      "requirements": [
+        "High SQL proficiency and Python data modeling (Pandas, NumPy)",
+        "Sharp product intuition and statistical hypothesis testing",
+        "Minimum CGPA 7.5"
+      ],
+      "skills": [
+        "SQL",
+        "Python",
+        "Product Analytics",
+        "Tableau",
+        "Statistics"
+      ],
+      "status": "Active",
+      "applicationDeadline": "2026-10-28",
+      "openingsCount": 8,
+      "applicantCount": 45,
+      "driveDate": "2026-11-04",
+      "driveTime": "10:00 AM - 04:30 PM",
+      "venue": "Virtual Placement Room A",
+      "createdAt": "2026-08-12T10:00:00Z",
+      "updatedAt": "2026-08-12T10:00:00Z"
+    },
+    {
+      "id": "job_cedar_data",
+      "companyId": "comp_cedar",
+      "recruiterId": "user_recruiter_arjun",
+      "companyName": "Cedar Solutions",
+      "companyLogo": "CS",
+      "title": "Data Associate",
+      "department": "Enterprise Data Platform",
+      "location": "Hyderabad / Remote",
+      "type": "Full-Time",
+      "workplaceType": "Remote",
+      "ctcOrStipend": "₹12.0 - ₹16.0 LPA",
+      "minCgpa": 7.2,
+      "allowedBranches": [
+        "Computer Science & Engineering",
+        "Information Technology",
+        "Artificial Intelligence & Data Science"
+      ],
+      "maxBacklogs": 0,
+      "targetBatches": [
+        2026
+      ],
+      "description": "Build enterprise ETL/ELT pipelines, automate data warehouse syncing, and enforce data quality contracts.",
+      "responsibilities": [
+        "Write data ingestion pipelines in Python, Airflow, and dbt",
+        "Optimize relational indexing and analytical query plans in PostgreSQL / Snowflake",
+        "Monitor pipeline latency and automated data validation suites"
+      ],
+      "requirements": [
+        "Solid command of SQL and Python",
+        "Familiarity with cloud data concepts and dimensional modeling",
+        "Minimum CGPA 7.2"
+      ],
+      "skills": [
+        "SQL",
+        "Python",
+        "ETL",
+        "PostgreSQL",
+        "Airflow"
+      ],
+      "status": "Active",
+      "applicationDeadline": "2026-11-02",
+      "openingsCount": 10,
+      "applicantCount": 30,
+      "driveDate": "2026-11-08",
+      "driveTime": "09:30 AM - 04:00 PM",
+      "venue": "Computing Complex 2",
+      "createdAt": "2026-08-14T10:00:00Z",
+      "updatedAt": "2026-08-14T10:00:00Z"
+    },
+    {
+      "id": "job_helio_research",
+      "companyId": "comp_helio",
+      "recruiterId": "user_recruiter_sarah",
+      "companyName": "Helio Robotics",
+      "companyLogo": "HL",
+      "title": "Research Intern",
+      "department": "Autonomous Navigation & Robotics Perception",
+      "location": "Bangalore / Pune",
+      "type": "Internship",
+      "workplaceType": "On-Campus",
+      "ctcOrStipend": "₹65,000 / mo (PPO ₹22 LPA)",
+      "minCgpa": 7.8,
+      "allowedBranches": [
+        "Computer Science & Engineering",
+        "Electronics & Communication",
+        "Mechanical Engineering"
+      ],
+      "maxBacklogs": 0,
+      "targetBatches": [
+        2026
+      ],
+      "description": "Implement computer vision algorithms, SLAM tracking, and robot actuation control loops for autonomous robotics.",
+      "responsibilities": [
+        "Develop real-time perception algorithms in C++ and OpenCV",
+        "Simulate robotic kinematics and trajectory planning in ROS / Gazebo",
+        "Conduct hardware-in-the-loop validation on autonomous platforms"
+      ],
+      "requirements": [
+        "Proficiency in C++ and Python",
+        "Familiarity with ROS (Robot Operating System) and Linux",
+        "Minimum CGPA 7.8"
+      ],
+      "skills": [
+        "C++",
+        "Python",
+        "ROS",
+        "Computer Vision",
+        "Linux"
+      ],
+      "status": "Active",
+      "applicationDeadline": "2026-11-05",
+      "openingsCount": 5,
+      "applicantCount": 22,
+      "driveDate": "2026-11-12",
+      "driveTime": "10:00 AM - 05:00 PM",
+      "venue": "Robotics Center Lab",
+      "createdAt": "2026-08-16T10:00:00Z",
+      "updatedAt": "2026-08-16T10:00:00Z"
+    },
+    {
+      "id": "job_technova_swe",
+      "companyId": "comp_technova",
+      "recruiterId": "user_recruiter_neha",
+      "companyName": "TechNova Solutions",
+      "companyLogo": "TECH",
+      "title": "Software Developer (Full Stack)",
+      "department": "Core Product Engineering",
+      "location": "Bangalore / Hybrid",
+      "type": "Full-Time",
+      "workplaceType": "Hybrid",
+      "ctcOrStipend": "₹14.5 - ₹18.0 LPA",
+      "minCgpa": 7,
+      "allowedBranches": [
+        "Computer Science & Engineering",
+        "Information Technology",
+        "Artificial Intelligence & Data Science"
+      ],
+      "maxBacklogs": 0,
+      "targetBatches": [
+        2026
+      ],
+      "description": "Design, develop, and scale modern cloud-native web applications using Python, React, SQL, and AWS infrastructure.",
+      "responsibilities": [
+        "Build performant frontend interfaces in React and TypeScript",
+        "Architect robust RESTful microservices in Python / Node.js",
+        "Optimize database queries and schema designs in PostgreSQL / MongoDB",
+        "Participate in code reviews, automated CI/CD deployments, and agile sprint planning"
+      ],
+      "requirements": [
+        "Strong proficiency in Python, React, and SQL",
+        "Demonstrated understanding of REST APIs and Git version control",
+        "Working knowledge of Docker, AWS, or modern cloud fundamentals is a plus",
+        "Minimum CGPA of 7.0 with no standing backlogs"
+      ],
+      "skills": [
+        "Python",
+        "React",
+        "SQL",
+        "Git",
+        "REST API",
+        "AWS",
+        "Docker"
+      ],
+      "status": "Active",
+      "applicationDeadline": "2026-10-15",
+      "openingsCount": 12,
+      "applicantCount": 28,
+      "driveDate": "2026-10-18",
+      "driveTime": "09:30 AM - 05:00 PM",
+      "venue": "Turing Hall & Computing Lab 3",
+      "createdAt": "2026-08-10T10:00:00Z",
+      "updatedAt": "2026-08-10T10:00:00Z"
+    },
+    {
+      "id": "job_microsoft_sde",
+      "companyId": "comp_microsoft",
+      "recruiterId": "user_recruiter_sarah",
+      "companyName": "Microsoft India",
+      "companyLogo": "MSFT",
+      "title": "Software Development Engineer - I",
+      "department": "Azure Distributed Systems & Core OS",
+      "location": "Hyderabad / Bangalore",
+      "type": "Full-Time",
+      "workplaceType": "Hybrid",
+      "ctcOrStipend": "₹28.5 - ₹32.0 LPA",
+      "minCgpa": 8,
+      "allowedBranches": [
+        "Computer Science & Engineering",
+        "Information Technology",
+        "Artificial Intelligence & Data Science",
+        "Electronics & Communication"
+      ],
+      "maxBacklogs": 0,
+      "targetBatches": [
+        2026
+      ],
+      "description": "Work on cutting-edge cloud infrastructure, distributed microservices, and high-throughput data pipelines within Microsoft Azure.",
+      "responsibilities": [
+        "Write highly efficient, robust, and clean code in C++, C#, Java, or Go",
+        "Solve distributed systems concurrency, low-latency, and caching challenges",
+        "Drive unit testing, integration testing, and telemetry-guided deployments",
+        "Collaborate with international teams across Redmond and India Development Centers"
+      ],
+      "requirements": [
+        "Solid command of Data Structures, Algorithms, and Object-Oriented Design",
+        "Experience in C++, Java, or Python",
+        "Strong problem-solving capability and verified high aptitude scores",
+        "Minimum CGPA of 8.0 with zero active backlogs"
+      ],
+      "skills": [
+        "C++",
+        "Java",
+        "Data Structures",
+        "Distributed Systems",
+        "Algorithms",
+        "SQL"
+      ],
+      "status": "Active",
+      "applicationDeadline": "2026-10-20",
+      "openingsCount": 8,
+      "applicantCount": 42,
+      "driveDate": "2026-10-24",
+      "driveTime": "10:00 AM - 06:00 PM",
+      "venue": "Campus Main Auditorium & CSE Labs",
+      "createdAt": "2026-08-12T11:00:00Z",
+      "updatedAt": "2026-08-12T11:00:00Z"
+    },
+    {
+      "id": "job_google_swe",
+      "companyId": "comp_google",
+      "recruiterId": "user_recruiter_arjun",
+      "companyName": "Google India",
+      "companyLogo": "GOOG",
+      "title": "Associate Software Engineer (SWE Campus)",
+      "department": "Google Search & Machine Intelligence",
+      "location": "Bangalore / Hyderabad",
+      "type": "Full-Time",
+      "workplaceType": "Hybrid",
+      "ctcOrStipend": "₹34.0 - ₹38.0 LPA",
+      "minCgpa": 8.5,
+      "allowedBranches": [
+        "Computer Science & Engineering",
+        "Information Technology",
+        "Artificial Intelligence & Data Science"
+      ],
+      "maxBacklogs": 0,
+      "targetBatches": [
+        2026
+      ],
+      "description": "Create solutions that impact millions of users worldwide through state-of-the-art search algorithms, machine learning models, and web scale infrastructure.",
+      "responsibilities": [
+        "Develop scalable, fault-tolerant software services for Google Products",
+        "Implement algorithmic optimizations and large-scale data handling",
+        "Design clean architectural patterns and conduct peer code reviews"
+      ],
+      "requirements": [
+        "Deep mastery of Computer Science fundamentals: Algorithms, OS, Networks, DBMS",
+        "Proficiency in Python, C++, or Go",
+        "Proven competitive programming or open-source track record",
+        "Minimum CGPA of 8.5 with no active backlogs"
+      ],
+      "skills": [
+        "Python",
+        "C++",
+        "Data Structures",
+        "Machine Learning",
+        "Linux",
+        "Algorithms"
+      ],
+      "status": "Active",
+      "applicationDeadline": "2026-10-25",
+      "openingsCount": 6,
+      "applicantCount": 35,
+      "driveDate": "2026-10-28",
+      "driveTime": "09:00 AM - 05:30 PM",
+      "venue": "Senate Hall & Online Google Meet",
+      "createdAt": "2026-08-15T09:00:00Z",
+      "updatedAt": "2026-08-15T09:00:00Z"
+    },
+    {
+      "id": "job_aws_cloud",
+      "companyId": "comp_aws",
+      "recruiterId": "user_recruiter_sarah",
+      "companyName": "Amazon Web Services",
+      "companyLogo": "AWS",
+      "title": "Cloud Support Associate & DevOps Engineer",
+      "department": "AWS Cloud Architecture & Reliability",
+      "location": "Hyderabad / Bangalore",
+      "type": "Full-Time",
+      "workplaceType": "Hybrid",
+      "ctcOrStipend": "₹18.0 - ₹22.5 LPA",
+      "minCgpa": 7.5,
+      "allowedBranches": [
+        "Computer Science & Engineering",
+        "Information Technology",
+        "Electronics & Communication",
+        "Artificial Intelligence & Data Science"
+      ],
+      "maxBacklogs": 0,
+      "targetBatches": [
+        2026
+      ],
+      "description": "Build automated cloud migration scripts, configure container orchestration, and optimize customer infrastructure on AWS.",
+      "responsibilities": [
+        "Provision and manage cloud environments using Terraform and CloudFormation",
+        "Design resilient CI/CD pipelines in Docker and Kubernetes",
+        "Debug Linux system administration and TCP/IP networking incidents"
+      ],
+      "requirements": [
+        "Proficiency in Linux, Bash scripting, and Python or Go",
+        "Understanding of AWS Core Services (EC2, S3, VPC, RDS)",
+        "Familiarity with Docker containers and Git workflow"
+      ],
+      "skills": [
+        "AWS",
+        "Linux",
+        "Docker",
+        "Python",
+        "Kubernetes",
+        "Networking"
+      ],
+      "status": "Active",
+      "applicationDeadline": "2026-11-05",
+      "openingsCount": 10,
+      "applicantCount": 22,
+      "driveDate": "2026-11-10",
+      "driveTime": "10:00 AM - 04:30 PM",
+      "venue": "Seminar Hall B & Server Lab",
+      "createdAt": "2026-08-18T14:00:00Z",
+      "updatedAt": "2026-08-18T14:00:00Z"
+    },
+    {
+      "id": "job_cisco_embedded",
+      "companyId": "comp_cisco",
+      "recruiterId": "user_recruiter_neha",
+      "companyName": "Cisco Systems",
+      "companyLogo": "CSCO",
+      "title": "Software Engineer - Systems & Embedded Networking",
+      "department": "Enterprise Routing & Security",
+      "location": "Bangalore",
+      "type": "Full-Time",
+      "workplaceType": "On-Campus",
+      "ctcOrStipend": "₹19.0 - ₹23.0 LPA",
+      "minCgpa": 7.5,
+      "allowedBranches": [
+        "Electronics & Communication",
+        "Computer Science & Engineering",
+        "Information Technology"
+      ],
+      "maxBacklogs": 0,
+      "targetBatches": [
+        2026
+      ],
+      "description": "Engineer low-level device drivers, routing protocols, and secure network infrastructure for enterprise routers and switches.",
+      "responsibilities": [
+        "Implement real-time network protocol handlers in C and C++",
+        "Optimize RTOS device drivers and kernel modules",
+        "Analyze network packet captures and automated security compliance"
+      ],
+      "requirements": [
+        "Strong grasp of C, C++, Data Structures, and Computer Networking",
+        "Knowledge of TCP/IP stack, sockets, and Linux kernel programming",
+        "Minimum CGPA 7.5"
+      ],
+      "skills": [
+        "C",
+        "C++",
+        "Networking",
+        "Linux",
+        "Embedded Systems",
+        "TCP/IP"
+      ],
+      "status": "Active",
+      "applicationDeadline": "2026-11-12",
+      "openingsCount": 8,
+      "applicantCount": 19,
+      "driveDate": "2026-11-15",
+      "driveTime": "09:30 AM - 05:00 PM",
+      "venue": "ECE Department Seminar Complex",
+      "createdAt": "2026-08-20T10:00:00Z",
+      "updatedAt": "2026-08-20T10:00:00Z"
+    },
+    {
+      "id": "job_technova_data",
+      "companyId": "comp_technova",
+      "recruiterId": "user_recruiter_neha",
+      "companyName": "TechNova Solutions",
+      "companyLogo": "TECH",
+      "title": "Junior Data Analyst & BI Developer",
+      "department": "Business Intelligence & Growth",
+      "location": "Pune / Remote",
+      "type": "Full-Time",
+      "workplaceType": "Remote",
+      "ctcOrStipend": "₹9.0 - ₹12.0 LPA",
+      "minCgpa": 6.8,
+      "allowedBranches": [
+        "All Engineering Disciplines"
+      ],
+      "maxBacklogs": 0,
+      "targetBatches": [
+        2026
+      ],
+      "description": "Transform raw institutional and business telemetry into actionable dashboards and predictive statistical models.",
+      "responsibilities": [
+        "Write complex SQL queries, aggregations, and ETL workflows",
+        "Develop executive dashboards in PowerBI, Tableau, and Metabase",
+        "Conduct statistical cohort analysis and KPI reporting"
+      ],
+      "requirements": [
+        "Strong SQL proficiency and data visualization skills",
+        "Experience in Python (Pandas, NumPy) and Excel modeling",
+        "Clear analytical communication and business curiosity"
+      ],
+      "skills": [
+        "SQL",
+        "Python",
+        "PowerBI",
+        "Tableau",
+        "Pandas",
+        "Excel"
+      ],
+      "status": "Active",
+      "applicationDeadline": "2026-11-20",
+      "openingsCount": 15,
+      "applicantCount": 31,
+      "driveDate": "2026-11-22",
+      "driveTime": "11:00 AM - 04:00 PM",
+      "venue": "Virtual Placement Suite",
+      "createdAt": "2026-08-22T16:00:00Z",
+      "updatedAt": "2026-08-22T16:00:00Z"
+    },
+    {
+      "id": "job_technova_intern",
+      "companyId": "comp_technova",
+      "recruiterId": "user_recruiter_neha",
+      "companyName": "TechNova Solutions",
+      "companyLogo": "TECH",
+      "title": "Software Engineering Summer Intern (2026 Batch)",
+      "department": "Frontend Engineering & Design Systems",
+      "location": "Bangalore",
+      "type": "Internship",
+      "workplaceType": "On-Campus",
+      "ctcOrStipend": "₹45,000 / month Stipend (PPO Eligible)",
+      "minCgpa": 7,
+      "allowedBranches": [
+        "Computer Science & Engineering",
+        "Information Technology",
+        "Artificial Intelligence & Data Science"
+      ],
+      "maxBacklogs": 0,
+      "targetBatches": [
+        2026
+      ],
+      "description": "6-month pre-placement internship opportunity building user-facing web interfaces, component libraries, and testing suites.",
+      "responsibilities": [
+        "Develop interactive UI widgets using React and Tailwind CSS",
+        "Integrate REST endpoints and state management",
+        "Write unit tests using Vitest and React Testing Library"
+      ],
+      "requirements": [
+        "Good understanding of JavaScript/TypeScript, React, and CSS",
+        "Enthusiasm for UI/UX details and fast learner"
+      ],
+      "skills": [
+        "React",
+        "JavaScript",
+        "TypeScript",
+        "Tailwind CSS",
+        "Git"
+      ],
+      "status": "Active",
+      "applicationDeadline": "2026-11-25",
+      "openingsCount": 10,
+      "applicantCount": 26,
+      "driveDate": "2026-11-28",
+      "driveTime": "10:00 AM - 03:00 PM",
+      "venue": "Computing Lab 1",
+      "createdAt": "2026-08-25T11:00:00Z",
+      "updatedAt": "2026-08-25T11:00:00Z"
+    },
+    {
+      "id": "job_microsoft_ai",
+      "companyId": "comp_microsoft",
+      "recruiterId": "user_recruiter_sarah",
+      "companyName": "Microsoft India",
+      "companyLogo": "MSFT",
+      "title": "AI/ML Applied Scientist Associate",
+      "department": "Azure AI & Cognitive Services",
+      "location": "Hyderabad",
+      "type": "Full-Time",
+      "workplaceType": "Hybrid",
+      "ctcOrStipend": "₹30.0 - ₹35.0 LPA",
+      "minCgpa": 8.5,
+      "allowedBranches": [
+        "Computer Science & Engineering",
+        "Artificial Intelligence & Data Science",
+        "Information Technology"
+      ],
+      "maxBacklogs": 0,
+      "targetBatches": [
+        2026
+      ],
+      "description": "Train, fine-tune, and deploy multimodal generative models and neural search algorithms for global enterprise users.",
+      "responsibilities": [
+        "Develop model evaluation benchmarks and data preprocessing pipelines",
+        "Fine-tune foundation models using PyTorch, DeepSpeed, and ONNX Runtime",
+        "Deploy scalable inference APIs on Azure Kubernetes Service"
+      ],
+      "requirements": [
+        "Strong mathematics foundation: Linear Algebra, Probability, Calculus",
+        "Extensive hands-on experience with PyTorch, Transformers, and Python",
+        "Minimum CGPA 8.5"
+      ],
+      "skills": [
+        "Python",
+        "PyTorch",
+        "Machine Learning",
+        "NLP",
+        "FastAPI",
+        "Azure"
+      ],
+      "status": "Active",
+      "applicationDeadline": "2026-12-01",
+      "openingsCount": 5,
+      "applicantCount": 20,
+      "driveDate": "2026-12-05",
+      "driveTime": "09:00 AM - 05:00 PM",
+      "venue": "Virtual Teams Placement Suite",
+      "createdAt": "2026-08-28T09:00:00Z",
+      "updatedAt": "2026-08-28T09:00:00Z"
+    }
+  ],
+  "drives": [
+    {
+      "id": "drive_technova_01",
+      "title": "TechNova Solutions Campus Placement Drive 2026",
+      "companyId": "comp_technova",
+      "companyName": "TechNova Solutions",
+      "companyLogo": "TECH",
+      "date": "2026-10-18",
+      "startTime": "09:30 AM",
+      "endTime": "05:00 PM",
+      "venue": "Turing Hall & Computing Lab 3",
+      "targetBatches": [
+        2026
+      ],
+      "allowedBranches": [
+        "Computer Science & Engineering",
+        "Information Technology",
+        "Artificial Intelligence & Data Science"
+      ],
+      "minCgpa": 7,
+      "openings": 12,
+      "status": "Upcoming",
+      "panelMembers": [
+        "Neha Kapoor (TA Director)",
+        "Kunal Shinde (Tech Lead)",
+        "Dr. Rajesh Rao (TPO Observer)"
+      ],
+      "shortlistedCount": 28
+    },
+    {
+      "id": "drive_microsoft_01",
+      "title": "Microsoft IDC Campus Recruitment Drive 2026",
+      "companyId": "comp_microsoft",
+      "companyName": "Microsoft India",
+      "companyLogo": "MSFT",
+      "date": "2026-10-24",
+      "startTime": "10:00 AM",
+      "endTime": "06:00 PM",
+      "venue": "Campus Main Auditorium & CSE Labs",
+      "targetBatches": [
+        2026
+      ],
+      "allowedBranches": [
+        "Computer Science & Engineering",
+        "Information Technology",
+        "Artificial Intelligence & Data Science",
+        "Electronics & Communication"
+      ],
+      "minCgpa": 8,
+      "openings": 8,
+      "status": "Upcoming",
+      "panelMembers": [
+        "Sarah Jenkins (Talent Lead)",
+        "Vivek Anand (Principal Engineer)",
+        "Prof. A. K. Sen (CSE HOD)"
+      ],
+      "shortlistedCount": 32
+    },
+    {
+      "id": "drive_google_01",
+      "title": "Google University Hiring Sprint 2026",
+      "companyId": "comp_google",
+      "companyName": "Google India",
+      "companyLogo": "GOOG",
+      "date": "2026-10-28",
+      "startTime": "09:00 AM",
+      "endTime": "05:30 PM",
+      "venue": "Senate Hall & Online Google Meet",
+      "targetBatches": [
+        2026
+      ],
+      "allowedBranches": [
+        "Computer Science & Engineering",
+        "Information Technology",
+        "Artificial Intelligence & Data Science"
+      ],
+      "minCgpa": 8.5,
+      "openings": 6,
+      "status": "Upcoming",
+      "panelMembers": [
+        "Arjun Mehta (Staff Recruiter)",
+        "Devika S. (Senior SWE)",
+        "TPO Lead Invigilator"
+      ],
+      "shortlistedCount": 18
+    },
+    {
+      "id": "drive_aws_01",
+      "title": "Amazon Web Services Cloud & Systems Drive",
+      "companyId": "comp_aws",
+      "companyName": "Amazon Web Services",
+      "companyLogo": "AWS",
+      "date": "2026-11-10",
+      "startTime": "10:00 AM",
+      "endTime": "04:30 PM",
+      "venue": "Seminar Hall B & Server Lab",
+      "targetBatches": [
+        2026
+      ],
+      "allowedBranches": [
+        "Computer Science & Engineering",
+        "Information Technology",
+        "Electronics & Communication"
+      ],
+      "minCgpa": 7.5,
+      "openings": 10,
+      "status": "Upcoming",
+      "panelMembers": [
+        "Anand Krishnan (DevOps Manager)",
+        "Ritu Pillai (Solutions Architect)"
+      ],
+      "shortlistedCount": 16
+    }
+  ],
+  "applications": [
+    {
+      "id": "app_meridian_aarav",
+      "jobId": "job_meridian_ml",
+      "studentId": "user_student_aarav",
+      "jobTitle": "ML Engineer Intern",
+      "companyName": "Meridian Labs",
+      "companyLogo": "MV",
+      "jobLocation": "Bangalore / Hybrid",
+      "jobType": "Internship",
+      "ctcOrStipend": "₹80,000 / mo (PPO ₹26 LPA)",
+      "studentName": "Aarav Reddy",
+      "studentEmail": "aarav.reddy@campus.edu",
+      "studentPhone": "+91 9810000000",
+      "studentCgpa": 8.78,
+      "studentDegree": "B.Tech",
+      "studentBranch": "Computer Science & Engineering",
+      "studentGraduationYear": 2026,
+      "studentSkills": [
+        "Python",
+        "Machine Learning",
+        "React",
+        "SQL",
+        "Data Structures",
+        "Docker",
+        "FastAPI"
+      ],
+      "studentResumeFilename": "Aarav_Reddy_Official_Resume.pdf",
+      "studentResumeUrl": "#preview-resume",
+      "coverNote": "Applied 3 days ago · screening",
+      "eligibilityStatus": "Eligible",
+      "eligibilityReasons": [
+        "CGPA and branch criteria verified"
+      ],
+      "matchScore": 84,
+      "matchBreakdown": {
+        "technicalSkillMatch": 80,
+        "academicEligibility": 88,
+        "projectRelevance": 95,
+        "certificationMatch": 70,
+        "interviewPerformance": 84
+      },
+      "explainableMatch": {
+        "isShortlisted": true,
+        "summary": "Candidate is SHORTLISTED based on high technical skill alignment (80%), strong academic credentials (8.78/10.0), and verified mock assessment scores.",
+        "matchedSkills": [
+          "Python",
+          "Machine Learning",
+          "FastAPI",
+          "Docker"
+        ],
+        "missingSkills": [
+          "PyTorch"
+        ],
+        "positiveFactors": [
+          "CGPA 8.78 satisfies the benchmark (>= 8)",
+          "Degree branch (Computer Science & Engineering) matches eligible hiring streams",
+          "Strong proficiency in core required skills: Python, Machine Learning, FastAPI",
+          "Solid hands-on project portfolio with GitHub repositories",
+          "Mock technical interview score (84/100) shows strong readiness"
+        ],
+        "gapFactors": [
+          "Lacks essential tooling/frameworks: PyTorch"
+        ],
+        "assessmentBenchmark": "Meets technical benchmark (Candidate: 84%, Benchmark: 75%)",
+        "recommendedAction": "Prepare for technical live coding round and review Meridian Labs's system design requirements."
+      },
+      "stage": "screening",
+      "stageHistory": [
+        {
+          "stage": "applied",
+          "label": "Applied",
+          "timestamp": "2026-09-25T10:00:00Z",
+          "note": "Applied 3 days ago"
+        },
+        {
+          "stage": "screening",
+          "label": "Screening In Progress",
+          "timestamp": "2026-09-26T14:00:00Z",
+          "note": "Resume shortlisted for review"
+        }
+      ],
+      "createdAt": "2026-09-25T10:00:00Z",
+      "updatedAt": "2026-09-26T14:00:00Z"
+    },
+    {
+      "id": "app_northwind_aarav",
+      "jobId": "job_northwind_analyst",
+      "studentId": "user_student_aarav",
+      "jobTitle": "Product Analyst",
+      "companyName": "Northwind Fintech",
+      "companyLogo": "NF",
+      "jobLocation": "Mumbai / Bangalore",
+      "jobType": "Full-Time",
+      "ctcOrStipend": "₹14.0 - ₹18.5 LPA",
+      "studentName": "Aarav Reddy",
+      "studentEmail": "aarav.reddy@campus.edu",
+      "studentPhone": "+91 9810000000",
+      "studentCgpa": 8.78,
+      "studentDegree": "B.Tech",
+      "studentBranch": "Computer Science & Engineering",
+      "studentGraduationYear": 2026,
+      "studentSkills": [
+        "Python",
+        "Machine Learning",
+        "React",
+        "SQL",
+        "Data Structures",
+        "Docker",
+        "FastAPI"
+      ],
+      "studentResumeFilename": "Aarav_Reddy_Official_Resume.pdf",
+      "studentResumeUrl": "#preview-resume",
+      "coverNote": "Interview Fri 10:00 · prep suggested",
+      "eligibilityStatus": "Eligible",
+      "eligibilityReasons": [
+        "Technical and aptitude test cleared"
+      ],
+      "matchScore": 89,
+      "matchBreakdown": {
+        "technicalSkillMatch": 40,
+        "academicEligibility": 88,
+        "projectRelevance": 95,
+        "certificationMatch": 70,
+        "interviewPerformance": 84
+      },
+      "explainableMatch": {
+        "isShortlisted": false,
+        "summary": "Candidate is NOT SHORTLISTED. Main gaps are: Product Analytics, Tableau, Statistics. Review recommended actions below.",
+        "matchedSkills": [
+          "SQL",
+          "Python"
+        ],
+        "missingSkills": [
+          "Product Analytics",
+          "Tableau",
+          "Statistics"
+        ],
+        "positiveFactors": [
+          "CGPA 8.78 satisfies the benchmark (>= 7.5)",
+          "Degree branch (Computer Science & Engineering) matches eligible hiring streams",
+          "Strong proficiency in core required skills: SQL, Python",
+          "Solid hands-on project portfolio with GitHub repositories",
+          "Mock technical interview score (84/100) shows strong readiness"
+        ],
+        "gapFactors": [
+          "Lacks essential tooling/frameworks: Product Analytics, Tableau, Statistics"
+        ],
+        "assessmentBenchmark": "Meets technical benchmark (Candidate: 84%, Benchmark: 75%)",
+        "recommendedAction": "Complete targeted courses in Product Analytics and Tableau, build a domain project, and retake the mock technical assessment."
+      },
+      "stage": "interview",
+      "stageHistory": [
+        {
+          "stage": "applied",
+          "label": "Application Submitted",
+          "timestamp": "2026-09-20T10:00:00Z"
+        },
+        {
+          "stage": "screening",
+          "label": "Screening Passed",
+          "timestamp": "2026-09-22T11:00:00Z"
+        },
+        {
+          "stage": "interview",
+          "label": "Interview Scheduled",
+          "timestamp": "2026-09-27T15:00:00Z",
+          "note": "Technical Round: Fri 10:00 AM"
+        }
+      ],
+      "interviewDetails": {
+        "id": "int_northwind_aarav",
+        "date": "2026-10-02",
+        "time": "10:00 AM",
+        "interviewer": "Rohan Deshmukh (Lead Analyst)",
+        "meetingLink": "https://meet.northwindfin.com/interview/aarav",
+        "roundName": "Round 1: SQL & Analytical Problem Solving",
+        "venue": "Virtual Placement Room A"
+      },
+      "createdAt": "2026-09-20T10:00:00Z",
+      "updatedAt": "2026-09-27T15:00:00Z"
+    },
+    {
+      "id": "app_cedar_aarav",
+      "jobId": "job_cedar_data",
+      "studentId": "user_student_aarav",
+      "jobTitle": "Data Associate",
+      "companyName": "Cedar Solutions",
+      "companyLogo": "CS",
+      "jobLocation": "Hyderabad / Remote",
+      "jobType": "Full-Time",
+      "ctcOrStipend": "₹12.0 - ₹16.0 LPA",
+      "studentName": "Aarav Reddy",
+      "studentEmail": "aarav.reddy@campus.edu",
+      "studentPhone": "+91 9810000000",
+      "studentCgpa": 8.78,
+      "studentDegree": "B.Tech",
+      "studentBranch": "Computer Science & Engineering",
+      "studentGraduationYear": 2026,
+      "studentSkills": [
+        "Python",
+        "Machine Learning",
+        "React",
+        "SQL",
+        "Data Structures",
+        "Docker",
+        "FastAPI"
+      ],
+      "studentResumeFilename": "Aarav_Reddy_Official_Resume.pdf",
+      "studentResumeUrl": "#preview-resume",
+      "coverNote": "Offer received · respond by Fri",
+      "eligibilityStatus": "Eligible",
+      "eligibilityReasons": [
+        "Final evaluation completed with high commendation"
+      ],
+      "matchScore": 92,
+      "matchBreakdown": {
+        "technicalSkillMatch": 60,
+        "academicEligibility": 88,
+        "projectRelevance": 95,
+        "certificationMatch": 70,
+        "interviewPerformance": 84
+      },
+      "explainableMatch": {
+        "isShortlisted": true,
+        "summary": "Candidate is SHORTLISTED based on high technical skill alignment (60%), strong academic credentials (8.78/10.0), and verified mock assessment scores.",
+        "matchedSkills": [
+          "SQL",
+          "Python",
+          "PostgreSQL"
+        ],
+        "missingSkills": [
+          "ETL",
+          "Airflow"
+        ],
+        "positiveFactors": [
+          "CGPA 8.78 satisfies the benchmark (>= 7.2)",
+          "Degree branch (Computer Science & Engineering) matches eligible hiring streams",
+          "Strong proficiency in core required skills: SQL, Python, PostgreSQL",
+          "Solid hands-on project portfolio with GitHub repositories",
+          "Mock technical interview score (84/100) shows strong readiness"
+        ],
+        "gapFactors": [
+          "Lacks essential tooling/frameworks: ETL, Airflow"
+        ],
+        "assessmentBenchmark": "Meets technical benchmark (Candidate: 84%, Benchmark: 75%)",
+        "recommendedAction": "Prepare for technical live coding round and review Cedar Solutions's system design requirements."
+      },
+      "stage": "offered",
+      "stageHistory": [
+        {
+          "stage": "applied",
+          "label": "Applied",
+          "timestamp": "2026-09-10T10:00:00Z"
+        },
+        {
+          "stage": "interview",
+          "label": "Interviews Completed",
+          "timestamp": "2026-09-21T16:00:00Z"
+        },
+        {
+          "stage": "offered",
+          "label": "Formal Offer Issued",
+          "timestamp": "2026-09-26T12:00:00Z",
+          "note": "Offer received · respond by Fri"
+        }
+      ],
+      "offerDetails": {
+        "id": "off_cedar_aarav",
+        "ctc": "₹14.5 LPA",
+        "baseFixed": "₹12.0 LPA",
+        "bonus": "₹2.5 LPA",
+        "joiningDate": "2026-07-15",
+        "validTill": "2026-10-02",
+        "offerLetterUrl": "#preview-offer",
+        "status": "Released",
+        "terms": "Comprehensive healthcare coverage, laptop equipment allowance, and hybrid work stipend."
+      },
+      "createdAt": "2026-09-10T10:00:00Z",
+      "updatedAt": "2026-09-26T12:00:00Z"
+    },
+    {
+      "id": "app_helio_aarav",
+      "jobId": "job_helio_research",
+      "studentId": "user_student_aarav",
+      "jobTitle": "Research Intern",
+      "companyName": "Helio Robotics",
+      "companyLogo": "HL",
+      "jobLocation": "Bangalore / Pune",
+      "jobType": "Internship",
+      "ctcOrStipend": "₹65,000 / mo (PPO ₹22 LPA)",
+      "studentName": "Aarav Reddy",
+      "studentEmail": "aarav.reddy@campus.edu",
+      "studentPhone": "+91 9810000000",
+      "studentCgpa": 8.78,
+      "studentDegree": "B.Tech",
+      "studentBranch": "Computer Science & Engineering",
+      "studentGraduationYear": 2026,
+      "studentSkills": [
+        "Python",
+        "Machine Learning",
+        "React",
+        "SQL",
+        "Data Structures",
+        "Docker",
+        "FastAPI"
+      ],
+      "studentResumeFilename": "Aarav_Reddy_Official_Resume.pdf",
+      "studentResumeUrl": "#preview-resume",
+      "coverNote": "Case study due Mon · 2 days left",
+      "eligibilityStatus": "Eligible",
+      "eligibilityReasons": [
+        "Coding round cleared"
+      ],
+      "matchScore": 81,
+      "matchBreakdown": {
+        "technicalSkillMatch": 20,
+        "academicEligibility": 88,
+        "projectRelevance": 95,
+        "certificationMatch": 70,
+        "interviewPerformance": 84
+      },
+      "explainableMatch": {
+        "isShortlisted": false,
+        "summary": "Candidate is NOT SHORTLISTED. Main gaps are: C++, ROS, Computer Vision, Linux. Review recommended actions below.",
+        "matchedSkills": [
+          "Python"
+        ],
+        "missingSkills": [
+          "C++",
+          "ROS",
+          "Computer Vision",
+          "Linux"
+        ],
+        "positiveFactors": [
+          "CGPA 8.78 satisfies the benchmark (>= 7.8)",
+          "Degree branch (Computer Science & Engineering) matches eligible hiring streams",
+          "Strong proficiency in core required skills: Python",
+          "Solid hands-on project portfolio with GitHub repositories",
+          "Mock technical interview score (84/100) shows strong readiness"
+        ],
+        "gapFactors": [
+          "Lacks essential tooling/frameworks: C++, ROS, Computer Vision"
+        ],
+        "assessmentBenchmark": "Meets technical benchmark (Candidate: 84%, Benchmark: 75%)",
+        "recommendedAction": "Complete targeted courses in C++ and ROS, build a domain project, and retake the mock technical assessment."
+      },
+      "stage": "assessment",
+      "stageHistory": [
+        {
+          "stage": "applied",
+          "label": "Applied",
+          "timestamp": "2026-09-18T10:00:00Z"
+        },
+        {
+          "stage": "assessment",
+          "label": "Case Study Take-Home Task",
+          "timestamp": "2026-09-26T09:00:00Z",
+          "note": "Case study due Mon · 2 days left"
+        }
+      ],
+      "createdAt": "2026-09-18T10:00:00Z",
+      "updatedAt": "2026-09-26T09:00:00Z"
+    },
+    {
+      "id": "app_technova_bishnu",
+      "jobId": "job_technova_swe",
+      "studentId": "user_student_bishnu",
+      "jobTitle": "Software Developer (Full Stack)",
+      "companyName": "TechNova Solutions",
+      "companyLogo": "TECH",
+      "jobLocation": "Bangalore / Hybrid",
+      "jobType": "Full-Time",
+      "ctcOrStipend": "₹14.5 - ₹18.0 LPA",
+      "studentName": "Bishnu Sahoo",
+      "studentEmail": "sahoobishnu8249@gmail.com",
+      "studentPhone": "+91 9810087654",
+      "studentCgpa": 8.92,
+      "studentDegree": "B.Tech",
+      "studentBranch": "Computer Science & Engineering",
+      "studentGraduationYear": 2026,
+      "studentSkills": [
+        "Python",
+        "React",
+        "Node.js",
+        "TypeScript",
+        "SQL",
+        "Docker",
+        "Git"
+      ],
+      "studentResumeFilename": "Bishnu_Sahoo_Official_Resume.pdf",
+      "studentResumeUrl": "#preview-resume",
+      "coverNote": "Extremely passionate about full-stack cloud systems. Have built production React and Node.js web apps and maintain strong database fundamentals.",
+      "eligibilityStatus": "Eligible",
+      "eligibilityReasons": [
+        "All criteria met: CGPA, branch, and zero backlogs verified"
+      ],
+      "matchScore": 77,
+      "matchBreakdown": {
+        "technicalSkillMatch": 71,
+        "academicEligibility": 89,
+        "projectRelevance": 95,
+        "certificationMatch": 35,
+        "interviewPerformance": 86
+      },
+      "explainableMatch": {
+        "isShortlisted": true,
+        "summary": "Candidate is SHORTLISTED based on high technical skill alignment (71%), strong academic credentials (8.92/10.0), and verified mock assessment scores.",
+        "matchedSkills": [
+          "Python",
+          "React",
+          "SQL",
+          "Git",
+          "Docker"
+        ],
+        "missingSkills": [
+          "REST API",
+          "AWS"
+        ],
+        "positiveFactors": [
+          "CGPA 8.92 satisfies the benchmark (>= 7)",
+          "Degree branch (Computer Science & Engineering) matches eligible hiring streams",
+          "Strong proficiency in core required skills: Python, React, SQL",
+          "Solid hands-on project portfolio with GitHub repositories",
+          "Mock technical interview score (86/100) shows strong readiness"
+        ],
+        "gapFactors": [
+          "Lacks essential tooling/frameworks: REST API, AWS"
+        ],
+        "assessmentBenchmark": "Meets technical benchmark (Candidate: 86%, Benchmark: 75%)",
+        "recommendedAction": "Prepare for technical live coding round and review TechNova Solutions's system design requirements."
+      },
+      "stage": "interview",
+      "stageHistory": [
+        {
+          "stage": "applied",
+          "label": "Application Submitted",
+          "timestamp": "2026-08-15T10:00:00Z",
+          "note": "Applied via CAMPUSLINK portal"
+        },
+        {
+          "stage": "screening",
+          "label": "AI Eligibility & ATS Screening Cleared",
+          "timestamp": "2026-08-16T14:00:00Z",
+          "note": "CGPA 8.92 and technical skillset verified"
+        },
+        {
+          "stage": "assessment",
+          "label": "Online Coding Assessment Cleared",
+          "timestamp": "2026-08-20T16:00:00Z",
+          "note": "Scored 94/100 on algorithmic test"
+        },
+        {
+          "stage": "interview",
+          "label": "Technical Interview Scheduled",
+          "timestamp": "2026-08-25T11:00:00Z",
+          "note": "Round 1 with Tech Lead scheduled"
+        }
+      ],
+      "interviewDetails": {
+        "id": "int_technova_bishnu",
+        "date": "2026-10-18",
+        "time": "11:00 AM",
+        "interviewer": "Kunal Shinde (Lead Architect)",
+        "meetingLink": "https://meet.technova.io/campus-swe-bishnu",
+        "roundName": "Round 1: System Architecture & Live Coding",
+        "venue": "Computing Lab 3 - Interview Booth A",
+        "technicalScore": 88,
+        "communicationScore": 85,
+        "problemSolvingScore": 90,
+        "overallScore": 88,
+        "feedback": "Demonstrated solid grasp of asynchronous Node.js, relational schema indexing, and clean React component state."
+      },
+      "evaluations": [
+        {
+          "id": "eval_1",
+          "author": "Kunal Shinde",
+          "role": "Lead Architect",
+          "rating": 5,
+          "comment": "Exceptional problem decomposition and clean modular code writing.",
+          "timestamp": "2026-08-25T12:30:00Z"
+        }
+      ],
+      "createdAt": "2026-08-15T10:00:00Z",
+      "updatedAt": "2026-08-25T12:30:00Z"
+    },
+    {
+      "id": "app_google_priya",
+      "jobId": "job_cedar_data",
+      "studentId": "user_student_bishnu",
+      "jobTitle": "Data Associate",
+      "companyName": "Cedar Solutions",
+      "companyLogo": "CS",
+      "jobLocation": "Hyderabad / Remote",
+      "jobType": "Full-Time",
+      "ctcOrStipend": "₹12.0 - ₹16.0 LPA",
+      "studentName": "Bishnu Sahoo",
+      "studentEmail": "sahoobishnu8249@gmail.com",
+      "studentPhone": "+91 9810087654",
+      "studentCgpa": 8.92,
+      "studentDegree": "B.Tech",
+      "studentBranch": "Computer Science & Engineering",
+      "studentGraduationYear": 2026,
+      "studentSkills": [
+        "Python",
+        "React",
+        "Node.js",
+        "TypeScript",
+        "SQL",
+        "Docker",
+        "Git"
+      ],
+      "studentResumeFilename": "Bishnu_Sahoo_Official_Resume.pdf",
+      "studentResumeUrl": "#preview-resume",
+      "coverNote": "Dedicated to machine learning infrastructure, high-dimensional search indexing, and distributed systems.",
+      "eligibilityStatus": "Eligible",
+      "eligibilityReasons": [
+        "All criteria met: CGPA, branch, and zero backlogs verified"
+      ],
+      "matchScore": 96,
+      "matchBreakdown": {
+        "technicalSkillMatch": 95,
+        "academicEligibility": 100,
+        "projectRelevance": 95,
+        "certificationMatch": 90,
+        "interviewPerformance": 98
+      },
+      "explainableMatch": {
+        "isShortlisted": true,
+        "summary": "Top percentile candidate with 9.40 CGPA, PyTorch and deep learning publications, and exceptional algorithmic capability.",
+        "matchedSkills": [
+          "Python",
+          "PyTorch",
+          "Algorithms",
+          "Machine Learning",
+          "Linux",
+          "SQL"
+        ],
+        "missingSkills": [],
+        "positiveFactors": [
+          "CGPA 9.40 ranks top 2% in batch",
+          "Published research in computer vision",
+          "Score 98% in coding benchmark"
+        ],
+        "gapFactors": [],
+        "assessmentBenchmark": "Exceeds recruiter benchmark (98% vs 75%)",
+        "recommendedAction": "Extend Super Dream Campus Offer immediately."
+      },
+      "stage": "joined",
+      "stageHistory": [
+        {
+          "stage": "applied",
+          "label": "Application Submitted",
+          "timestamp": "2026-08-10T09:00:00Z"
+        },
+        {
+          "stage": "screening",
+          "label": "Shortlisted by Recruiter",
+          "timestamp": "2026-08-12T10:00:00Z"
+        },
+        {
+          "stage": "interview",
+          "label": "Technical Rounds Cleared",
+          "timestamp": "2026-08-18T16:00:00Z"
+        },
+        {
+          "stage": "offered",
+          "label": "Campus Offer Extended 🎉",
+          "timestamp": "2026-08-22T14:00:00Z"
+        },
+        {
+          "stage": "accepted",
+          "label": "Offer Formally Accepted by Candidate 🤝",
+          "timestamp": "2026-08-24T11:00:00Z"
+        }
+      ],
+      "offerDetails": {
+        "id": "off_google_priya",
+        "ctc": "₹34.5 LPA",
+        "baseFixed": "₹22.0 LPA",
+        "bonus": "₹4.5 LPA",
+        "rsu": "₹8.0 LPA (over 4 years)",
+        "joiningDate": "2026-07-06",
+        "validTill": "2026-09-15",
+        "offerLetterUrl": "#view-offer-letter",
+        "status": "Joined",
+        "terms": "Includes comprehensive family health insurance, ₹1.5 Lakh relocation allowance, and wellness benefits."
+      },
+      "evaluations": [
+        {
+          "id": "eval_google_1",
+          "author": "Arjun Mehta",
+          "role": "Staff Recruiter",
+          "rating": 5,
+          "comment": "Outstanding engineering maturity and crystal-clear technical articulation.",
+          "timestamp": "2026-08-20T10:00:00Z"
+        }
+      ],
+      "createdAt": "2026-08-10T09:00:00Z",
+      "updatedAt": "2026-08-24T11:00:00Z"
+    },
+    {
+      "id": "app_microsoft_rahul",
+      "jobId": "job_northwind_analyst",
+      "studentId": "user_student_priya",
+      "jobTitle": "Product Analyst",
+      "companyName": "Northwind Fintech",
+      "companyLogo": "NF",
+      "jobLocation": "Mumbai / Bangalore",
+      "jobType": "Full-Time",
+      "ctcOrStipend": "₹14.0 - ₹18.5 LPA",
+      "studentName": "Priya Sharma",
+      "studentEmail": "priya.sharma@campus.edu",
+      "studentPhone": "+91 9810175308",
+      "studentCgpa": 9.4,
+      "studentDegree": "B.Tech",
+      "studentBranch": "Artificial Intelligence & Data Science",
+      "studentGraduationYear": 2026,
+      "studentSkills": [
+        "Python",
+        "PyTorch",
+        "TensorFlow",
+        "SQL",
+        "FastAPI",
+        "Pandas",
+        "AWS"
+      ],
+      "studentResumeFilename": "Priya_Sharma_Official_Resume.pdf",
+      "studentResumeUrl": "#preview-resume",
+      "coverNote": "Extensive hands-on expertise in Java Spring Boot, microservices architecture, and Docker deployments.",
+      "eligibilityStatus": "Eligible",
+      "eligibilityReasons": [
+        "All criteria met: CGPA, branch, and zero backlogs verified"
+      ],
+      "matchScore": 70,
+      "matchBreakdown": {
+        "technicalSkillMatch": 40,
+        "academicEligibility": 94,
+        "projectRelevance": 95,
+        "certificationMatch": 70,
+        "interviewPerformance": 92
+      },
+      "explainableMatch": {
+        "isShortlisted": true,
+        "summary": "Candidate is SHORTLISTED based on high technical skill alignment (40%), strong academic credentials (9.4/10.0), and verified mock assessment scores.",
+        "matchedSkills": [
+          "SQL",
+          "Python"
+        ],
+        "missingSkills": [
+          "Product Analytics",
+          "Tableau",
+          "Statistics"
+        ],
+        "positiveFactors": [
+          "CGPA 9.40 satisfies the benchmark (>= 7.5)",
+          "Degree branch (Artificial Intelligence & Data Science) matches eligible hiring streams",
+          "Strong proficiency in core required skills: SQL, Python",
+          "Solid hands-on project portfolio with GitHub repositories",
+          "Mock technical interview score (92/100) shows strong readiness"
+        ],
+        "gapFactors": [
+          "Lacks essential tooling/frameworks: Product Analytics, Tableau, Statistics"
+        ],
+        "assessmentBenchmark": "Meets technical benchmark (Candidate: 92%, Benchmark: 75%)",
+        "recommendedAction": "Prepare for technical live coding round and review Northwind Fintech's system design requirements."
+      },
+      "stage": "interview",
+      "stageHistory": [
+        {
+          "stage": "applied",
+          "label": "Application Submitted",
+          "timestamp": "2026-08-16T12:00:00Z"
+        },
+        {
+          "stage": "assessment",
+          "label": "Assessment Cleared",
+          "timestamp": "2026-08-22T14:00:00Z"
+        },
+        {
+          "stage": "interview",
+          "label": "Technical Interview Scheduled",
+          "timestamp": "2026-08-27T10:00:00Z"
+        }
+      ],
+      "interviewDetails": {
+        "id": "int_msft_rahul",
+        "date": "2026-10-24",
+        "time": "02:00 PM",
+        "interviewer": "Vivek Anand (Principal Engineer)",
+        "meetingLink": "https://teams.microsoft.com/meet/sde-rahul",
+        "roundName": "Round 1: Algorithms & Data Concurrency",
+        "venue": "Campus Main Auditorium - Panel 2",
+        "technicalScore": 82,
+        "communicationScore": 80,
+        "problemSolvingScore": 84,
+        "overallScore": 82,
+        "feedback": "Good grasp of multi-threading in Java and distributed transactions."
+      },
+      "evaluations": [],
+      "createdAt": "2026-08-16T12:00:00Z",
+      "updatedAt": "2026-08-27T10:00:00Z"
+    },
+    {
+      "id": "app_cisco_ananya",
+      "jobId": "job_technova_swe",
+      "studentId": "user_student_rahul",
+      "jobTitle": "Software Developer (Full Stack)",
+      "companyName": "TechNova Solutions",
+      "companyLogo": "TECH",
+      "jobLocation": "Bangalore / Hybrid",
+      "jobType": "Full-Time",
+      "ctcOrStipend": "₹14.5 - ₹18.0 LPA",
+      "studentName": "Rahul Verma",
+      "studentEmail": "rahul.verma@campus.edu",
+      "studentPhone": "+91 9810262962",
+      "studentCgpa": 8.45,
+      "studentDegree": "B.Tech",
+      "studentBranch": "Information Technology",
+      "studentGraduationYear": 2026,
+      "studentSkills": [
+        "Java",
+        "Spring Boot",
+        "SQL",
+        "Microservices",
+        "Docker",
+        "Kubernetes"
+      ],
+      "studentResumeFilename": "Rahul_Verma_Official_Resume.pdf",
+      "studentResumeUrl": "#preview-resume",
+      "coverNote": "Passionate about firmware programming, RTOS devices, and hardware-software integration.",
+      "eligibilityStatus": "Eligible",
+      "eligibilityReasons": [
+        "All criteria met: CGPA, branch, and zero backlogs verified"
+      ],
+      "matchScore": 58,
+      "matchBreakdown": {
+        "technicalSkillMatch": 29,
+        "academicEligibility": 85,
+        "projectRelevance": 95,
+        "certificationMatch": 35,
+        "interviewPerformance": 80
+      },
+      "explainableMatch": {
+        "isShortlisted": false,
+        "summary": "Candidate is NOT SHORTLISTED. Main gaps are: Python, React, Git, REST API, AWS. Review recommended actions below.",
+        "matchedSkills": [
+          "SQL",
+          "Docker"
+        ],
+        "missingSkills": [
+          "Python",
+          "React",
+          "Git",
+          "REST API",
+          "AWS"
+        ],
+        "positiveFactors": [
+          "CGPA 8.45 satisfies the benchmark (>= 7)",
+          "Degree branch (Information Technology) matches eligible hiring streams",
+          "Strong proficiency in core required skills: SQL, Docker",
+          "Solid hands-on project portfolio with GitHub repositories",
+          "Mock technical interview score (80/100) shows strong readiness"
+        ],
+        "gapFactors": [
+          "Lacks essential tooling/frameworks: Python, React, Git"
+        ],
+        "assessmentBenchmark": "Meets technical benchmark (Candidate: 80%, Benchmark: 75%)",
+        "recommendedAction": "Complete targeted courses in Python and React, build a domain project, and retake the mock technical assessment."
+      },
+      "stage": "assessment",
+      "stageHistory": [
+        {
+          "stage": "applied",
+          "label": "Application Submitted",
+          "timestamp": "2026-08-21T10:00:00Z"
+        },
+        {
+          "stage": "screening",
+          "label": "Screening Verified",
+          "timestamp": "2026-08-23T11:00:00Z"
+        },
+        {
+          "stage": "assessment",
+          "label": "Online Technical Test Scheduled",
+          "timestamp": "2026-08-26T15:00:00Z"
+        }
+      ],
+      "evaluations": [],
+      "createdAt": "2026-08-21T10:00:00Z",
+      "updatedAt": "2026-08-26T15:00:00Z"
+    },
+    {
+      "id": "app_technova_manish",
+      "jobId": "job_meridian_ml",
+      "studentId": "user_student_divya",
+      "jobTitle": "ML Engineer Intern",
+      "companyName": "Meridian Labs",
+      "companyLogo": "MV",
+      "jobLocation": "Bangalore / Hybrid",
+      "jobType": "Internship",
+      "ctcOrStipend": "₹80,000 / mo (PPO ₹26 LPA)",
+      "studentName": "Divya Iyer",
+      "studentEmail": "divya.iyer@campus.edu",
+      "studentPhone": "+91 9811051848",
+      "studentCgpa": 9.3,
+      "studentDegree": "B.Tech",
+      "studentBranch": "Computer Science & Engineering",
+      "studentGraduationYear": 2026,
+      "studentSkills": [
+        "Go",
+        "Kubernetes",
+        "Docker",
+        "AWS",
+        "Linux",
+        "Distributed Systems"
+      ],
+      "studentResumeFilename": "Divya_Iyer_Official_Resume.pdf",
+      "studentResumeUrl": "#preview-resume",
+      "coverNote": "Interested in entry-level frontend software engineering.",
+      "eligibilityStatus": "Not Eligible",
+      "eligibilityReasons": [
+        "CGPA 6.40 does not meet required threshold of 7.0",
+        "2 active backlogs violate corporate criteria (max 0 allowed)"
+      ],
+      "matchScore": 42,
+      "matchBreakdown": {
+        "technicalSkillMatch": 35,
+        "academicEligibility": 25,
+        "projectRelevance": 40,
+        "certificationMatch": 20,
+        "interviewPerformance": 50
+      },
+      "explainableMatch": {
+        "isShortlisted": false,
+        "summary": "NOT SHORTLISTED. Candidate does not satisfy minimum CGPA requirements (6.40 vs 7.0 required) and has active backlogs. Missing core backend skills (Python, SQL, AWS).",
+        "matchedSkills": [
+          "JavaScript"
+        ],
+        "missingSkills": [
+          "Python",
+          "React",
+          "SQL",
+          "AWS",
+          "Docker"
+        ],
+        "positiveFactors": [
+          "Basic understanding of web technologies (HTML, CSS, JS)"
+        ],
+        "gapFactors": [
+          "CGPA 6.40 is below minimum recruiter cutoff 7.0",
+          "2 active academic backlogs",
+          "Missing key backend frameworks (Python, SQL, REST APIs)",
+          "Mock interview score 50% below benchmark 75%"
+        ],
+        "assessmentBenchmark": "Below benchmark (50% vs 75%)",
+        "recommendedAction": "Clear active backlogs, complete SQL and Python foundation modules, and build full-stack CRUD projects before the next recruitment phase."
+      },
+      "stage": "rejected",
+      "stageHistory": [
+        {
+          "stage": "applied",
+          "label": "Application Submitted",
+          "timestamp": "2026-08-18T10:00:00Z"
+        },
+        {
+          "stage": "rejected",
+          "label": "Not Shortlisted - Eligibility Criteria",
+          "timestamp": "2026-08-19T11:00:00Z",
+          "note": "Automated AI Eligibility Engine: CGPA & Backlogs criteria not met."
+        }
+      ],
+      "evaluations": [],
+      "createdAt": "2026-08-18T10:00:00Z",
+      "updatedAt": "2026-08-19T11:00:00Z"
+    }
+  ],
+  "interviews": [
+    {
+      "id": "int_northwind_aarav",
+      "applicationId": "app_northwind_aarav",
+      "studentId": "user_student_aarav",
+      "studentName": "Aarav Reddy",
+      "studentBranch": "Computer Science & Engineering",
+      "studentCgpa": 8.78,
+      "companyName": "Northwind Fintech",
+      "companyLogo": "NF",
+      "jobTitle": "Product Analyst",
+      "roundName": "Round 1: SQL & Analytical Problem Solving",
+      "date": "2026-10-02",
+      "time": "10:00 AM",
+      "venueOrLink": "Virtual Placement Room A",
+      "panel": "Rohan Deshmukh (Lead Analyst)",
+      "status": "Scheduled"
+    },
+    {
+      "id": "int_technova_bishnu",
+      "applicationId": "app_technova_bishnu",
+      "studentId": "user_student_bishnu",
+      "studentName": "Bishnu Sahoo",
+      "studentBranch": "Computer Science & Engineering",
+      "studentCgpa": 8.92,
+      "companyName": "TechNova Solutions",
+      "companyLogo": "TECH",
+      "jobTitle": "Software Developer (Full Stack)",
+      "roundName": "Round 1: System Architecture & Live Coding",
+      "date": "2026-10-18",
+      "time": "11:00 AM",
+      "venueOrLink": "Computing Lab 3 - Interview Booth A",
+      "panel": "Kunal Shinde (Lead Architect)",
+      "status": "Scheduled",
+      "technicalScore": 88,
+      "communicationScore": 85,
+      "problemSolvingScore": 90,
+      "overallScore": 88,
+      "feedback": "Demonstrated solid grasp of asynchronous Node.js, relational schema indexing, and clean React component state."
+    },
+    {
+      "id": "int_msft_rahul",
+      "applicationId": "app_microsoft_rahul",
+      "studentId": "user_student_priya",
+      "studentName": "Priya Sharma",
+      "studentBranch": "Artificial Intelligence & Data Science",
+      "studentCgpa": 9.4,
+      "companyName": "Northwind Fintech",
+      "companyLogo": "NF",
+      "jobTitle": "Product Analyst",
+      "roundName": "Round 1: Algorithms & Data Concurrency",
+      "date": "2026-10-24",
+      "time": "02:00 PM",
+      "venueOrLink": "Campus Main Auditorium - Panel 2",
+      "panel": "Vivek Anand (Principal Engineer)",
+      "status": "Scheduled",
+      "technicalScore": 82,
+      "communicationScore": 80,
+      "problemSolvingScore": 84,
+      "overallScore": 82,
+      "feedback": "Good grasp of multi-threading in Java and distributed transactions."
+    }
+  ],
+  "offers": [
+    {
+      "id": "off_cedar_aarav",
+      "applicationId": "app_cedar_aarav",
+      "studentId": "user_student_aarav",
+      "studentName": "Aarav Reddy",
+      "studentEmail": "aarav.reddy@campus.edu",
+      "studentBranch": "Computer Science & Engineering",
+      "companyName": "Cedar Solutions",
+      "companyLogo": "CS",
+      "jobTitle": "Data Associate",
+      "ctc": "₹14.5 LPA",
+      "baseFixed": "₹12.0 LPA",
+      "bonus": "₹2.5 LPA",
+      "rsu": "15% Equity",
+      "offerDate": "2026-08-20",
+      "joiningDate": "2026-07-15",
+      "validTill": "2026-10-02",
+      "status": "Released",
+      "offerLetterUrl": "#preview-offer",
+      "terms": "Comprehensive healthcare coverage, laptop equipment allowance, and hybrid work stipend."
+    },
+    {
+      "id": "off_google_priya",
+      "applicationId": "app_google_priya",
+      "studentId": "user_student_bishnu",
+      "studentName": "Bishnu Sahoo",
+      "studentEmail": "sahoobishnu8249@gmail.com",
+      "studentBranch": "Computer Science & Engineering",
+      "companyName": "Cedar Solutions",
+      "companyLogo": "CS",
+      "jobTitle": "Data Associate",
+      "ctc": "₹34.5 LPA",
+      "baseFixed": "₹22.0 LPA",
+      "bonus": "₹4.5 LPA",
+      "rsu": "₹8.0 LPA (over 4 years)",
+      "offerDate": "2026-08-20",
+      "joiningDate": "2026-07-06",
+      "validTill": "2026-09-15",
+      "status": "Joined",
+      "offerLetterUrl": "#view-offer-letter",
+      "terms": "Includes comprehensive family health insurance, ₹1.5 Lakh relocation allowance, and wellness benefits."
+    }
+  ],
+  "documents": [
+    {
+      "id": "doc_61a931916d43885d418a23dd",
+      "studentId": "user_student_aarav",
+      "studentName": "Aarav Reddy",
+      "title": "resume bishnu",
+      "category": "Resume",
+      "filename": "resume_bishnu.pdf",
+      "fileUrl": "#preview-document",
+      "fileSize": "1.2 MB",
+      "uploadedDate": "2026-09-28",
+      "status": "Uploaded",
+      "verificationNote": "Uploaded and awaiting TPO Officer verification."
+    },
+    {
+      "id": "doc_1",
+      "studentId": "user_student_bishnu",
+      "studentName": "Bishnu Sahoo",
+      "title": "Final Year Technical Resume (ATS Optimized)",
+      "category": "Resume",
+      "filename": "Bishnu_Sahoo_SWE_Resume_2026.pdf",
+      "fileUrl": "#preview-resume",
+      "fileSize": "1.2 MB",
+      "uploadedDate": "2026-08-05",
+      "status": "Verified",
+      "verificationNote": "Format approved by University T&P Cell",
+      "verifiedBy": "Dr. Rajesh Rao"
+    },
+    {
+      "id": "doc_2",
+      "studentId": "user_student_bishnu",
+      "studentName": "Bishnu Sahoo",
+      "title": "University Identity Card & Bonafide Certificate",
+      "category": "ID Proof",
+      "filename": "NIT_Student_ID_2022UGCS049.pdf",
+      "fileUrl": "#preview-id",
+      "fileSize": "840 KB",
+      "uploadedDate": "2026-08-06",
+      "status": "Verified",
+      "verificationNote": "Roll number and department verified",
+      "verifiedBy": "Dr. Rajesh Rao"
+    },
+    {
+      "id": "doc_3",
+      "studentId": "user_student_bishnu",
+      "studentName": "Bishnu Sahoo",
+      "title": "Cumulative Grade Transcript (Sem 1 to 6)",
+      "category": "Academic Marksheet",
+      "filename": "Semester_Transcript_NIT_Bishnu.pdf",
+      "fileUrl": "#preview-marksheet",
+      "fileSize": "2.4 MB",
+      "uploadedDate": "2026-08-08",
+      "status": "Verified",
+      "verificationNote": "CGPA 8.92 and zero backlogs confirmed",
+      "verifiedBy": "Dr. Rajesh Rao"
+    },
+    {
+      "id": "doc_4",
+      "studentId": "user_student_bishnu",
+      "studentName": "Bishnu Sahoo",
+      "title": "AWS Certified Cloud Practitioner Credential",
+      "category": "Certificates",
+      "filename": "AWS_CCP_Badge_Verification.pdf",
+      "fileUrl": "#preview-cert",
+      "fileSize": "512 KB",
+      "uploadedDate": "2026-08-10",
+      "status": "Verified",
+      "verificationNote": "Credential ID validated on AWS verification portal",
+      "verifiedBy": "Dr. Rajesh Rao"
+    },
+    {
+      "id": "doc_5",
+      "studentId": "user_student_priya",
+      "studentName": "Priya Sharma",
+      "title": "Official Google Campus Offer Letter",
+      "category": "Offer Letter",
+      "filename": "Google_India_Offer_Letter_PriyaSharma.pdf",
+      "fileUrl": "#preview-offer",
+      "fileSize": "1.8 MB",
+      "uploadedDate": "2026-08-23",
+      "status": "Verified",
+      "verificationNote": "Digitally countersigned by Google University Hiring and Student",
+      "verifiedBy": "Dr. Rajesh Rao"
+    },
+    {
+      "id": "doc_6",
+      "studentId": "user_student_priya",
+      "studentName": "Priya Sharma",
+      "title": "Pre-Joining Medical & Background Verification Dossier",
+      "category": "Joining Documents",
+      "filename": "BGC_Medical_Priya_Sharma.pdf",
+      "fileUrl": "#preview-joining",
+      "fileSize": "3.1 MB",
+      "uploadedDate": "2026-08-25",
+      "status": "Uploaded",
+      "verificationNote": "Pending final review by Corporate HR"
+    }
+  ],
+  "notifications": [
+    {
+      "id": "notif_1",
+      "userId": "user_student_bishnu",
+      "title": "Technical Interview Scheduled ⚡",
+      "message": "Your Round 1 interview with TechNova Solutions has been confirmed for Oct 18 at 11:00 AM in Computing Lab 3.",
+      "type": "Interview Schedule",
+      "read": false,
+      "createdAt": "2026-09-28T08:39:06.649Z",
+      "linkTab": "interviews",
+      "applicationId": "app_technova_bishnu"
+    },
+    {
+      "id": "notif_2",
+      "userId": "user_student_bishnu",
+      "title": "AI Skill Gap Alert ✦",
+      "message": "TechNova and AWS require SQL & Docker. Improving these by 15% will elevate your readiness score to 92/100.",
+      "type": "Skill Recommendation",
+      "read": false,
+      "createdAt": "2026-09-28T07:39:06.649Z",
+      "linkTab": "skillgap"
+    },
+    {
+      "id": "notif_3",
+      "userId": "user_student_bishnu",
+      "title": "New Campus Placement Drive Announced 🚀",
+      "message": "Microsoft IDC Campus Recruitment Drive 2026 is now live. SDE-1 package: ₹28.5 - ₹32 LPA.",
+      "type": "Drive Announcement",
+      "read": true,
+      "createdAt": "2026-09-27T09:39:06.649Z",
+      "linkTab": "jobs",
+      "jobId": "job_microsoft_sde"
+    },
+    {
+      "id": "notif_4",
+      "userId": "user_student_priya",
+      "title": "Super Dream Campus Offer Extended! 🎉",
+      "message": "Congratulations! Google India has extended an official campus offer of ₹34.5 LPA. Inspect your letter in Documents.",
+      "type": "Offer Letter",
+      "read": false,
+      "createdAt": "2026-09-27T21:39:06.649Z",
+      "linkTab": "offers"
+    },
+    {
+      "id": "notif_5",
+      "userId": "user_officer_rajesh",
+      "title": "Placement Rate Crossed 72% Milestone 📊",
+      "message": "With 326 total campus offers confirmed, university placement rate has reached 72.4%. View command center analytics.",
+      "type": "Drive Announcement",
+      "read": false,
+      "createdAt": "2026-09-28T09:09:06.649Z",
+      "linkTab": "analytics"
+    }
+  ],
+  "scoringWeights": {
+    "technicalWeight": 0.25,
+    "academicWeight": 0.2,
+    "projectsWeight": 0.15,
+    "certificationsWeight": 0.1,
+    "aptitudeWeight": 0.1,
+    "communicationWeight": 0.1,
+    "interviewWeight": 0.1
+  },
+  "matchingWeights": {
+    "technicalSkillMatch": 0.4,
+    "academicEligibility": 0.2,
+    "projectRelevance": 0.15,
+    "certificationMatch": 0.1,
+    "interviewPerformance": 0.15
+  }
+}

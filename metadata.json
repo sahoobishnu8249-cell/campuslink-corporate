@@ -1,0 +1,6 @@
+{
+  "name": "Campus Talent Connect",
+  "description": "Campus recruitment platform for students, universities, and corporate recruiters with profile management, job posting, eligibility matching, and real-time application tracking.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,61 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --canvas-bg: #F7F3EC;
+    --card-bg: #FFFFFF;
+    --card-border: #EBE4D8;
+    --sidebar-bg: #F9F6F0;
+    --brand-forest: #1C4631;
+    --brand-sage: #DCE8DF;
+    --text-primary: #1E2522;
+    --text-secondary: #746E65;
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    color: #1E2522;
+    background-color: #F7F3EC;
+  }
+
+  .font-serif {
+    font-family: 'Newsreader', Georgia, Cambria, 'Times New Roman', serif;
+  }
+}
+
+/* Custom scrollbar and animations */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #DDD5C7;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #BEB4A2;
+}
+
+.card-warm {
+  background: #FFFFFF;
+  border: 1px solid #ECE4D9;
+  border-radius: 1.25rem;
+}
+
+.card-sand {
+  background: #F1EBE1;
+  border: 1px solid #E3DCD1;
+  border-radius: 1rem;
+}
+
+.pill-sage {
+  background-color: #DCE8DF;
+  color: #1C4631;
+}
+
