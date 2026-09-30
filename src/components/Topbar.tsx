@@ -22,6 +22,7 @@ interface TopbarProps {
   unreadCount: number;
   onMarkNotificationRead: (id: string) => void;
   onMarkAllNotificationsRead: () => void;
+  onNotificationClick?: (notif: NotificationItem) => void;
   setMobileOpen: (open: boolean) => void;
   onOpenAiAssistant: () => void;
   onOpenFlowModal?: () => void;
@@ -39,6 +40,7 @@ export const Topbar: React.FC<TopbarProps> = ({
   unreadCount,
   onMarkNotificationRead,
   onMarkAllNotificationsRead,
+  onNotificationClick,
   setMobileOpen,
   onOpenAiAssistant,
   onOpenFlowModal,
@@ -220,7 +222,15 @@ export const Topbar: React.FC<TopbarProps> = ({
                   notifications.slice(0, 6).map((n) => (
                     <div
                       key={n.id}
-                      onClick={() => onMarkNotificationRead(n.id)}
+                      onClick={() => {
+                        onMarkNotificationRead(n.id);
+                        setShowNotifications(false);
+                        if (onNotificationClick) {
+                          onNotificationClick(n);
+                        } else if (n.linkTab) {
+                          setActiveTab(n.linkTab as NavTab);
+                        }
+                      }}
                       className={`p-2.5 rounded-xl border text-xs cursor-pointer transition-all ${
                         !n.read 
                           ? 'bg-[#F9F6F0] border-[#E3DCD1]' 

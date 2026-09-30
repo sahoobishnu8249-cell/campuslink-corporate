@@ -50,13 +50,26 @@ import { AIChatbotModal } from './components/AIChatbotModal.tsx';
 import { ApplicationsPipelineView } from './components/ApplicationsPipelineView.tsx';
 import { FlowWalkthroughView } from './components/FlowWalkthroughView.tsx';
 import { FlowWalkthroughModal } from './components/FlowWalkthroughModal.tsx';
-import { RegistrationView } from './components/RegistrationView.tsx';
+import { StudentRegistrationView } from './components/StudentRegistrationView.tsx';
+import { OTPVerificationView } from './components/OTPVerificationView.tsx';
+import { LoginView } from './components/LoginView.tsx';
+import { PlacementPassportView } from './components/PlacementPassportView.tsx';
+import { SkillVerificationView } from './components/SkillVerificationView.tsx';
+import { SmartRoomAllocationView } from './components/SmartRoomAllocationView.tsx';
+import { ApplicationTrackerModal } from './components/ApplicationTrackerModal.tsx';
+import { NotificationsCenterView } from './components/NotificationsCenterView.tsx';
 
 export function App() {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
   const [allUsers, setAllUsers] = useState<User[]>([]);
   const [studentProfile, setStudentProfile] = useState<StudentProfile | null>(null);
   const [recruiterProfile, setRecruiterProfile] = useState<RecruiterProfile | null>(null);
+
+  // Auth & OTP Verification routing state (Defaults to 'register' as required!)
+  const [authView, setAuthView] = useState<'app' | 'register' | 'verify-otp' | 'login'>('register');
+  const [pendingOtpEmail, setPendingOtpEmail] = useState<string>('');
+  const [pendingMaskedEmail, setPendingMaskedEmail] = useState<string>('');
+  const [pendingPreviewOtp, setPendingPreviewOtp] = useState<string | undefined>(undefined);
   const [students, setStudents] = useState<StudentProfile[]>([]);
   const [companies, setCompanies] = useState<Company[]>([]);
   const [jobs, setJobs] = useState<JobPosting[]>([]);
@@ -89,11 +102,13 @@ export function App() {
   // App UI state
   const [isLanding, setIsLanding] = useState(false);
   const [activeTab, setActiveTab] = useState<NavTab>('overview');
+  const [selectedApplicationId, setSelectedApplicationId] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [loading, setLoading] = useState(true);
 
   // Modals state
+  const [globalTrackingApp, setGlobalTrackingApp] = useState<Application | null>(null);
   const [showPostJobModal, setShowPostJobModal] = useState(false);
   const [showAiAssistant, setShowAiAssistant] = useState(false);
   const [showFlowModal, setShowFlowModal] = useState(false);
@@ -144,11 +159,13 @@ export function App() {
         api.getAiWeights()
       ]);
 
-      setCurrentUser(userData.user);
-      if (userData.user.role === 'student') {
-        setStudentProfile(userData.profile as StudentProfile);
-      } else {
-        setRecruiterProfile(userData.profile as RecruiterProfile);
+      if (userData && userData.user) {
+        setCurrentUser(userData.user);
+        if (userData.user.role === 'student') {
+          setStudentProfile(userData.profile as StudentProfile);
+        } else {
+          setRecruiterProfile(userData.profile as RecruiterProfile);
+        }
       }
 
       setAllUsers(usersList);
@@ -170,7 +187,7 @@ export function App() {
       }
 
       // Initial skill gap for student
-      if (userData.user.role === 'student') {
+      if (userData?.user?.role === 'student') {
         const gap = await api.getSkillGap(userData.user.id, 'Full Stack Developer');
         setSkillGap(gap);
       }
@@ -228,15 +245,17 @@ export function App() {
     }
   };
 
-  const handleApplyJob = async (jobId: string, coverNote?: string) => {
+  const handleApplyJob = async (jobId: string, coverNote?: string): Promise<Application | undefined> => {
     try {
       const newApp = await api.applyForJob(jobId, coverNote);
       setApplications(prev => [newApp, ...prev]);
       // refresh notifs
       const notifs = await api.getNotifications();
       setNotifications(notifs);
+      return newApp;
     } catch (e: any) {
       alert(e.message || 'Failed to submit application');
+      throw e;
     }
   };
 
@@ -300,9 +319,96 @@ export function App() {
         }}
         onOpenRegister={() => {
           setIsLanding(false);
-          setActiveTab('register');
+          setAuthView('register');
         }}
         allUsers={allUsers}
+      />
+    );
+  }
+
+  // Dedicated Student Registration Page
+  if (authView === 'register') {
+    return (
+      <StudentRegistrationView
+        onOtpRequested={(email, masked, preview) => {
+          setPendingOtpEmail(email);
+          setPendingMaskedEmail(masked || email);
+          setPendingPreviewOtp(preview);
+          setAuthView('verify-otp');
+        }}
+        onNavigateLogin={() => setAuthView('login')}
+        onExploreDemo={() => {
+          setAuthView('app');
+          setActiveTab('overview');
+        }}
+      />
+    );
+  }
+
+  // Dedicated OTP Verification Page
+  if (authView === 'verify-otp') {
+    return (
+      <OTPVerificationView
+        email={pendingOtpEmail || currentUser?.email || ''}
+        maskedEmail={pendingMaskedEmail || pendingOtpEmail}
+        previewOtp={pendingPreviewOtp}
+        onVerificationSuccess={async (verifiedUser, profile) => {
+          setCurrentUser(verifiedUser);
+          if (profile) setStudentProfile(profile);
+          await loadInitialData();
+          setAuthView('app');
+          setActiveTab('dashboard');
+        }}
+        onChangeEmail={() => setAuthView('register')}
+      />
+    );
+  }
+
+  // Dedicated Login Page
+  if (authView === 'login') {
+    return (
+      <LoginView
+        onLoginSuccess={async (loggedUser, profile) => {
+          setCurrentUser(loggedUser);
+          if (loggedUser.role === 'student' && profile) {
+            setStudentProfile(profile as StudentProfile);
+          }
+          await loadInitialData();
+          setAuthView('app');
+          setActiveTab('dashboard');
+        }}
+        onNavigateRegister={() => setAuthView('register')}
+        onRequireVerification={(email, masked, preview) => {
+          setPendingOtpEmail(email);
+          setPendingMaskedEmail(masked || email);
+          setPendingPreviewOtp(preview);
+          setAuthView('verify-otp');
+        }}
+        onExploreDemo={() => {
+          setAuthView('app');
+          setActiveTab('overview');
+        }}
+        allUsers={allUsers}
+      />
+    );
+  }
+
+  // CRITICAL SECURITY ENFORCEMENT:
+  // "The student MUST NOT be allowed to enter the dashboard until OTP verification is successfully completed."
+  // If student is authenticated but email_verified = false: Redirect to OTP verification screen.
+  if (currentUser?.role === 'student' && currentUser?.email_verified === false) {
+    return (
+      <OTPVerificationView
+        email={currentUser.email}
+        maskedEmail={currentUser.email.replace(/(.{2})(.*)(@.*)/, '$1*****$3')}
+        previewOtp={pendingPreviewOtp}
+        onVerificationSuccess={async (verifiedUser, profile) => {
+          setCurrentUser(verifiedUser);
+          if (profile) setStudentProfile(profile);
+          await loadInitialData();
+          setActiveTab('dashboard');
+        }}
+        onChangeEmail={() => setAuthView('register')}
       />
     );
   }
@@ -315,14 +421,24 @@ export function App() {
       {/* Desktop & Mobile Responsive Sidebar */}
       <Sidebar
         activeTab={activeTab}
-        setActiveTab={setActiveTab}
+        setActiveTab={(tab) => {
+          if (tab === 'register') {
+            setAuthView('register');
+          } else {
+            setActiveTab(tab);
+          }
+        }}
         currentUser={currentUser}
         allUsers={allUsers}
         onSwitchUser={handleSwitchUser}
         unreadCount={unreadNotifCount}
         mobileOpen={mobileOpen}
         setMobileOpen={setMobileOpen}
-        onLogout={() => setIsLanding(true)}
+        onLogout={() => {
+          api.clearAuth();
+          setCurrentUser(null);
+          setAuthView('login');
+        }}
       />
 
       {/* Main Viewport Content Container */}
@@ -331,7 +447,13 @@ export function App() {
         {/* Sticky Topbar */}
         <Topbar
           activeTab={activeTab}
-          setActiveTab={setActiveTab}
+          setActiveTab={(tab) => {
+            if (tab === 'register') {
+              setAuthView('register');
+            } else {
+              setActiveTab(tab);
+            }
+          }}
           currentUser={currentUser}
           allUsers={allUsers}
           onSwitchUser={handleSwitchUser}
@@ -344,6 +466,18 @@ export function App() {
           onMarkAllNotificationsRead={async () => {
             await api.markAllNotificationsRead();
             setNotifications(prev => prev.map(n => ({ ...n, read: true })));
+          }}
+          onNotificationClick={(notif) => {
+            if (notif.applicationId) {
+              const matched = applications.find(a => a.id === notif.applicationId);
+              if (matched) {
+                setGlobalTrackingApp(matched);
+                return;
+              }
+            }
+            if (notif.linkTab) {
+              setActiveTab(notif.linkTab as NavTab);
+            }
           }}
           setMobileOpen={setMobileOpen}
           onOpenAiAssistant={() => setShowAiAssistant(true)}
@@ -393,6 +527,7 @@ export function App() {
                   setStudentProfile(student);
                   setActiveTab('profile');
                 }}
+                onNavigateTab={setActiveTab}
               />
             ) : (
               <StudentDashboard
@@ -414,7 +549,21 @@ export function App() {
           {/* TAB: MY APPLICATIONS */}
           {activeTab === 'applications' && (
             <ApplicationsPipelineView
-              applications={applications.filter(a => a.studentId === activeStudent.userId)}
+              applications={
+                currentUser?.role === 'tpo'
+                  ? applications
+                  : applications.filter(a => 
+                      a.studentId === activeStudent.userId ||
+                      (activeStudent.email && a.studentEmail?.toLowerCase() === activeStudent.email.toLowerCase()) ||
+                      (currentUser?.email && a.studentEmail?.toLowerCase() === currentUser?.email.toLowerCase()) ||
+                      (a.studentName?.toLowerCase() === activeStudent.fullName?.toLowerCase())
+                    )
+              }
+              initialSelectedAppId={selectedApplicationId}
+              currentUser={currentUser}
+              activeStudent={activeStudent}
+              jobs={jobs}
+              onApplyJob={handleApplyJob}
               onViewJobDetails={(jobId) => {
                 const job = jobs.find(j => j.id === jobId);
                 if (job) handleInspectMatch(job, activeStudent);
@@ -476,8 +625,14 @@ export function App() {
               applications={applications}
               currentUser={currentUser}
               onApply={async (jobId, note) => {
-                await handleApplyJob(jobId, note);
+                return await handleApplyJob(jobId, note);
               }}
+              onOpenTracker={(app) => setGlobalTrackingApp(app)}
+              onSelectApplication={(appId) => {
+                setSelectedApplicationId(appId);
+                setActiveTab('applications');
+              }}
+              onNavigateTab={setActiveTab}
               onRefreshJobs={async () => {
                 const refreshed = await api.getJobs();
                 setJobs(refreshed);
@@ -530,6 +685,8 @@ export function App() {
             <DocumentsView
               documents={documents}
               isTPO={currentUser?.role === 'tpo'}
+              onNavigateTab={setActiveTab}
+              activeStudent={activeStudent}
               onUploadDocument={async (doc) => {
                 const created = await api.uploadDocument({
                   ...doc,
@@ -537,6 +694,13 @@ export function App() {
                   studentName: activeStudent.fullName
                 });
                 setDocuments(prev => [created, ...prev]);
+                // If it's a resume, refresh student profile state
+                if (doc.category === 'Resume') {
+                  try {
+                    const prof = await api.getStudentById(activeStudent.userId);
+                    setStudentProfile(prof);
+                  } catch (e) {}
+                }
                 return created;
               }}
               onVerifyDocument={async (id, status, note) => {
@@ -544,6 +708,37 @@ export function App() {
                 setDocuments(prev => prev.map(d => d.id === id ? verified : d));
                 return verified;
               }}
+            />
+          )}
+
+          {/* TAB: PLACEMENT PASSPORT & LIVE WAR-ROOM */}
+          {activeTab === 'passport' && (
+            <PlacementPassportView
+              student={activeStudent}
+              onNavigateTab={setActiveTab}
+            />
+          )}
+
+          {/* TAB: AI SKILL VERIFICATION & ASSESSMENT */}
+          {activeTab === 'skillverification' && (
+            <SkillVerificationView
+              student={activeStudent}
+              currentUser={currentUser}
+              onNavigateTab={setActiveTab}
+              onUpdateProfile={async (data) => {
+                const updated = await api.updateStudentProfile(data);
+                setStudentProfile(updated);
+                return updated;
+              }}
+            />
+          )}
+
+          {/* TAB: SMART PLACEMENT ROOM ALLOCATION & NOTIFICATION */}
+          {activeTab === 'roomallocation' && (
+            <SmartRoomAllocationView
+              currentUser={currentUser}
+              activeStudent={activeStudent}
+              onNavigateTab={setActiveTab}
             />
           )}
 
@@ -583,51 +778,34 @@ export function App() {
 
           {/* TAB: NOTIFICATIONS */}
           {activeTab === 'notifications' && (
-            <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-xs space-y-4">
-              <div className="flex items-center justify-between border-b border-slate-100 pb-3">
-                <h3 className="font-extrabold text-slate-900 text-base">
-                  Placement Notification Center
-                </h3>
-                <button
-                  onClick={async () => {
-                    await api.markAllNotificationsRead();
-                    setNotifications(prev => prev.map(n => ({ ...n, read: true })));
-                  }}
-                  className="text-xs font-bold text-indigo-600 hover:text-indigo-800"
-                >
-                  Mark all as read
-                </button>
-              </div>
-
-              <div className="space-y-2.5">
-                {notifications.map((notif) => (
-                  <div
-                    key={notif.id}
-                    onClick={async () => {
-                      if (!notif.read) {
-                        await api.markNotificationRead(notif.id);
-                        setNotifications(prev => prev.map(n => n.id === notif.id ? { ...n, read: true } : n));
-                      }
-                      if (notif.linkTab) setActiveTab(notif.linkTab as NavTab);
-                    }}
-                    className={`p-4 rounded-2xl border text-xs cursor-pointer transition-all ${
-                      !notif.read ? 'bg-indigo-50/60 border-indigo-100 hover:bg-indigo-50' : 'bg-white border-slate-100 hover:bg-slate-50'
-                    }`}
-                  >
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2">
-                        {!notif.read && <span className="w-2 h-2 rounded-full bg-indigo-600 shrink-0" />}
-                        <span className="font-extrabold text-slate-900 text-sm">{notif.title}</span>
-                      </div>
-                      <span className="text-[10px] text-slate-400 font-mono">
-                        {new Date(notif.createdAt).toLocaleDateString()} · {new Date(notif.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                      </span>
-                    </div>
-                    <p className="text-slate-600 mt-1.5 leading-relaxed">{notif.message}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
+            <NotificationsCenterView
+              notifications={notifications}
+              currentUser={currentUser}
+              applications={applications}
+              jobs={jobs}
+              onMarkRead={async (id) => {
+                await api.markNotificationRead(id);
+                setNotifications(prev => prev.map(n => n.id === id ? { ...n, read: true } : n));
+              }}
+              onMarkAllRead={async () => {
+                await api.markAllNotificationsRead();
+                setNotifications(prev => prev.map(n => ({ ...n, read: true })));
+              }}
+              onDeleteNotification={async (id) => {
+                await api.deleteNotification(id);
+                setNotifications(prev => prev.filter(n => n.id !== id));
+              }}
+              onClearReadNotifications={async () => {
+                await api.clearReadNotifications();
+                setNotifications(prev => prev.filter(n => !n.read));
+              }}
+              onNavigateTab={setActiveTab}
+              onOpenTracker={(app) => setGlobalTrackingApp(app)}
+              onBroadcastNotification={async (payload) => {
+                const created = await api.createNotification(payload);
+                setNotifications(prev => [created, ...prev]);
+              }}
+            />
           )}
 
           {/* TAB: SETTINGS & WEIGHTS */}
@@ -674,18 +852,15 @@ export function App() {
 
           {/* TAB: REGISTRATION PAGE (Step 1 of Flow) */}
           {activeTab === 'register' && (
-            <RegistrationView
-              onRegistrationSuccess={async (newUser, newProfile) => {
-                setCurrentUser(newUser);
-                if (newUser.role === 'student') {
-                  setStudentProfile(newProfile as StudentProfile);
-                } else if (newUser.role === 'recruiter') {
-                  setRecruiterProfile(newProfile as RecruiterProfile);
-                }
-                await loadInitialData();
-                setActiveTab('overview');
+            <StudentRegistrationView
+              onOtpRequested={(email, masked, preview) => {
+                setPendingOtpEmail(email);
+                setPendingMaskedEmail(masked || email);
+                setPendingPreviewOtp(preview);
+                setAuthView('verify-otp');
               }}
-              onNavigateTab={setActiveTab}
+              onNavigateLogin={() => setAuthView('login')}
+              onExploreDemo={() => setActiveTab('overview')}
             />
           )}
 
@@ -750,6 +925,26 @@ export function App() {
         onClose={() => setShowAiAssistant(false)}
         onAskAi={(query) => api.askAiAssistant(query, activeStudent.userId)}
       />
+
+      {/* GLOBAL APPLICATION TRACKER MODAL */}
+      {globalTrackingApp && (
+        <ApplicationTrackerModal
+          application={globalTrackingApp}
+          onClose={() => setGlobalTrackingApp(null)}
+          onOpenFullApplications={(appId) => {
+            setGlobalTrackingApp(null);
+            setSelectedApplicationId(appId);
+            setActiveTab('applications');
+          }}
+          onRespondOffer={async (appId, action) => {
+            await api.respondToOffer(appId, action);
+            const updatedApps = await api.getApplications();
+            setApplications(updatedApps);
+            const refreshed = updatedApps.find(a => a.id === appId);
+            if (refreshed) setGlobalTrackingApp(refreshed);
+          }}
+        />
+      )}
 
     </div>
   );

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { JobPosting, StudentProfile, Application, User } from '../types/index.ts';
+import { ApplicationTrackerModal } from './ApplicationTrackerModal.tsx';
 import { 
   Search, 
   MapPin, 
@@ -28,8 +29,10 @@ interface JobBoardProps {
   studentProfile: StudentProfile | null;
   applications: Application[];
   currentUser: User | null;
-  onApply: (jobId: string, coverNote: string) => Promise<void>;
+  onApply: (jobId: string, coverNote: string) => Promise<any>;
   onSelectApplication?: (applicationId: string) => void;
+  onOpenTracker?: (application: Application) => void;
+  onNavigateTab?: (tab: any) => void;
   onRefreshJobs: () => void;
   onOpenPostJob?: () => void;
   onInspectMatch?: (job: JobPosting) => void;
@@ -42,6 +45,8 @@ export const JobBoard: React.FC<JobBoardProps> = ({
   currentUser,
   onApply,
   onSelectApplication,
+  onOpenTracker,
+  onNavigateTab,
   onOpenPostJob,
   onInspectMatch
 }) => {
@@ -52,6 +57,8 @@ export const JobBoard: React.FC<JobBoardProps> = ({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [trackingApplication, setTrackingApplication] = useState<Application | null>(null);
+  const [justAppliedApp, setJustAppliedApp] = useState<Application | null>(null);
 
   const isStudent = currentUser?.role === 'student';
   const studentCgpa = studentProfile?.cgpa ?? 8.92;
@@ -117,13 +124,22 @@ export const JobBoard: React.FC<JobBoardProps> = ({
   };
 
   const getApplicationForJob = (jobId: string): Application | undefined => {
-    return applications.find(a => a.jobId === jobId);
+    return applications.find(a => 
+      a.jobId === jobId && (
+        !studentProfile ||
+        a.studentId === studentProfile.userId ||
+        (studentProfile.email && a.studentEmail?.toLowerCase() === studentProfile.email.toLowerCase()) ||
+        (currentUser?.email && a.studentEmail?.toLowerCase() === currentUser?.email.toLowerCase()) ||
+        (a.studentName && studentProfile.fullName && a.studentName.toLowerCase() === studentProfile.fullName.toLowerCase())
+      )
+    );
   };
 
   const handleOpenJobModal = (job: JobPosting) => {
     setSelectedJob(job);
     setSubmitError(null);
     setSubmitSuccess(false);
+    setJustAppliedApp(null);
     setCoverNote(
       isStudent
         ? `Excited to apply for ${job.title} at ${job.companyName}! My coursework in ${studentBranch} and project experience with ${job.skills.slice(0, 3).join(', ')} align closely with your engineering requirements.`
@@ -138,16 +154,82 @@ export const JobBoard: React.FC<JobBoardProps> = ({
     setIsSubmitting(true);
     setSubmitError(null);
     try {
-      await onApply(selectedJob.id, coverNote);
+      const created = await onApply(selectedJob.id, coverNote);
       setSubmitSuccess(true);
-      setTimeout(() => {
-        setSelectedJob(null);
-        setSubmitSuccess(false);
-      }, 1600);
+      if (created) {
+        setJustAppliedApp(created);
+      }
     } catch (err: any) {
       setSubmitError(err.message || 'Failed to submit application');
     } finally {
       setIsSubmitting(false);
+    }
+  };
+
+  const handleOpenTrackerForJob = (job: JobPosting, explicitApp?: Application | null) => {
+    const existing = explicitApp || justAppliedApp || getApplicationForJob(job.id) || applications.find(a => a.jobId === job.id);
+    const targetApp: Application = existing || {
+      id: `app_${job.id}`,
+      jobId: job.id,
+      jobTitle: job.title,
+      companyName: job.companyName,
+      companyLogo: job.companyLogo,
+      jobLocation: job.location,
+      jobType: job.type,
+      ctcOrStipend: job.ctcOrStipend,
+      studentId: studentProfile?.userId || currentUser?.id || 'current_student',
+      studentName: studentProfile?.fullName || currentUser?.name || 'Student',
+      studentEmail: studentProfile?.email || currentUser?.email || '',
+      studentPhone: studentProfile?.phone || '+91 98765 43210',
+      studentCgpa: studentProfile?.cgpa || studentCgpa,
+      studentBranch: studentProfile?.branch || studentBranch,
+      studentDegree: studentProfile?.degree || 'B.Tech',
+      studentGraduationYear: studentProfile?.graduationYear || 2026,
+      studentSkills: studentProfile?.skills || studentSkills,
+      studentResumeFilename: studentProfile?.resumeFilename || 'resume.pdf',
+      studentResumeUrl: studentProfile?.resumeUrl || '#',
+      coverNote: coverNote || `Applied for ${job.title} at ${job.companyName}`,
+      eligibilityStatus: 'Eligible',
+      matchScore: calculateMatchScore(job),
+      matchBreakdown: {
+        technicalSkillMatch: 88,
+        academicEligibility: 95,
+        projectRelevance: 85,
+        certificationMatch: 80,
+        interviewPerformance: 85
+      },
+      explainableMatch: {
+        isShortlisted: true,
+        summary: `Strong candidate profile matching ${job.title} technical benchmarks.`,
+        matchedSkills: job.skills.slice(0, 3),
+        missingSkills: [],
+        positiveFactors: ['Strong skill alignment', 'Meets CGPA benchmark'],
+        gapFactors: [],
+        recommendedAction: 'Prepare for technical interview',
+        assessmentBenchmark: 'Top candidate tier'
+      },
+      stage: 'applied',
+      stageHistory: [
+        {
+          stage: 'applied',
+          label: 'Application Submitted',
+          timestamp: new Date().toISOString(),
+          note: `Application submitted for ${job.title} at ${job.companyName}.`
+        }
+      ],
+      evaluations: [],
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString()
+    };
+
+    // Close the job detail modal first
+    setSelectedJob(null);
+
+    // Open tracker modal (either via global handler or local state)
+    if (onOpenTracker) {
+      onOpenTracker(targetApp);
+    } else {
+      setTrackingApplication(targetApp);
     }
   };
 
@@ -377,17 +459,24 @@ export const JobBoard: React.FC<JobBoardProps> = ({
                       </button>
                     )}
 
-                    {existingApp && onSelectApplication ? (
+                    {existingApp ? (
                       <button
-                        onClick={() => onSelectApplication(existingApp.id)}
-                        className="px-3.5 py-1.5 text-xs font-semibold text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-xl transition-colors whitespace-nowrap"
+                        onClick={() => {
+                          if (onOpenTracker) {
+                            onOpenTracker(existingApp);
+                          } else {
+                            setTrackingApplication(existingApp);
+                          }
+                        }}
+                        className="px-3.5 py-1.5 text-xs font-bold text-emerald-800 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 rounded-xl transition-colors whitespace-nowrap cursor-pointer flex items-center gap-1.5 shadow-2xs"
                       >
-                        Track Status
+                        <Clock className="w-3.5 h-3.5 text-emerald-600" />
+                        <span>Track Status</span>
                       </button>
                     ) : (
                       <button
                         onClick={() => handleOpenJobModal(job)}
-                        className="px-4 py-1.5 text-xs font-bold text-white bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 rounded-xl transition-all shadow-xs shadow-indigo-500/20 whitespace-nowrap active:scale-98"
+                        className="px-4 py-1.5 text-xs font-bold text-white bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 rounded-xl transition-all shadow-xs shadow-indigo-500/20 whitespace-nowrap active:scale-98 cursor-pointer"
                       >
                         View & Apply
                       </button>
@@ -567,25 +656,18 @@ export const JobBoard: React.FC<JobBoardProps> = ({
                     </div>
                   )}
 
-                  {submitSuccess && (
-                    <div className="p-3 bg-emerald-50 border border-emerald-200 text-emerald-800 rounded-xl flex items-center gap-1.5 font-bold">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-                      Application submitted successfully! Live real-time tracker updated.
-                    </div>
-                  )}
-
                   <div className="flex items-center justify-end gap-2 pt-2">
                     <button
                       type="button"
                       onClick={() => setSelectedJob(null)}
-                      className="px-4 py-2 text-xs font-semibold text-slate-600 hover:text-slate-900 rounded-xl transition-colors"
+                      className="px-4 py-2 text-xs font-semibold text-slate-600 hover:text-slate-900 rounded-xl transition-colors cursor-pointer"
                     >
                       Cancel
                     </button>
                     <button
                       type="submit"
                       disabled={isSubmitting || !checkEligibility(selectedJob).isEligible}
-                      className="px-5 py-2 text-xs font-bold text-white bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 disabled:from-slate-300 disabled:to-slate-300 disabled:cursor-not-allowed rounded-xl transition-all shadow-md shadow-indigo-500/20 active:scale-98"
+                      className="px-5 py-2 text-xs font-bold text-white bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 disabled:from-slate-300 disabled:to-slate-300 disabled:cursor-not-allowed rounded-xl transition-all shadow-md shadow-indigo-500/20 active:scale-98 cursor-pointer"
                     >
                       {isSubmitting ? 'Submitting Application...' : 'Confirm & Submit Application'}
                     </button>
@@ -593,22 +675,46 @@ export const JobBoard: React.FC<JobBoardProps> = ({
                 </form>
               )}
 
-              {/* Already applied state */}
-              {getApplicationForJob(selectedJob.id) && (
-                <div className="p-4 bg-emerald-50 border border-emerald-200 rounded-2xl flex items-center justify-between">
-                  <div className="flex items-center gap-2 text-emerald-950 font-bold">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                    <span>Application active and being tracked live.</span>
+              {/* Submission Success State with Instant View Status Tracker button */}
+              {submitSuccess && (
+                <div className="p-4 bg-emerald-50 border border-emerald-200 text-emerald-950 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-3 font-medium">
+                  <div className="flex items-center gap-2">
+                    <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0" />
+                    <div>
+                      <div className="font-bold text-emerald-900">Application submitted successfully!</div>
+                      <div className="text-[11px] text-emerald-700">Live recruitment status tracker is now active.</div>
+                    </div>
                   </div>
                   <button
-                    onClick={() => {
-                      const app = getApplicationForJob(selectedJob.id);
-                      setSelectedJob(null);
-                      if (app && onSelectApplication) onSelectApplication(app.id);
-                    }}
-                    className="px-3.5 py-1.5 bg-emerald-800 text-white rounded-xl font-bold hover:bg-emerald-900 transition-colors shadow-xs"
+                    type="button"
+                    onClick={() => handleOpenTrackerForJob(selectedJob, justAppliedApp)}
+                    className="px-4 py-2 bg-emerald-800 hover:bg-emerald-900 text-white rounded-xl text-xs font-bold transition-colors shadow-xs flex items-center gap-1.5 cursor-pointer shrink-0"
                   >
-                    View Status Tracker
+                    <span>View Status Tracker</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </button>
+                </div>
+              )}
+
+              {/* Already applied state */}
+              {(justAppliedApp || getApplicationForJob(selectedJob.id)) && !submitSuccess && (
+                <div className="p-4 bg-emerald-50 border border-emerald-200 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                  <div className="flex items-center gap-2 text-emerald-950 font-bold">
+                    <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0" />
+                    <div>
+                      <div>Application active and being tracked live.</div>
+                      <div className="text-[11px] text-emerald-700 font-normal">
+                        Current stage: {(justAppliedApp || getApplicationForJob(selectedJob.id))?.stage.toUpperCase()}
+                      </div>
+                    </div>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => handleOpenTrackerForJob(selectedJob, justAppliedApp)}
+                    className="px-4 py-2 bg-emerald-800 hover:bg-emerald-900 text-white rounded-xl text-xs font-bold transition-colors shadow-xs flex items-center gap-1.5 cursor-pointer shrink-0"
+                  >
+                    <span>View Status Tracker</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
                   </button>
                 </div>
               )}
@@ -616,6 +722,22 @@ export const JobBoard: React.FC<JobBoardProps> = ({
             </div>
           </div>
         </div>
+      )}
+
+      {/* Dedicated Status Tracker Modal */}
+      {trackingApplication && (
+        <ApplicationTrackerModal
+          application={trackingApplication}
+          onClose={() => setTrackingApplication(null)}
+          onOpenFullApplications={(appId) => {
+            setTrackingApplication(null);
+            if (onSelectApplication) {
+              onSelectApplication(appId);
+            } else if (onNavigateTab) {
+              onNavigateTab('applications');
+            }
+          }}
+        />
       )}
 
     </div>

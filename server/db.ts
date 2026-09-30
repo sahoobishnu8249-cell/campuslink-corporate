@@ -21,13 +21,71 @@ import {
   MatchingWeights,
   ConflictCheckResult,
   ReadinessLevel,
-  ReadinessBreakdown
+  ReadinessBreakdown,
+  OtpRecord,
+  PlacementPassportModel,
+  PassportVerificationModel,
+  StudentSkillModel,
+  DriveCandidateModel,
+  InterviewQueueModel,
+  InterviewRoundModel,
+  PlacementPolicyModel,
+  PolicyDecisionModel,
+  OfferModel,
+  AttendanceModel,
+  AuditLogModel,
+  QueueStatus,
+  PassportStatus,
+  ResumeExtractedData,
+  ResumeSkillModel,
+  SkillScoreModel,
+  AssessmentQuestion,
+  StudentAnswer,
+  AssessmentSession,
+  AssessmentResultModel,
+  CertificateModel,
+  AssessmentSettingsModel,
+  CandidateVerifiedSkillProfile,
+  CollegeRoom,
+  AcademicSchedule,
+  PlacementDriveAllocation,
+  AdministrationAlert,
+  RoomAllocationStats,
+  ConflictResolutionAction
 } from '../src/types/index.ts';
+import {
+  initialCollegeRooms,
+  initialAcademicSchedules,
+  initialPlacementAllocations,
+  initialAdminAlerts,
+  detectRoomConflicts,
+  suggestSuitableRooms,
+  isTimeOverlapping
+} from './roomAllocationService.ts';
 
 export const dbEvents = new EventEmitter();
 
 export function generateObjectId(): string {
   return crypto.randomBytes(12).toString('hex');
+}
+
+export function hashPassword(password: string): string {
+  const salt = 'campuslink_secret_salt_2026';
+  return crypto.pbkdf2Sync(password, salt, 1000, 32, 'sha256').toString('hex');
+}
+
+export function verifyPassword(password: string, hash: string): boolean {
+  if (!hash) return false;
+  return hashPassword(password) === hash;
+}
+
+export function hashOtp(otp: string): string {
+  const salt = 'campuslink_otp_secret_salt_2026';
+  return crypto.createHash('sha256').update(otp + salt).digest('hex');
+}
+
+export function verifyOtpHash(otp: string, storedHash: string): boolean {
+  return hashOtp(otp) === storedHash;
 }
 
 export interface DatabaseSchema {
@@ -44,7 +102,41 @@ export interface DatabaseSchema {
   notifications: NotificationItem[];
   scoringWeights: ScoringWeights;
   matchingWeights: MatchingWeights;
+  otpRecords?: OtpRecord[];
+  passports?: PlacementPassportModel[];
+  passportVerifications?: PassportVerificationModel[];
+  studentSkills?: StudentSkillModel[];
+  driveCandidates?: DriveCandidateModel[];
+  interviewQueues?: InterviewQueueModel[];
+  interviewRounds?: InterviewRoundModel[];
+  placementPolicies?: PlacementPolicyModel[];
+  policyDecisions?: PolicyDecisionModel[];
+  offerEntities?: OfferModel[];
+  attendances?: AttendanceModel[];
+  auditLogs?: AuditLogModel[];
+  resumeSkills?: ResumeSkillModel[];
+  skillScores?: SkillScoreModel[];
+  assessmentSessions?: AssessmentSession[];
+  assessmentResults?: AssessmentResultModel[];
+  certificates?: CertificateModel[];
+  assessmentSettings?: AssessmentSettingsModel;
+  resumeAnalyses?: Record<string, ResumeExtractedData>;
+  rooms?: CollegeRoom[];
+  academicSchedules?: AcademicSchedule[];
+  placementAllocations?: PlacementDriveAllocation[];
+  adminAlerts?: AdministrationAlert[];
 }
+
+export const defaultAssessmentSettings: AssessmentSettingsModel = {
+  passing_threshold_percentage: 80,
+  level1_time_limit_sec: 60,
+  level2_time_limit_sec: 60,
+  level3_time_limit_sec: 90,
+  questions_per_level: 5,
+  strong_skill_threshold: 85,
+  developing_skill_threshold: 70,
+  auto_advance_levels: true
+};
 
 const DATA_DIR = path.resolve(process.cwd(), 'data');
 const DB_FILE = path.join(DATA_DIR, 'campuslink_db.json');
@@ -272,31 +364,49 @@ const initialUsers: User[] = [
   // 0. Primary Featured Student from UI (Aarav Reddy)
   {
     id: 'user_student_aarav',
+    _id: 'user_student_aarav',
     name: 'Aarav Reddy',
     email: 'aarav.reddy@campus.edu',
+    college_id: '2022UGCS001',
+    phone: '+91 98450 12345',
+    branch: 'Computer Science & Engineering',
     role: 'student',
+    email_verified: true,
+    account_status: 'active',
     avatar: 'AR',
     title: 'B.Tech CSE · 2026',
     department: 'Computer Science & Engineering',
     createdAt: '2026-08-01T09:00:00Z',
   },
-  // 1. Student Secondary (Bishnu)
+  // 1. Student Secondary (Bishnu Demo)
   {
     id: 'user_student_bishnu',
+    _id: 'user_student_bishnu',
     name: 'Bishnu Sahoo',
-    email: 'sahoobishnu8249@gmail.com',
+    email: 'demo.bishnu@campus.edu',
+    college_id: 'DEMO2026001',
+    phone: '+91 98765 43210',
+    branch: 'MCA',
     role: 'student',
+    email_verified: true,
+    account_status: 'active',
     avatar: 'BS',
-    title: 'Final Year B.Tech CSE',
-    department: 'Computer Science & Engineering',
+    title: 'Final Year MCA',
+    department: 'MCA',
     createdAt: '2026-08-01T10:00:00Z',
   },
   // 2. Student (Priya)
   {
     id: 'user_student_priya',
+    _id: 'user_student_priya',
     name: 'Priya Sharma',
     email: 'priya.sharma@campus.edu',
+    college_id: '2022UGAI002',
+    phone: '+91 98765 11111',
+    branch: 'Computer Science & Engineering',
     role: 'student',
+    email_verified: true,
+    account_status: 'active',
     avatar: 'PS',
     title: 'Final Year B.Tech AI & DS',
     department: 'Artificial Intelligence & Data Science',
@@ -305,9 +415,15 @@ const initialUsers: User[] = [
   // 3. Student (Rahul)
   {
     id: 'user_student_rahul',
+    _id: 'user_student_rahul',
     name: 'Rahul Verma',
     email: 'rahul.verma@campus.edu',
+    college_id: '2022UGIT003',
+    phone: '+91 98765 22222',
+    branch: 'Information Technology',
     role: 'student',
+    email_verified: true,
+    account_status: 'active',
     avatar: 'RV',
     title: 'Final Year B.Tech IT',
     department: 'Information Technology',
@@ -316,9 +432,15 @@ const initialUsers: User[] = [
   // 4. Student (Ananya)
   {
     id: 'user_student_ananya',
+    _id: 'user_student_ananya',
     name: 'Ananya Patel',
     email: 'ananya.patel@campus.edu',
+    college_id: '2022UGEC004',
+    phone: '+91 98765 33333',
+    branch: 'Electronics & Communication',
     role: 'student',
+    email_verified: true,
+    account_status: 'active',
     avatar: 'AP',
     title: 'Final Year B.Tech ECE',
     department: 'Electronics & Communication',
@@ -327,9 +449,12 @@ const initialUsers: User[] = [
   // 5. TPO Officer (Dr. Rajesh Rao)
   {
     id: 'user_officer_rajesh',
+    _id: 'user_officer_rajesh',
     name: 'Dr. Rajesh Rao',
     email: 'placement.cell@campus.edu',
     role: 'tpo',
+    email_verified: true,
+    account_status: 'active',
     avatar: 'RR',
     title: 'Head of Training & Placement Cell',
     department: 'University Placement Office',
@@ -338,9 +463,12 @@ const initialUsers: User[] = [
   // 6. Recruiter (Sarah Jenkins @ Microsoft)
   {
     id: 'user_recruiter_sarah',
+    _id: 'user_recruiter_sarah',
     name: 'Sarah Jenkins',
     email: 'sarah.jenkins@microsoft.com',
     role: 'recruiter',
+    email_verified: true,
+    account_status: 'active',
     avatar: 'SJ',
     title: 'Senior University Talent Lead',
     department: 'Global Campus Recruitment',
@@ -349,9 +477,12 @@ const initialUsers: User[] = [
   // 7. Recruiter (Arjun Mehta @ Google)
   {
     id: 'user_recruiter_arjun',
+    _id: 'user_recruiter_arjun',
     name: 'Arjun Mehta',
     email: 'arjun.mehta@google.com',
     role: 'recruiter',
+    email_verified: true,
+    account_status: 'active',
     avatar: 'AM',
     title: 'Staff University Recruiter',
     department: 'Engineering Hiring',
@@ -360,9 +491,12 @@ const initialUsers: User[] = [
   // 8. Recruiter (Neha Kapoor @ TechNova)
   {
     id: 'user_recruiter_neha',
+    _id: 'user_recruiter_neha',
     name: 'Neha Kapoor',
     email: 'neha.kapoor@technova.io',
     role: 'recruiter',
+    email_verified: true,
+    account_status: 'active',
     avatar: 'NK',
     title: 'Talent Acquisition Director',
     department: 'People Operations',
@@ -1804,6 +1938,415 @@ const initialNotifications: NotificationItem[] = [
   }
 ];
 
+// Initial Placement Policies
+const initialPlacementPolicies: PlacementPolicyModel[] = [
+  {
+    id: 'policy_aicte_2026',
+    name: 'University Placement Council Regulation 2026',
+    description: 'Standard 3-Tier Policy (Regular, Dream, Super Dream) enforcing single offer holding with merit-based upgrade guarantees and anti-hoarding controls.',
+    conditions: {
+      min_cgpa_standard: 6.5,
+      max_active_backlogs: 0,
+      mandatory_attendance_pct: 85
+    },
+    offer_categories: {
+      regular_max_lpa: 6.0,
+      dream_min_lpa: 6.0,
+      dream_max_lpa: 12.0,
+      super_dream_min_lpa: 12.0
+    },
+    upgrade_rules: {
+      allow_dream_if_regular_held: true,
+      allow_super_dream_always: true,
+      min_ctc_multiplier_for_upgrade: 1.4,
+      max_total_offers_per_student: 2
+    },
+    active: true,
+    created_by: 'user_officer_rajesh',
+    created_at: '2026-07-01T00:00:00Z',
+    updated_at: '2026-08-01T00:00:00Z'
+  }
+];
+
+// Initial Placement Passports
+const initialPassports: PlacementPassportModel[] = [
+  {
+    id: 'passport_user_student_aarav',
+    student_id: 'user_student_aarav',
+    passport_number: 'CL-2026-CSE-0001',
+    status: 'VERIFIED',
+    academic_verified: true,
+    eligibility_verified: true,
+    tpo_verified: true,
+    attendance_verified: true,
+    documents_verified: true,
+    qr_token: 'QR_TOK_AARAV_8f2c31e9a44b',
+    verified_at: '2026-08-15T10:00:00Z',
+    expires_at: '2027-07-31T23:59:59Z',
+    created_at: '2026-08-01T09:00:00Z',
+    updated_at: '2026-08-15T10:00:00Z',
+    blockchain_hash: '0x8f2c31e9a44b9123',
+    metrics: {
+      cgpa: 8.78,
+      backlogs: 0,
+      ats_score: 92,
+      readiness_score: 84
+    }
+  },
+  {
+    id: 'passport_user_student_bishnu',
+    student_id: 'user_student_bishnu',
+    passport_number: 'CL-2026-MCA-8924',
+    status: 'VERIFIED',
+    academic_verified: true,
+    eligibility_verified: true,
+    tpo_verified: true,
+    attendance_verified: true,
+    documents_verified: true,
+    qr_token: 'QR_TOK_BISHNU_7c91a03f4112',
+    verified_at: '2026-08-18T11:00:00Z',
+    expires_at: '2027-07-31T23:59:59Z',
+    created_at: '2026-08-01T10:00:00Z',
+    updated_at: '2026-08-18T11:00:00Z',
+    blockchain_hash: '0x7c91a03f411288dd',
+    metrics: {
+      cgpa: 8.65,
+      backlogs: 0,
+      ats_score: 88,
+      readiness_score: 82
+    }
+  },
+  {
+    id: 'passport_user_student_priya',
+    student_id: 'user_student_priya',
+    passport_number: 'CL-2026-AID-1002',
+    status: 'VERIFIED',
+    academic_verified: true,
+    eligibility_verified: true,
+    tpo_verified: true,
+    attendance_verified: true,
+    documents_verified: true,
+    qr_token: 'QR_TOK_PRIYA_b19284cf734a',
+    verified_at: '2026-08-10T12:00:00Z',
+    expires_at: '2027-07-31T23:59:59Z',
+    created_at: '2026-08-01T09:00:00Z',
+    updated_at: '2026-08-10T12:00:00Z',
+    blockchain_hash: '0xb19284cf734a0122',
+    metrics: {
+      cgpa: 9.40,
+      backlogs: 0,
+      ats_score: 96,
+      readiness_score: 94
+    }
+  }
+];
+
+// Initial Drive Candidates for War-Room
+const initialDriveCandidates: DriveCandidateModel[] = [
+  {
+    id: 'dc_1',
+    drive_id: 'drive_google_campus',
+    student_id: 'user_student_priya',
+    student_name: 'Priya Sharma',
+    roll_number: '2022UGAI002',
+    branch: 'AI & Data Science',
+    cgpa: 9.40,
+    attendance_status: 'CHECKED_IN',
+    check_in_time: '2026-08-20T08:30:00Z',
+    current_stage: 'TECH_ROUND_1',
+    token_number: 'B-15',
+    created_at: '2026-08-20T08:30:00Z'
+  },
+  {
+    id: 'dc_2',
+    drive_id: 'drive_google_campus',
+    student_id: 'user_student_rahul',
+    student_name: 'Rahul Verma',
+    roll_number: '2022UGIT003',
+    branch: 'Information Technology',
+    cgpa: 8.85,
+    attendance_status: 'CHECKED_IN',
+    check_in_time: '2026-08-20T08:35:00Z',
+    current_stage: 'TECH_ROUND_1',
+    token_number: 'B-16',
+    created_at: '2026-08-20T08:35:00Z'
+  },
+  {
+    id: 'dc_3',
+    drive_id: 'drive_google_campus',
+    student_id: 'user_student_ananya',
+    student_name: 'Ananya Patel',
+    roll_number: '2022UGEC004',
+    branch: 'ECE',
+    cgpa: 8.60,
+    attendance_status: 'CHECKED_IN',
+    check_in_time: '2026-08-20T08:40:00Z',
+    current_stage: 'TECH_ROUND_1',
+    token_number: 'B-17',
+    created_at: '2026-08-20T08:40:00Z'
+  },
+  {
+    id: 'dc_4',
+    drive_id: 'drive_google_campus',
+    student_id: 'user_student_aarav',
+    student_name: 'Aarav Reddy',
+    roll_number: '2022UGCS001',
+    branch: 'Computer Science',
+    cgpa: 8.78,
+    attendance_status: 'CHECKED_IN',
+    check_in_time: '2026-08-20T08:45:00Z',
+    current_stage: 'TECH_ROUND_1',
+    token_number: 'B-18',
+    created_at: '2026-08-20T08:45:00Z'
+  }
+];
+
+// Initial War-Room Queue
+const initialInterviewQueues: InterviewQueueModel[] = [
+  {
+    id: 'q_1',
+    drive_id: 'drive_google_campus',
+    candidate_id: 'dc_1',
+    student_id: 'user_student_priya',
+    student_name: 'Priya Sharma',
+    student_roll: '2022UGAI002',
+    token_number: 'B-15',
+    room: 'Room B-204 (Tech Panel 2)',
+    round: 'Tech Round 1',
+    status: 'IN_PROGRESS',
+    queue_position: 1,
+    called_at: '2026-08-20T09:00:00Z',
+    created_at: '2026-08-20T08:30:00Z'
+  },
+  {
+    id: 'q_2',
+    drive_id: 'drive_google_campus',
+    candidate_id: 'dc_2',
+    student_id: 'user_student_rahul',
+    student_name: 'Rahul Verma',
+    student_roll: '2022UGIT003',
+    token_number: 'B-16',
+    room: 'Room B-204 (Tech Panel 2)',
+    round: 'Tech Round 1',
+    status: 'WAITING',
+    queue_position: 2,
+    created_at: '2026-08-20T08:35:00Z'
+  },
+  {
+    id: 'q_3',
+    drive_id: 'drive_google_campus',
+    candidate_id: 'dc_3',
+    student_id: 'user_student_ananya',
+    student_name: 'Ananya Patel',
+    student_roll: '2022UGEC004',
+    token_number: 'B-17',
+    room: 'Room B-204 (Tech Panel 2)',
+    round: 'Tech Round 1',
+    status: 'WAITING',
+    queue_position: 3,
+    created_at: '2026-08-20T08:40:00Z'
+  },
+  {
+    id: 'q_4',
+    drive_id: 'drive_google_campus',
+    candidate_id: 'dc_4',
+    student_id: 'user_student_aarav',
+    student_name: 'Aarav Reddy',
+    student_roll: '2022UGCS001',
+    token_number: 'B-18',
+    room: 'Room B-204 (Tech Panel 2)',
+    round: 'Tech Round 1',
+    status: 'WAITING',
+    queue_position: 4,
+    created_at: '2026-08-20T08:45:00Z'
+  }
+];
+
+// Initial Policy Audit Logs
+const initialAuditLogs: AuditLogModel[] = [
+  {
+    id: 'audit_1',
+    user_id: 'user_officer_rajesh',
+    user_name: 'Dr. Rajesh Swaminathan',
+    action: 'POLICY_EVALUATION',
+    entity_type: 'PlacementPolicy',
+    entity_id: 'policy_aicte_2026',
+    details: 'Student Priya Sharma approved for Super Dream upgrade to Google India (₹34.5 LPA) under AICTE Rule 4.2.',
+    timestamp: '2026-08-22T14:15:00Z'
+  },
+  {
+    id: 'audit_2',
+    user_id: 'user_officer_rajesh',
+    user_name: 'Dr. Rajesh Swaminathan',
+    action: 'PASSPORT_VERIFIED',
+    entity_type: 'PlacementPassport',
+    entity_id: 'passport_user_student_aarav',
+    details: 'All 4 seals verified: Academic CGPA 8.78, TPO clearance, ATS 92%, and BGV passed.',
+    timestamp: '2026-08-15T10:05:00Z'
+  }
+];
+
+// Initial Skill Assessment Seeds
+const initialResumeSkills: ResumeSkillModel[] = [
+  { id: 'rsk_1', student_id: 'user_student_aarav', skill_name: 'Python', category: 'programming', source: 'resume_extracted', claimed_at: '2026-08-01T09:00:00Z', is_verified: true, verified_score: 92 },
+  { id: 'rsk_2', student_id: 'user_student_aarav', skill_name: 'Django', category: 'framework', source: 'resume_extracted', claimed_at: '2026-08-01T09:00:00Z', is_verified: true, verified_score: 86 },
+  { id: 'rsk_3', student_id: 'user_student_aarav', skill_name: 'React', category: 'framework', source: 'resume_extracted', claimed_at: '2026-08-01T09:00:00Z', is_verified: true, verified_score: 89 },
+  { id: 'rsk_4', student_id: 'user_student_aarav', skill_name: 'SQL', category: 'database', source: 'resume_extracted', claimed_at: '2026-08-01T09:00:00Z', is_verified: true, verified_score: 78 },
+  { id: 'rsk_5', student_id: 'user_student_aarav', skill_name: 'AWS', category: 'cloud', source: 'resume_extracted', claimed_at: '2026-08-01T09:00:00Z', is_verified: true, verified_score: 64 },
+  { id: 'rsk_6', student_id: 'user_student_aarav', skill_name: 'TypeScript', category: 'programming', source: 'resume_extracted', claimed_at: '2026-08-01T09:00:00Z', is_verified: true, verified_score: 85 },
+  { id: 'rsk_7', student_id: 'user_student_aarav', skill_name: 'Docker', category: 'tool', source: 'resume_extracted', claimed_at: '2026-08-01T09:00:00Z', is_verified: false },
+  { id: 'rsk_8', student_id: 'user_student_aarav', skill_name: 'Git', category: 'tool', source: 'resume_extracted', claimed_at: '2026-08-01T09:00:00Z', is_verified: false },
+  // Priya
+  { id: 'rsk_9', student_id: 'user_student_priya', skill_name: 'Python', category: 'programming', source: 'resume_extracted', claimed_at: '2026-08-05T11:00:00Z', is_verified: true, verified_score: 95 },
+  { id: 'rsk_10', student_id: 'user_student_priya', skill_name: 'Machine Learning', category: 'technology', source: 'resume_extracted', claimed_at: '2026-08-05T11:00:00Z', is_verified: true, verified_score: 91 },
+  { id: 'rsk_11', student_id: 'user_student_priya', skill_name: 'SQL', category: 'database', source: 'resume_extracted', claimed_at: '2026-08-05T11:00:00Z', is_verified: true, verified_score: 84 },
+  // Rahul
+  { id: 'rsk_12', student_id: 'user_student_rahul', skill_name: 'Java', category: 'programming', source: 'resume_extracted', claimed_at: '2026-08-10T12:00:00Z', is_verified: true, verified_score: 88 },
+  { id: 'rsk_13', student_id: 'user_student_rahul', skill_name: 'Spring Boot', category: 'framework', source: 'resume_extracted', claimed_at: '2026-08-10T12:00:00Z', is_verified: true, verified_score: 82 },
+  { id: 'rsk_14', student_id: 'user_student_rahul', skill_name: 'PostgreSQL', category: 'database', source: 'resume_extracted', claimed_at: '2026-08-10T12:00:00Z', is_verified: true, verified_score: 80 }
+];
+
+const initialSkillScores: SkillScoreModel[] = [
+  { id: 'ssc_1', student_id: 'user_student_aarav', skill_name: 'Python', claimed: true, verified_score: 92, category: 'programming', status: 'ASSESSMENT_VERIFIED', level_cleared: 2, last_assessed_at: '2026-09-20T14:30:00Z' },
+  { id: 'ssc_2', student_id: 'user_student_aarav', skill_name: 'Django', claimed: true, verified_score: 86, category: 'framework', status: 'ASSESSMENT_VERIFIED', level_cleared: 2, last_assessed_at: '2026-09-20T14:30:00Z' },
+  { id: 'ssc_3', student_id: 'user_student_aarav', skill_name: 'React', claimed: true, verified_score: 89, category: 'framework', status: 'ASSESSMENT_VERIFIED', level_cleared: 2, last_assessed_at: '2026-09-20T14:30:00Z' },
+  { id: 'ssc_4', student_id: 'user_student_aarav', skill_name: 'SQL', claimed: true, verified_score: 78, category: 'database', status: 'ASSESSMENT_VERIFIED', level_cleared: 1, last_assessed_at: '2026-09-18T10:00:00Z' },
+  { id: 'ssc_5', student_id: 'user_student_aarav', skill_name: 'AWS', claimed: true, verified_score: 64, category: 'cloud', status: 'ASSESSMENT_VERIFIED', level_cleared: 1, last_assessed_at: '2026-09-18T10:00:00Z' },
+  { id: 'ssc_6', student_id: 'user_student_aarav', skill_name: 'TypeScript', claimed: true, verified_score: 85, category: 'programming', status: 'ASSESSMENT_VERIFIED', level_cleared: 2, last_assessed_at: '2026-09-20T14:30:00Z' },
+  { id: 'ssc_7', student_id: 'user_student_aarav', skill_name: 'Docker', claimed: true, verified_score: 0, category: 'tool', status: 'CLAIMED_ONLY', level_cleared: 0 },
+  { id: 'ssc_8', student_id: 'user_student_aarav', skill_name: 'Git', claimed: true, verified_score: 0, category: 'tool', status: 'CLAIMED_ONLY', level_cleared: 0 },
+  // Priya
+  { id: 'ssc_9', student_id: 'user_student_priya', skill_name: 'Python', claimed: true, verified_score: 95, category: 'programming', status: 'ASSESSMENT_VERIFIED', level_cleared: 3, last_assessed_at: '2026-09-22T11:00:00Z' },
+  { id: 'ssc_10', student_id: 'user_student_priya', skill_name: 'Machine Learning', claimed: true, verified_score: 91, category: 'technology', status: 'ASSESSMENT_VERIFIED', level_cleared: 3, last_assessed_at: '2026-09-22T11:00:00Z' },
+  { id: 'ssc_11', student_id: 'user_student_priya', skill_name: 'SQL', claimed: true, verified_score: 84, category: 'database', status: 'ASSESSMENT_VERIFIED', level_cleared: 2, last_assessed_at: '2026-09-22T11:00:00Z' },
+  // Rahul
+  { id: 'ssc_12', student_id: 'user_student_rahul', skill_name: 'Java', claimed: true, verified_score: 88, category: 'programming', status: 'ASSESSMENT_VERIFIED', level_cleared: 2, last_assessed_at: '2026-09-24T16:00:00Z' },
+  { id: 'ssc_13', student_id: 'user_student_rahul', skill_name: 'Spring Boot', claimed: true, verified_score: 82, category: 'framework', status: 'ASSESSMENT_VERIFIED', level_cleared: 2, last_assessed_at: '2026-09-24T16:00:00Z' }
+];
+
+const initialCertificates: CertificateModel[] = [
+  {
+    id: 'cert_1',
+    student_id: 'user_student_aarav',
+    student_name: 'Aarav Reddy',
+    certificate_name: 'AWS Certified Cloud Practitioner',
+    skill_or_course_name: 'AWS',
+    issuing_organization: 'Amazon Web Services',
+    issue_date: '2026-01-20',
+    certificate_id: 'AWS-CCP-98241',
+    file_url: '#cert-preview',
+    file_name: 'AWS_Cloud_Practitioner.pdf',
+    file_type: 'pdf',
+    verification_status: 'VERIFIED',
+    verification_type: 'AI_PLATFORM_VERIFIED',
+    verified_by: 'CAMPUSLINK AI Verifier',
+    verified_at: '2026-01-22T08:00:00Z',
+    created_at: '2026-01-20T10:00:00Z'
+  },
+  {
+    id: 'cert_2',
+    student_id: 'user_student_aarav',
+    student_name: 'Aarav Reddy',
+    certificate_name: 'Meta Front-End Developer Professional',
+    skill_or_course_name: 'React',
+    issuing_organization: 'Meta / Coursera',
+    issue_date: '2025-11-15',
+    certificate_id: 'META-FE-7721',
+    file_url: '#cert-preview',
+    file_name: 'Meta_FrontEnd_Cert.pdf',
+    file_type: 'pdf',
+    verification_status: 'VERIFIED',
+    verification_type: 'STUDENT_UPLOADED',
+    verified_by: 'Dr. Rajesh Rao (TPO)',
+    verified_at: '2025-11-18T14:30:00Z',
+    created_at: '2025-11-15T12:00:00Z'
+  },
+  {
+    id: 'cert_3',
+    student_id: 'user_student_aarav',
+    student_name: 'Aarav Reddy',
+    certificate_name: 'Advanced PostgreSQL Performance Tuning',
+    skill_or_course_name: 'PostgreSQL',
+    issuing_organization: 'Database Engineering Institute',
+    issue_date: '2026-03-01',
+    certificate_id: 'PG-DBA-4401',
+    file_url: '#cert-preview',
+    file_name: 'PostgreSQL_Cert.pdf',
+    file_type: 'pdf',
+    verification_status: 'PENDING',
+    verification_type: 'STUDENT_UPLOADED',
+    created_at: '2026-03-01T15:00:00Z'
+  },
+  {
+    id: 'cert_4',
+    student_id: 'user_student_priya',
+    student_name: 'Priya Sharma',
+    certificate_name: 'TensorFlow Developer Certificate',
+    skill_or_course_name: 'Machine Learning',
+    issuing_organization: 'Google Developers',
+    issue_date: '2025-12-05',
+    certificate_id: 'TF-DEV-1940',
+    file_url: '#cert-preview',
+    file_name: 'TF_Dev_Certificate.pdf',
+    file_type: 'pdf',
+    verification_status: 'VERIFIED',
+    verification_type: 'AI_PLATFORM_VERIFIED',
+    verified_by: 'CAMPUSLINK AI Verifier',
+    verified_at: '2025-12-07T09:15:00Z',
+    created_at: '2025-12-05T09:00:00Z'
+  }
+];
+
+const initialAssessmentResults: AssessmentResultModel[] = [
+  {
+    id: 'res_l1_aarav',
+    assessment_id: 'sess_seed_l1',
+    student_id: 'user_student_aarav',
+    student_name: 'Aarav Reddy',
+    level: 1,
+    status: 'PASSED',
+    passing_threshold_pct: 80,
+    total_questions: 5,
+    correct_answers: 5,
+    incorrect_answers: 0,
+    score_percentage: 100,
+    total_time_taken_seconds: 180,
+    average_response_time_seconds: 36,
+    skill_breakdown: {
+      Python: { total: 2, correct: 2, percentage: 100 },
+      React: { total: 2, correct: 2, percentage: 100 },
+      SQL: { total: 1, correct: 1, percentage: 100 }
+    },
+    ai_summary: 'Flawless fundamental knowledge across Python, React, and SQL syntax. Cleared Level 1 with 100% score.',
+    next_level_unlocked: true,
+    completed_at: '2026-09-18T10:15:00Z'
+  },
+  {
+    id: 'res_l2_aarav',
+    assessment_id: 'sess_seed_l2',
+    student_id: 'user_student_aarav',
+    student_name: 'Aarav Reddy',
+    level: 2,
+    status: 'PASSED',
+    passing_threshold_pct: 80,
+    total_questions: 5,
+    correct_answers: 4,
+    incorrect_answers: 1,
+    score_percentage: 80,
+    total_time_taken_seconds: 240,
+    average_response_time_seconds: 48,
+    skill_breakdown: {
+      Python: { total: 2, correct: 2, percentage: 100 },
+      Django: { total: 1, correct: 1, percentage: 100 },
+      React: { total: 1, correct: 1, percentage: 100 },
+      SQL: { total: 1, correct: 0, percentage: 0 }
+    },
+    ai_summary: 'Demonstrated solid intermediate scenario skills in Python generators, Django query optimization, and React memory caching. Minor gap noted in complex SQL query plans.',
+    next_level_unlocked: true,
+    completed_at: '2026-09-20T14:45:00Z'
+  }
+];
+
 // Class to manage in-memory database with persistent JSON fallback
 class CampusDatabase {
   private users: User[] = [];
@@ -1819,6 +2362,35 @@ class CampusDatabase {
   private notifications: NotificationItem[] = [];
   private scoringWeights: ScoringWeights = defaultScoringWeights;
   private matchingWeights: MatchingWeights = defaultMatchingWeights;
+  private otpRecords: OtpRecord[] = [];
+
+  // Extended Relational Entities
+  private passports: PlacementPassportModel[] = [];
+  private passportVerifications: PassportVerificationModel[] = [];
+  private studentSkills: StudentSkillModel[] = [];
+  private driveCandidates: DriveCandidateModel[] = [];
+  private interviewQueues: InterviewQueueModel[] = [];
+  private interviewRounds: InterviewRoundModel[] = [];
+  private placementPolicies: PlacementPolicyModel[] = [];
+  private policyDecisions: PolicyDecisionModel[] = [];
+  private offerEntities: OfferModel[] = [];
+  private attendances: AttendanceModel[] = [];
+  private auditLogs: AuditLogModel[] = [];
+
+  // Skill Verification & Assessment Entities
+  private resumeSkills: ResumeSkillModel[] = [];
+  private skillScores: SkillScoreModel[] = [];
+  private assessmentSessions: AssessmentSession[] = [];
+  private assessmentResults: AssessmentResultModel[] = [];
+  private certificates: CertificateModel[] = [];
+  private assessmentSettings: AssessmentSettingsModel = { ...defaultAssessmentSettings };
+  private resumeAnalyses: Record<string, ResumeExtractedData> = {};
+
+  // Smart Room Allocation Entities
+  private rooms: CollegeRoom[] = [];
+  private academicSchedules: AcademicSchedule[] = [];
+  private placementAllocations: PlacementDriveAllocation[] = [];
+  private adminAlerts: AdministrationAlert[] = [];
 
   constructor() {
     this.load();
@@ -1844,6 +2416,29 @@ class CampusDatabase {
         this.notifications = data.notifications || initialNotifications;
         this.scoringWeights = data.scoringWeights || defaultScoringWeights;
         this.matchingWeights = data.matchingWeights || defaultMatchingWeights;
+        this.otpRecords = data.otpRecords || [];
+        this.passports = data.passports || initialPassports;
+        this.passportVerifications = data.passportVerifications || [];
+        this.studentSkills = data.studentSkills || [];
+        this.driveCandidates = data.driveCandidates || initialDriveCandidates;
+        this.interviewQueues = data.interviewQueues || initialInterviewQueues;
+        this.interviewRounds = data.interviewRounds || [];
+        this.placementPolicies = data.placementPolicies || initialPlacementPolicies;
+        this.policyDecisions = data.policyDecisions || [];
+        this.offerEntities = data.offerEntities || [];
+        this.attendances = data.attendances || [];
+        this.auditLogs = data.auditLogs || initialAuditLogs;
+        this.resumeSkills = data.resumeSkills || initialResumeSkills;
+        this.skillScores = data.skillScores || initialSkillScores;
+        this.assessmentSessions = data.assessmentSessions || [];
+        this.assessmentResults = data.assessmentResults || initialAssessmentResults;
+        this.certificates = data.certificates || initialCertificates;
+        this.assessmentSettings = data.assessmentSettings || { ...defaultAssessmentSettings };
+        this.resumeAnalyses = data.resumeAnalyses || {};
+        this.rooms = data.rooms && data.rooms.length > 0 ? data.rooms : [...initialCollegeRooms];
+        this.academicSchedules = data.academicSchedules && data.academicSchedules.length > 0 ? data.academicSchedules : [...initialAcademicSchedules];
+        this.placementAllocations = data.placementAllocations && data.placementAllocations.length > 0 ? data.placementAllocations : [...initialPlacementAllocations];
+        this.adminAlerts = data.adminAlerts && data.adminAlerts.length > 0 ? data.adminAlerts : [...initialAdminAlerts];
         this.syncDerivedCollections();
         return;
       }
@@ -1863,6 +2458,29 @@ class CampusDatabase {
     this.notifications = [...initialNotifications];
     this.scoringWeights = { ...defaultScoringWeights };
     this.matchingWeights = { ...defaultMatchingWeights };
+    this.otpRecords = [];
+    this.passports = [...initialPassports];
+    this.passportVerifications = [];
+    this.studentSkills = [];
+    this.driveCandidates = [...initialDriveCandidates];
+    this.interviewQueues = [...initialInterviewQueues];
+    this.interviewRounds = [];
+    this.placementPolicies = [...initialPlacementPolicies];
+    this.policyDecisions = [];
+    this.offerEntities = [];
+    this.attendances = [];
+    this.auditLogs = [...initialAuditLogs];
+    this.resumeSkills = [...initialResumeSkills];
+    this.skillScores = [...initialSkillScores];
+    this.assessmentSessions = [];
+    this.assessmentResults = [...initialAssessmentResults];
+    this.certificates = [...initialCertificates];
+    this.assessmentSettings = { ...defaultAssessmentSettings };
+    this.resumeAnalyses = {};
+    this.rooms = [...initialCollegeRooms];
+    this.academicSchedules = [...initialAcademicSchedules];
+    this.placementAllocations = [...initialPlacementAllocations];
+    this.adminAlerts = [...initialAdminAlerts];
     this.syncDerivedCollections();
     this.save();
   }
@@ -1941,7 +2559,30 @@ class CampusDatabase {
         documents: this.documents,
         notifications: this.notifications,
         scoringWeights: this.scoringWeights,
-        matchingWeights: this.matchingWeights
+        matchingWeights: this.matchingWeights,
+        otpRecords: this.otpRecords,
+        passports: this.passports,
+        passportVerifications: this.passportVerifications,
+        studentSkills: this.studentSkills,
+        driveCandidates: this.driveCandidates,
+        interviewQueues: this.interviewQueues,
+        interviewRounds: this.interviewRounds,
+        placementPolicies: this.placementPolicies,
+        policyDecisions: this.policyDecisions,
+        offerEntities: this.offerEntities,
+        attendances: this.attendances,
+        auditLogs: this.auditLogs,
+        resumeSkills: this.resumeSkills,
+        skillScores: this.skillScores,
+        assessmentSessions: this.assessmentSessions,
+        assessmentResults: this.assessmentResults,
+        certificates: this.certificates,
+        assessmentSettings: this.assessmentSettings,
+        resumeAnalyses: this.resumeAnalyses,
+        rooms: this.rooms,
+        academicSchedules: this.academicSchedules,
+        placementAllocations: this.placementAllocations,
+        adminAlerts: this.adminAlerts
       };
       fs.writeFileSync(DB_FILE, JSON.stringify(data, null, 2), 'utf-8');
     } catch (err) {
@@ -1955,17 +2596,90 @@ class CampusDatabase {
   }
 
   getUserById(id: string): User | undefined {
-    return this.users.find(u => u.id === id);
+    return this.users.find(u => u.id === id || u._id === id);
   }
 
   getUserByEmail(email: string): User | undefined {
-    return this.users.find(u => u.email.toLowerCase() === email.toLowerCase());
+    if (!email) return undefined;
+    return this.users.find(u => u.email.toLowerCase() === email.trim().toLowerCase());
+  }
+
+  getUserByCollegeId(collegeId: string): User | undefined {
+    if (!collegeId) return undefined;
+    const cid = collegeId.trim().toLowerCase();
+    const foundUser = this.users.find(u => u.college_id && u.college_id.toLowerCase() === cid);
+    if (foundUser) return foundUser;
+    const profile = this.studentProfiles.find(p => p.rollNumber && p.rollNumber.toLowerCase() === cid);
+    if (profile) return this.getUserById(profile.userId);
+    return undefined;
+  }
+
+  checkDuplicate(email: string, collegeId?: string): { emailExists: boolean; collegeIdExists: boolean } {
+    const normEmail = (email || '').trim().toLowerCase();
+    const normCid = (collegeId || '').trim().toLowerCase();
+
+    // Only accounts that are active, verified, and have set passwords are considered duplicate registered accounts
+    const emailUser = this.users.find(u => u.email.toLowerCase() === normEmail);
+    const emailExists = Boolean(emailUser && emailUser.email_verified === true && Boolean(emailUser.password_hash));
+
+    const cidUser = this.users.find(u => u.college_id && u.college_id.toLowerCase() === normCid);
+    const collegeIdExists = Boolean(
+      cidUser && 
+      cidUser.email_verified === true && 
+      Boolean(cidUser.password_hash) && 
+      cidUser.email.toLowerCase() !== normEmail
+    );
+
+    return { emailExists, collegeIdExists };
   }
 
   createUser(user: User): User {
     this.users.push(user);
     this.save();
     return user;
+  }
+
+  updateUser(id: string, updates: Partial<User>): User | undefined {
+    const idx = this.users.findIndex(u => u.id === id || u._id === id);
+    if (idx === -1) return undefined;
+    this.users[idx] = {
+      ...this.users[idx],
+      ...updates,
+      updated_at: new Date().toISOString()
+    };
+    this.save();
+    return this.users[idx];
+  }
+
+  // ----------------- OTP RECORDS -----------------
+  getOtpRecords(): OtpRecord[] {
+    return this.otpRecords;
+  }
+
+  createOtpRecord(record: OtpRecord): OtpRecord {
+    this.otpRecords.push(record);
+    this.save();
+    return record;
+  }
+
+  getLatestOtpByEmail(email: string): OtpRecord | undefined {
+    if (!email) return undefined;
+    const normEmail = email.trim().toLowerCase();
+    const matches = this.otpRecords.filter(r => r.email.toLowerCase() === normEmail);
+    if (matches.length === 0) return undefined;
+    // Sort descending by created_at
+    return matches.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())[0];
+  }
+
+  updateOtpRecord(id: string, updates: Partial<OtpRecord>): OtpRecord | undefined {
+    const idx = this.otpRecords.findIndex(r => r._id === id);
+    if (idx === -1) return undefined;
+    this.otpRecords[idx] = {
+      ...this.otpRecords[idx],
+      ...updates
+    };
+    this.save();
+    return this.otpRecords[idx];
   }
 
   // ----------------- PROFILES -----------------
@@ -2127,12 +2841,6 @@ class CampusDatabase {
     return this.drives.find(d => d.id === id);
   }
 
-  createDrive(drive: Drive): Drive {
-    this.drives.push(drive);
-    this.save();
-    return drive;
-  }
-
   checkSchedulingConflict(candidateDrive: {
     companyId: string;
     date: string;
@@ -2207,12 +2915,16 @@ class CampusDatabase {
   }
 
   // ----------------- APPLICATIONS -----------------
-  getApplications(query?: { studentId?: string; jobId?: string; recruiterId?: string }): Application[] {
+  getApplications(query?: { studentId?: string; studentEmail?: string; jobId?: string; recruiterId?: string }): Application[] {
     let result = [...this.applications];
     if (!query) return result;
 
-    if (query.studentId) {
-      result = result.filter(a => a.studentId === query.studentId);
+    if (query.studentId || query.studentEmail) {
+      const email = query.studentEmail?.toLowerCase();
+      result = result.filter(a => 
+        (query.studentId && a.studentId === query.studentId) ||
+        (email && a.studentEmail?.toLowerCase() === email)
+      );
     }
     if (query.jobId) {
       result = result.filter(a => a.jobId === query.jobId);
@@ -2339,8 +3051,47 @@ class CampusDatabase {
   }
 
   // ----------------- NOTIFICATIONS -----------------
-  getNotifications(userId: string): NotificationItem[] {
-    return this.notifications.filter(n => n.userId === userId || n.userId === 'all');
+  getNotifications(userId: string, userEmail?: string, userRole?: string): NotificationItem[] {
+    const user = this.users.find(u => u.id === userId || (userEmail && u.email?.toLowerCase() === userEmail.toLowerCase()));
+    const resolvedRole = userRole || user?.role || (userId.includes('officer') || userId.includes('tpo') ? 'tpo' : userId.includes('recruiter') ? 'recruiter' : 'student');
+    const resolvedEmail = (userEmail || user?.email || '').toLowerCase();
+
+    // Set of matching recipient IDs / aliases
+    const aliases = new Set<string>([userId, 'all']);
+    if (resolvedEmail) aliases.add(resolvedEmail);
+    if (user?.id) aliases.add(user.id);
+
+    if (resolvedRole === 'tpo' || resolvedRole === 'admin') {
+      aliases.add('tpo');
+      aliases.add('admin');
+      aliases.add('officer');
+      aliases.add('user_officer_rajesh');
+    } else if (resolvedRole === 'recruiter') {
+      aliases.add('recruiter');
+    } else if (resolvedRole === 'student') {
+      aliases.add('student');
+    }
+
+    // Also check student profile if any
+    const profile = this.studentProfiles.find(sp => sp.userId === userId || (resolvedEmail && sp.email?.toLowerCase() === resolvedEmail));
+    if (profile) {
+      aliases.add(profile.userId);
+      if (profile.email) aliases.add(profile.email.toLowerCase());
+    }
+
+    // Handle student Bishnu Sahoo aliases across demo accounts
+    if (resolvedEmail === 'sahoobishnu8249@gmail.com' || userId === 'user_student_bishnu' || userId === 'user_student_b078fb0cca9b0275517b16ff') {
+      aliases.add('user_student_bishnu');
+      aliases.add('user_student_b078fb0cca9b0275517b16ff');
+      aliases.add('sahoobishnu8249@gmail.com');
+    }
+
+    return this.notifications.filter(n => {
+      if (aliases.has(n.userId)) return true;
+      if (n.targetRole && (n.targetRole === resolvedRole || n.targetRole === 'all')) return true;
+      if (resolvedEmail && n.userEmail && n.userEmail.toLowerCase() === resolvedEmail) return true;
+      return false;
+    });
   }
 
   createNotification(notif: NotificationItem): NotificationItem {
@@ -2362,14 +3113,42 @@ class CampusDatabase {
 
   markAllNotificationsRead(userId: string): boolean {
     let changed = false;
+    const user = this.users.find(u => u.id === userId);
+    const isTPO = user?.role === 'tpo' || userId === 'user_officer_rajesh' || userId === 'tpo';
+    
     this.notifications.forEach(n => {
-      if ((n.userId === userId || n.userId === 'all') && !n.read) {
+      const match = n.userId === userId || n.userId === 'all' || (isTPO && (n.userId === 'tpo' || n.targetRole === 'tpo'));
+      if (match && !n.read) {
         n.read = true;
         changed = true;
       }
     });
     if (changed) this.save();
     return changed;
+  }
+
+  deleteNotification(id: string): boolean {
+    const initialLen = this.notifications.length;
+    this.notifications = this.notifications.filter(n => n.id !== id);
+    if (this.notifications.length !== initialLen) {
+      this.save();
+      return true;
+    }
+    return false;
+  }
+
+  clearReadNotifications(userId: string): number {
+    const initialLen = this.notifications.length;
+    const user = this.users.find(u => u.id === userId);
+    const isTPO = user?.role === 'tpo' || userId === 'user_officer_rajesh' || userId === 'tpo';
+
+    this.notifications = this.notifications.filter(n => {
+      const isForUser = n.userId === userId || n.userId === 'all' || (isTPO && (n.userId === 'tpo' || n.targetRole === 'tpo'));
+      return !(isForUser && n.read);
+    });
+    const removed = initialLen - this.notifications.length;
+    if (removed > 0) this.save();
+    return removed;
   }
 
   // ----------------- SKILL GAP ANALYSIS -----------------
@@ -2625,6 +3404,1805 @@ class CampusDatabase {
     this.save();
     return this.matchingWeights;
   }
+
+  // =============================================================
+  // RELATIONAL METHODS: PASSPORTS & VERIFICATIONS
+  // =============================================================
+
+  getPassports(): PlacementPassportModel[] {
+    return this.passports;
+  }
+
+  getPassportById(id: string): PlacementPassportModel | undefined {
+    return this.passports.find(p => p.id === id || p.passport_number === id);
+  }
+
+  getPassportByStudentId(studentId: string): PlacementPassportModel | undefined {
+    return this.passports.find(p => p.student_id === studentId);
+  }
+
+  getPassportByQrToken(qrToken: string): PlacementPassportModel | undefined {
+    if (!qrToken) return undefined;
+    return this.passports.find(p => p.qr_token === qrToken || qrToken.includes(p.qr_token) || qrToken.includes(p.student_id));
+  }
+
+  createPassport(studentId: string, customData?: Partial<PlacementPassportModel>): PlacementPassportModel {
+    const student = this.getStudentProfile(studentId);
+    const existing = this.getPassportByStudentId(studentId);
+    if (existing) {
+      if (customData) {
+        Object.assign(existing, customData, { updated_at: new Date().toISOString() });
+        this.save();
+      }
+      return existing;
+    }
+
+    const branch = student?.branch ? student.branch.substring(0, 3).toUpperCase() : 'CSE';
+    const rollShort = student?.rollNumber ? student.rollNumber.slice(-4) : student?.userId.slice(-4) || '8924';
+    const passportNumber = `CL-2026-${branch}-${rollShort}`;
+    const qrToken = `QR_TOK_${studentId}_${crypto.randomBytes(6).toString('hex')}`;
+    const hash = '0x' + crypto.randomBytes(8).toString('hex');
+
+    const newPassport: PlacementPassportModel = {
+      id: `passport_${studentId}`,
+      student_id: studentId,
+      passport_number: passportNumber,
+      status: 'VERIFIED',
+      academic_verified: (student?.cgpa || 0) >= 6.0 && (student?.backlogs || 0) === 0,
+      eligibility_verified: true,
+      tpo_verified: true,
+      attendance_verified: true,
+      documents_verified: true,
+      qr_token: qrToken,
+      verified_at: new Date().toISOString(),
+      expires_at: new Date(Date.now() + 365 * 86400000).toISOString(),
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString(),
+      blockchain_hash: hash,
+      metrics: {
+        cgpa: student?.cgpa || 8.65,
+        backlogs: student?.backlogs || 0,
+        ats_score: (student as any)?.atsScore || 90,
+        readiness_score: student?.readinessScore || 85
+      },
+      ...customData
+    };
+
+    this.passports.push(newPassport);
+
+    this.createAuditLog({
+      user_id: studentId,
+      action: 'PASSPORT_CREATED',
+      entity_type: 'PlacementPassport',
+      entity_id: newPassport.id,
+      details: `Placement Passport ${newPassport.passport_number} generated for student.`
+    });
+
+    this.save();
+    return newPassport;
+  }
+
+  updatePassport(id: string, updates: Partial<PlacementPassportModel>): PlacementPassportModel | undefined {
+    const passport = this.getPassportById(id);
+    if (!passport) return undefined;
+    Object.assign(passport, updates, { updated_at: new Date().toISOString() });
+    this.save();
+    return passport;
+  }
+
+  verifyPassportSeal(
+    passportId: string, 
+    sealType: 'ACADEMIC' | 'TPO' | 'ATS' | 'BGV', 
+    verifierId: string, 
+    verifierRole: string, 
+    status: 'VERIFIED' | 'REJECTED', 
+    notes?: string
+  ): PlacementPassportModel | undefined {
+    const passport = this.getPassportById(passportId);
+    if (!passport) return undefined;
+
+    const verification: PassportVerificationModel = {
+      id: `ver_${generateObjectId()}`,
+      passport_id: passport.id,
+      verifier_id: verifierId,
+      verifier_role: verifierRole,
+      seal_type: sealType,
+      status,
+      notes,
+      verified_at: new Date().toISOString()
+    };
+    this.passportVerifications.push(verification);
+
+    if (sealType === 'ACADEMIC') passport.academic_verified = status === 'VERIFIED';
+    if (sealType === 'TPO') passport.tpo_verified = status === 'VERIFIED';
+    if (sealType === 'ATS') passport.documents_verified = status === 'VERIFIED';
+    if (sealType === 'BGV') passport.attendance_verified = status === 'VERIFIED';
+
+    if (passport.academic_verified && passport.tpo_verified && passport.documents_verified) {
+      passport.status = 'VERIFIED';
+      passport.verified_at = new Date().toISOString();
+    }
+
+    passport.updated_at = new Date().toISOString();
+
+    this.createAuditLog({
+      user_id: verifierId,
+      action: `PASSPORT_SEAL_${sealType}_${status}`,
+      entity_type: 'PlacementPassport',
+      entity_id: passport.id,
+      details: notes || `${sealType} seal updated to ${status}`
+    });
+
+    this.save();
+    return passport;
+  }
+
+  approvePassport(id: string, approverId: string): PlacementPassportModel | undefined {
+    const passport = this.getPassportById(id);
+    if (!passport) return undefined;
+    passport.status = 'VERIFIED';
+    passport.academic_verified = true;
+    passport.tpo_verified = true;
+    passport.eligibility_verified = true;
+    passport.documents_verified = true;
+    passport.attendance_verified = true;
+    passport.verified_at = new Date().toISOString();
+    passport.updated_at = new Date().toISOString();
+
+    this.createAuditLog({
+      user_id: approverId,
+      action: 'PASSPORT_APPROVED',
+      entity_type: 'PlacementPassport',
+      entity_id: passport.id,
+      details: 'All credentials and verification seals approved by TPO Directorate.'
+    });
+
+    this.save();
+    return passport;
+  }
+
+  rejectPassport(id: string, rejectorId: string, reason: string): PlacementPassportModel | undefined {
+    const passport = this.getPassportById(id);
+    if (!passport) return undefined;
+    passport.status = 'REVOKED';
+    passport.updated_at = new Date().toISOString();
+
+    this.createAuditLog({
+      user_id: rejectorId,
+      action: 'PASSPORT_REVOKED',
+      entity_type: 'PlacementPassport',
+      entity_id: passport.id,
+      details: reason || 'Passport revoked due to academic discrepancy or policy infraction.'
+    });
+
+    this.save();
+    return passport;
+  }
+
+  recheckPassport(id: string, requesterId: string, reason?: string): PlacementPassportModel | undefined {
+    const passport = this.getPassportById(id);
+    if (!passport) return undefined;
+    passport.status = 'UNDER_REVIEW';
+    passport.updated_at = new Date().toISOString();
+
+    this.createAuditLog({
+      user_id: requesterId,
+      action: 'PASSPORT_RECHECK_REQUESTED',
+      entity_type: 'PlacementPassport',
+      entity_id: passport.id,
+      details: reason || 'Recheck requested for passport credentials.'
+    });
+
+    this.save();
+    return passport;
+  }
+
+  // =============================================================
+  // RELATIONAL METHODS: DRIVES, CANDIDATES & QR CHECK-IN
+  // =============================================================
+
+  createDrive(data: Partial<Drive>): Drive {
+    const newDrive: Drive = {
+      id: data.id || `drv_${generateObjectId()}`,
+      companyId: data.companyId || `comp_${generateObjectId()}`,
+      companyName: data.companyName || 'Corporate Partner',
+      companyLogo: data.companyLogo || 'https://images.unsplash.com/photo-1549923746-c502d488b3ea?w=120',
+      title: data.title || 'Campus Placement Drive 2026',
+      role: data.role || data.title || 'Software Development Engineer',
+      type: data.type || 'Full-Time',
+      packageCtc: data.packageCtc || '₹18.0 LPA',
+      location: data.location || 'Campus Tech Tower',
+      date: data.date || new Date().toISOString().split('T')[0],
+      startTime: data.startTime || '09:00 AM',
+      endTime: data.endTime || '05:00 PM',
+      venue: data.venue || 'APJ Abdul Kalam Auditorium',
+      targetBatches: data.targetBatches || [2026],
+      allowedBranches: data.allowedBranches || ['CSE', 'IT', 'ECE'],
+      eligibleBranches: data.eligibleBranches || ['CSE', 'IT', 'ECE'],
+      minCgpa: data.minCgpa ?? 7.0,
+      openings: data.openings || 10,
+      status: (data.status as any) || 'Upcoming',
+      panelMembers: data.panelMembers || ['Recruitment Panel 1', 'Engineering Manager'],
+      currentStage: data.currentStage || 'Registration',
+      totalRegistered: data.totalRegistered || 0,
+      shortlistedCount: data.shortlistedCount || 0,
+      offersReleased: data.offersReleased || 0,
+      reportingTime: data.reportingTime || '09:00 AM',
+      instructions: data.instructions || 'Bring physical copy of Placement Passport with dynamic QR code.',
+      schedule: data.schedule || [
+        { time: '09:00 AM', activity: 'Gate QR Check-in & Security Clearance', hall: 'Auditorium Gate 1' },
+        { time: '10:00 AM', activity: 'Online Coding / Technical Assessment', hall: 'Central Lab 3' },
+        { time: '01:30 PM', activity: 'Technical Interview Panel 1', hall: 'Room B-204' },
+        { time: '04:00 PM', activity: 'HR & Executive Round', hall: 'Conference Hall' }
+      ]
+    };
+
+    this.drives.unshift(newDrive);
+
+    this.createNotification({
+      id: `notif_${generateObjectId()}`,
+      userId: 'all',
+      title: `🚀 New Drive Announced: ${newDrive.companyName}`,
+      message: `${newDrive.companyName} is hiring for ${newDrive.role} (${newDrive.packageCtc}). Register before drive day.`,
+      type: 'drive_announcement',
+      read: false,
+      createdAt: new Date().toISOString()
+    });
+
+    this.save();
+    return newDrive;
+  }
+
+  updateDrive(id: string, updates: Partial<Drive>): Drive | undefined {
+    const drive = this.drives.find(d => d.id === id);
+    if (!drive) return undefined;
+    Object.assign(drive, updates);
+    this.save();
+    return drive;
+  }
+
+  deleteDrive(id: string): boolean {
+    const idx = this.drives.findIndex(d => d.id === id);
+    if (idx === -1) return false;
+    this.drives.splice(idx, 1);
+    this.save();
+    return true;
+  }
+
+  getDriveCandidates(driveId: string): DriveCandidateModel[] {
+    return this.driveCandidates.filter(c => c.drive_id === driveId);
+  }
+
+  getDriveCandidate(driveId: string, studentId: string): DriveCandidateModel | undefined {
+    return this.driveCandidates.find(c => c.drive_id === driveId && (c.student_id === studentId || c.token_number === studentId));
+  }
+
+  checkInCandidate(
+    driveId: string, 
+    studentId: string, 
+    method: 'QR_SCAN' | 'MANUAL' = 'QR_SCAN', 
+    verifiedBy = 'system_gate_scanner'
+  ): {
+    student: StudentProfile;
+    eligibility: { status: 'ELIGIBLE' | 'NOT_ELIGIBLE'; reasons: string[] };
+    attendance: AttendanceModel;
+    candidate: DriveCandidateModel;
+    token: InterviewQueueModel;
+    queue_position: number;
+    drive: Drive;
+    current_stage: string;
+  } {
+    const student = this.getStudentProfile(studentId);
+    if (!student) {
+      throw new Error(`Student not found with ID ${studentId}`);
+    }
+
+    const drive = this.getDriveById(driveId);
+    if (!drive) {
+      throw new Error(`Placement Drive not found with ID ${driveId}`);
+    }
+
+    // Check Eligibility against Drive requirements
+    const isCgpaOk = (student.cgpa || 0) >= (drive.minCgpa || 6.0);
+    const branches = drive.allowedBranches || (drive as any).eligibleBranches || [];
+    const isBranchOk = branches.length === 0 || 
+      branches.some((b: string) => b.toLowerCase().includes(student.branch.toLowerCase()) || student.branch.toLowerCase().includes(b.toLowerCase()));
+    const isBacklogOk = (student.backlogs || 0) === 0;
+
+    const reasons: string[] = [];
+    if (!isCgpaOk) reasons.push(`CGPA ${student.cgpa} below cutoff ${drive.minCgpa}`);
+    if (!isBranchOk) reasons.push(`Branch ${student.branch} not listed in eligible branches`);
+    if (!isBacklogOk) reasons.push(`Student has ${student.backlogs} active backlog(s)`);
+
+    const isEligible = isCgpaOk && isBranchOk && isBacklogOk;
+
+    // Check if already checked in
+    let candidate = this.getDriveCandidate(driveId, studentId);
+    let queueItem = this.interviewQueues.find(q => q.drive_id === driveId && q.student_id === studentId);
+
+    if (candidate && candidate.attendance_status === 'CHECKED_IN' && queueItem) {
+      // Already checked in, return existing token
+      const att = this.attendances.find(a => a.drive_id === driveId && a.student_id === studentId) || {
+        id: `att_${generateObjectId()}`,
+        drive_id: driveId,
+        student_id: studentId,
+        check_in_time: candidate.check_in_time || new Date().toISOString(),
+        verified_by: verifiedBy,
+        method,
+        created_at: new Date().toISOString()
+      };
+
+      return {
+        student,
+        eligibility: {
+          status: isEligible ? 'ELIGIBLE' : 'NOT_ELIGIBLE',
+          reasons: reasons.length ? reasons : ['All prerequisites verified']
+        },
+        attendance: att,
+        candidate,
+        token: queueItem,
+        queue_position: queueItem.queue_position,
+        drive,
+        current_stage: candidate.current_stage
+      };
+    }
+
+    // Generate Next Token (e.g. B-15, B-16, ...)
+    const existingQueue = this.interviewQueues.filter(q => q.drive_id === driveId);
+    const nextNum = existingQueue.length + 15;
+    const tokenNumber = `B-${nextNum}`;
+    const queuePosition = existingQueue.length + 1;
+
+    // Record Attendance
+    const attendance: AttendanceModel = {
+      id: `att_${generateObjectId()}`,
+      drive_id: driveId,
+      student_id: studentId,
+      check_in_time: new Date().toISOString(),
+      verified_by: verifiedBy,
+      method,
+      created_at: new Date().toISOString()
+    };
+    this.attendances.push(attendance);
+
+    // Create / Update Drive Candidate
+    if (!candidate) {
+      candidate = {
+        id: `dc_${generateObjectId()}`,
+        drive_id: driveId,
+        student_id: studentId,
+        student_name: student.fullName,
+        roll_number: student.rollNumber || student.userId,
+        branch: student.branch,
+        cgpa: student.cgpa || 8.0,
+        attendance_status: 'CHECKED_IN',
+        check_in_time: new Date().toISOString(),
+        current_stage: 'TECH_ROUND_1',
+        token_number: tokenNumber,
+        created_at: new Date().toISOString()
+      };
+      this.driveCandidates.push(candidate);
+    } else {
+      candidate.attendance_status = 'CHECKED_IN';
+      candidate.check_in_time = new Date().toISOString();
+      candidate.token_number = tokenNumber;
+    }
+
+    // Add to Interview Queue
+    queueItem = {
+      id: `q_${generateObjectId()}`,
+      drive_id: driveId,
+      candidate_id: candidate.id,
+      student_id: studentId,
+      student_name: student.fullName,
+      student_roll: student.rollNumber || student.userId,
+      token_number: tokenNumber,
+      room: 'Room B-204 (Tech Panel 2)',
+      round: 'Tech Round 1',
+      status: 'WAITING',
+      queue_position: queuePosition,
+      created_at: new Date().toISOString()
+    };
+    this.interviewQueues.push(queueItem);
+
+    // Audit Log
+    this.createAuditLog({
+      user_id: studentId,
+      action: 'QR_GATE_CHECKIN',
+      entity_type: 'DriveCandidate',
+      entity_id: candidate.id,
+      details: `Student ${student.fullName} checked in for ${drive.companyName}. Assigned Token ${tokenNumber}.`
+    });
+
+    // Notify Student
+    this.createNotification({
+      id: `notif_${generateObjectId()}`,
+      userId: studentId,
+      title: `🎫 Gate Check-in Confirmed: Token ${tokenNumber}`,
+      message: `You are Token ${tokenNumber} for ${drive.companyName}. Proceed to Room B-204 for Tech Round 1.`,
+      type: 'drive_announcement',
+      read: false,
+      createdAt: new Date().toISOString()
+    });
+
+    dbEvents.emit('queue:updated', { driveId, queueItem });
+    this.save();
+
+    return {
+      student,
+      eligibility: {
+        status: isEligible ? 'ELIGIBLE' : 'NOT_ELIGIBLE',
+        reasons: reasons.length ? reasons : ['All prerequisites verified']
+      },
+      attendance,
+      candidate,
+      token: queueItem,
+      queue_position: queuePosition,
+      drive,
+      current_stage: candidate.current_stage
+    };
+  }
+
+  // =============================================================
+  // RELATIONAL METHODS: WAR-ROOM & INTERVIEW QUEUE
+  // =============================================================
+
+  getDriveQueue(driveId: string): InterviewQueueModel[] {
+    return this.interviewQueues
+      .filter(q => q.drive_id === driveId || driveId === 'all')
+      .sort((a, b) => a.queue_position - b.queue_position);
+  }
+
+  getQueueItemById(id: string): InterviewQueueModel | undefined {
+    return this.interviewQueues.find(q => q.id === id || q.token_number === id);
+  }
+
+  callNextQueueCandidate(driveId: string, room = 'Room B-204 (Tech Panel 2)', interviewerName = 'Staff Engineer'): InterviewQueueModel | null {
+    const queue = this.getDriveQueue(driveId);
+    
+    // Complete any currently in-progress candidate if needed
+    const current = queue.find(q => q.status === 'CALLED' || q.status === 'IN_PROGRESS');
+    if (current) {
+      current.status = 'COMPLETED';
+      current.completed_at = new Date().toISOString();
+    }
+
+    // Find next waiting candidate
+    const nextCandidate = queue.find(q => q.status === 'WAITING');
+    if (!nextCandidate) return null;
+
+    nextCandidate.status = 'CALLED';
+    nextCandidate.called_at = new Date().toISOString();
+    nextCandidate.room = room;
+
+    // Recalculate remaining positions
+    let pos = 1;
+    queue.forEach(item => {
+      if (item.status === 'WAITING') {
+        item.queue_position = pos++;
+      }
+    });
+
+    // Create Notification & Broadcast Event
+    this.createNotification({
+      id: `notif_${generateObjectId()}`,
+      userId: nextCandidate.student_id,
+      title: `🔔 YOUR TURN! Token ${nextCandidate.token_number}`,
+      message: `Please report immediately to ${nextCandidate.room} with ${interviewerName}!`,
+      type: 'drive_announcement',
+      read: false,
+      createdAt: new Date().toISOString()
+    });
+
+    dbEvents.emit('queue:called', { driveId, candidate: nextCandidate });
+    this.save();
+    return nextCandidate;
+  }
+
+  callSpecificCandidate(driveId: string, candidateIdOrToken: string, room = 'Room B-204 (Tech Panel 2)'): InterviewQueueModel | null {
+    const queue = this.getDriveQueue(driveId);
+    const candidate = queue.find(q => q.id === candidateIdOrToken || q.token_number === candidateIdOrToken || q.candidate_id === candidateIdOrToken || q.student_id === candidateIdOrToken);
+    if (!candidate) return null;
+
+    candidate.status = 'CALLED';
+    candidate.called_at = new Date().toISOString();
+    candidate.room = room;
+
+    this.createNotification({
+      id: `notif_${generateObjectId()}`,
+      userId: candidate.student_id,
+      title: `🔔 YOUR TURN! Token ${candidate.token_number}`,
+      message: `Please report immediately to ${candidate.room}!`,
+      type: 'drive_announcement',
+      read: false,
+      createdAt: new Date().toISOString()
+    });
+
+    dbEvents.emit('queue:called', { driveId, candidate });
+    this.save();
+    return candidate;
+  }
+
+  updateQueueStatus(queueId: string, status: QueueStatus, notes?: string): InterviewQueueModel | undefined {
+    const item = this.getQueueItemById(queueId);
+    if (!item) return undefined;
+
+    item.status = status;
+    if (status === 'IN_PROGRESS' && !item.called_at) {
+      item.called_at = new Date().toISOString();
+    }
+    if (status === 'COMPLETED' || status === 'SKIPPED' || status === 'ABSENT') {
+      item.completed_at = new Date().toISOString();
+    }
+
+    dbEvents.emit('queue:updated', { queueId, item });
+    this.save();
+    return item;
+  }
+
+  moveQueueCandidateRoom(queueId: string, newRoom: string): InterviewQueueModel | undefined {
+    const item = this.getQueueItemById(queueId);
+    if (!item) return undefined;
+    item.room = newRoom;
+    dbEvents.emit('queue:updated', { queueId, item });
+    this.save();
+    return item;
+  }
+
+  // =============================================================
+  // RELATIONAL METHODS: PLACEMENT POLICIES & AUDIT LOGS
+  // =============================================================
+
+  getPolicies(): PlacementPolicyModel[] {
+    return this.placementPolicies;
+  }
+
+  getPolicyById(id: string): PlacementPolicyModel | undefined {
+    return this.placementPolicies.find(p => p.id === id);
+  }
+
+  createPolicy(policy: Partial<PlacementPolicyModel>): PlacementPolicyModel {
+    const newPolicy: PlacementPolicyModel = {
+      id: policy.id || `policy_${generateObjectId()}`,
+      name: policy.name || 'Placement Upgrade Policy',
+      description: policy.description || 'Rules governing single-offer and dream-tier promotions.',
+      conditions: policy.conditions || { min_cgpa_standard: 6.5, max_active_backlogs: 0, mandatory_attendance_pct: 85 },
+      offer_categories: policy.offer_categories || { regular_max_lpa: 6.0, dream_min_lpa: 6.0, dream_max_lpa: 12.0, super_dream_min_lpa: 12.0 },
+      upgrade_rules: policy.upgrade_rules || { allow_dream_if_regular_held: true, allow_super_dream_always: true, min_ctc_multiplier_for_upgrade: 1.4, max_total_offers_per_student: 2 },
+      active: policy.active !== undefined ? policy.active : true,
+      created_by: policy.created_by || 'admin',
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString()
+    };
+
+    this.placementPolicies.push(newPolicy);
+    this.save();
+    return newPolicy;
+  }
+
+  updatePolicy(id: string, updates: Partial<PlacementPolicyModel>): PlacementPolicyModel | undefined {
+    const policy = this.getPolicyById(id);
+    if (!policy) return undefined;
+    Object.assign(policy, updates, { updated_at: new Date().toISOString() });
+    this.save();
+    return policy;
+  }
+
+  deletePolicy(id: string): boolean {
+    const idx = this.placementPolicies.findIndex(p => p.id === id);
+    if (idx === -1) return false;
+    this.placementPolicies.splice(idx, 1);
+    this.save();
+    return true;
+  }
+
+  evaluatePolicy(
+    studentId: string, 
+    newCompany: string, 
+    newPackageLPA: number, 
+    newOfferCategory?: 'REGULAR' | 'DREAM' | 'SUPER_DREAM'
+  ): PolicyDecisionModel {
+    const student = this.getStudentProfile(studentId);
+    const existingOffers = this.offers.filter(o => o.studentId === studentId && (o.status === 'Accepted' || o.status === 'Selected' || o.status === 'Offer Generated' || o.status === 'Offered'));
+    const activePolicy = this.placementPolicies.find(p => p.active) || initialPlacementPolicies[0];
+
+    // Determine current tier and highest package
+    let highestHeldLpa = 0;
+    let heldCategory: 'REGULAR' | 'DREAM' | 'SUPER_DREAM' = 'REGULAR';
+
+    if (existingOffers.length > 0) {
+      existingOffers.forEach(o => {
+        const val = parseFloat(o.ctc.replace(/[^\d.]/g, '')) || 7.0;
+        if (val > highestHeldLpa) highestHeldLpa = val;
+      });
+      if (highestHeldLpa >= activePolicy.offer_categories.super_dream_min_lpa) heldCategory = 'SUPER_DREAM';
+      else if (highestHeldLpa >= activePolicy.offer_categories.dream_min_lpa) heldCategory = 'DREAM';
+    }
+
+    // Determine target category
+    let targetCategory = newOfferCategory;
+    if (!targetCategory) {
+      if (newPackageLPA >= activePolicy.offer_categories.super_dream_min_lpa) targetCategory = 'SUPER_DREAM';
+      else if (newPackageLPA >= activePolicy.offer_categories.dream_min_lpa) targetCategory = 'DREAM';
+      else targetCategory = 'REGULAR';
+    }
+
+    let decision: 'ELIGIBLE' | 'NOT_ELIGIBLE' = 'ELIGIBLE';
+    let reason = 'Candidate is eligible to participate and accept this offer under University Placement Council regulations.';
+    let applicableRule = 'Standard Merit Placement Rule 1.1';
+
+    // Rule 1: Max Total Offers limit
+    if (existingOffers.length >= activePolicy.upgrade_rules.max_total_offers_per_student) {
+      decision = 'NOT_ELIGIBLE';
+      reason = `Student has reached the maximum allowed limit of ${activePolicy.upgrade_rules.max_total_offers_per_student} accepted placement offers.`;
+      applicableRule = 'Anti-Hoarding Cap (Rule 3.4)';
+    } 
+    // Rule 2: Holding Dream offer and attempting to apply for Regular/Core (<6 LPA)
+    else if (highestHeldLpa >= activePolicy.offer_categories.dream_min_lpa && targetCategory === 'REGULAR') {
+      decision = 'NOT_ELIGIBLE';
+      reason = `Candidate currently holds a ${heldCategory} offer (₹${highestHeldLpa} LPA). Lower Regular-tier roles (<₹${activePolicy.offer_categories.regular_max_lpa} LPA) are locked to protect unplaced peers.`;
+      applicableRule = 'Peer Equity Lock (Rule 2.2)';
+    }
+    // Rule 3: Super Dream always unlocked if package meets multiplier
+    else if (targetCategory === 'SUPER_DREAM') {
+      const minRequired = highestHeldLpa > 0 ? highestHeldLpa * activePolicy.upgrade_rules.min_ctc_multiplier_for_upgrade : activePolicy.offer_categories.super_dream_min_lpa;
+      if (newPackageLPA >= minRequired || activePolicy.upgrade_rules.allow_super_dream_always) {
+        decision = 'ELIGIBLE';
+        reason = `Eligible for Super Dream Tier opportunity at ${newCompany} (₹${newPackageLPA} LPA). Exceeds upgrade multiplier threshold of ₹${minRequired.toFixed(1)} LPA.`;
+        applicableRule = 'Super Dream Merit Upgrade (Rule 4.2)';
+      } else {
+        decision = 'NOT_ELIGIBLE';
+        reason = `Super Dream upgrade requires package of at least ₹${minRequired.toFixed(1)} LPA (1.4x existing offer). Offered: ₹${newPackageLPA} LPA.`;
+        applicableRule = 'CTC Multiplier Constraint (Rule 4.3)';
+      }
+    }
+    // Rule 4: Regular to Dream Upgrade
+    else if (targetCategory === 'DREAM' && highestHeldLpa <= activePolicy.offer_categories.regular_max_lpa) {
+      decision = 'ELIGIBLE';
+      reason = `Eligible to upgrade from Regular tier to Dream tier offer at ${newCompany} (₹${newPackageLPA} LPA).`;
+      applicableRule = 'Tier Promotion Policy (Rule 3.1)';
+    }
+
+    const decisionRecord: PolicyDecisionModel = {
+      id: `pdec_${generateObjectId()}`,
+      student_id: studentId,
+      student_name: student?.fullName || 'Student',
+      current_package_lpa: highestHeldLpa,
+      new_company: newCompany,
+      new_package: newPackageLPA,
+      new_offer_category: targetCategory,
+      decision,
+      reason,
+      applicable_rule: applicableRule,
+      timestamp: new Date().toISOString()
+    };
+
+    this.policyDecisions.unshift(decisionRecord);
+
+    this.createAuditLog({
+      user_id: studentId,
+      action: 'POLICY_DECISION_RECORDED',
+      entity_type: 'PolicyDecision',
+      entity_id: decisionRecord.id,
+      details: `${student?.fullName} evaluated for ${newCompany} (${targetCategory}): ${decision} under ${applicableRule}`
+    });
+
+    this.save();
+    return decisionRecord;
+  }
+
+  getPolicyAuditLogs(): AuditLogModel[] {
+    return this.auditLogs.sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
+  }
+
+  overridePolicyDecision(decisionId: string, overrideReason: string, overriddenBy: string): PolicyDecisionModel | undefined {
+    const decision = this.policyDecisions.find(d => d.id === decisionId);
+    if (!decision) return undefined;
+
+    decision.decision = 'ELIGIBLE';
+    decision.override_status = 'OVERRIDDEN';
+    decision.override_reason = overrideReason;
+    decision.overridden_by = overriddenBy;
+
+    this.createAuditLog({
+      user_id: overriddenBy,
+      action: 'POLICY_OVERRIDE_APPROVED',
+      entity_type: 'PolicyDecision',
+      entity_id: decisionId,
+      details: `Policy decision overridden by TPO Officer. Reason: ${overrideReason}`,
+      override_status: 'OVERRIDDEN',
+      override_reason: overrideReason,
+      overridden_by: overriddenBy
+    });
+
+    this.save();
+    return decision;
+  }
+
+  createAuditLog(data: Partial<AuditLogModel>): AuditLogModel {
+    const log: AuditLogModel = {
+      id: `audit_${generateObjectId()}`,
+      user_id: data.user_id || 'system',
+      user_name: data.user_name || 'System Operator',
+      action: data.action || 'GENERAL_ACTION',
+      entity_type: data.entity_type || 'System',
+      entity_id: data.entity_id || 'sys',
+      details: data.details || '',
+      ip_address: data.ip_address || '127.0.0.1',
+      timestamp: new Date().toISOString(),
+      override_status: data.override_status,
+      override_reason: data.override_reason,
+      overridden_by: data.overridden_by
+    };
+
+    this.auditLogs.unshift(log);
+    this.save();
+    return log;
+  }
+
+  getAuditLogs(): AuditLogModel[] {
+    return this.auditLogs;
+  }
+
+  // =============================================================
+  // RELATIONAL METHODS: OFFERS & DIGITAL SIGNING
+  // =============================================================
+
+  getOfferEntities(): OfferModel[] {
+    return this.offerEntities;
+  }
+
+  getOfferEntityById(id: string): OfferModel | undefined {
+    return this.offerEntities.find(o => o.id === id);
+  }
+
+  rejectOfferEntity(id: string, reason?: string): OfferModel | undefined {
+    const offer = this.getOfferEntityById(id);
+    if (!offer) return undefined;
+
+    offer.status = 'REJECTED';
+    
+    const mirror = this.offers.find(o => o.id === id);
+    if (mirror) mirror.status = 'Declined';
+
+    this.createAuditLog({
+      user_id: offer.student_id,
+      action: 'OFFER_REJECTED',
+      entity_type: 'Offer',
+      entity_id: offer.id,
+      details: `Student declined offer from ${offer.company_name}. Reason: ${reason || 'Candidate choice'}`
+    });
+
+    this.save();
+    return offer;
+  }
+
+  createOfferEntity(offer: Partial<OfferModel>): OfferModel {
+    const newOffer: OfferModel = {
+      id: offer.id || `off_${generateObjectId()}`,
+      student_id: offer.student_id || '',
+      student_name: offer.student_name,
+      company_id: offer.company_id || `comp_${generateObjectId()}`,
+      company_name: offer.company_name || 'Corporate Partner',
+      package: offer.package || '₹18.0 LPA',
+      package_lpa: offer.package_lpa || 18.0,
+      category: offer.category || 'DREAM',
+      status: offer.status || 'ISSUED',
+      issued_at: new Date().toISOString(),
+      joining_date: offer.joining_date || '2026-07-15',
+      location: offer.location || 'Bangalore / Hybrid'
+    };
+
+    this.offerEntities.unshift(newOffer);
+
+    // Also mirror to initial offer records
+    this.offers.unshift({
+      id: newOffer.id,
+      applicationId: `app_${newOffer.id}`,
+      studentId: newOffer.student_id,
+      studentName: newOffer.student_name || 'Candidate',
+      studentEmail: '',
+      studentBranch: 'CSE',
+      companyName: newOffer.company_name,
+      companyLogo: 'https://images.unsplash.com/photo-1549923746-c502d488b3ea?w=120',
+      jobTitle: 'Software Engineer',
+      ctc: newOffer.package,
+      baseFixed: '75% Base',
+      bonus: '15% Bonus',
+      rsu: '10% RSU',
+      offerDate: new Date().toISOString().split('T')[0],
+      joiningDate: newOffer.joining_date || '2026-07-15',
+      validTill: '2026-10-30',
+      status: 'Offered',
+      offerLetterUrl: '#view-offer-letter',
+      terms: 'Subject to maintaining 7.5+ CGPA and zero backlogs.'
+    });
+
+    this.createNotification({
+      id: `notif_${generateObjectId()}`,
+      userId: newOffer.student_id,
+      title: `🎉 Official Campus Offer: ${newOffer.company_name}`,
+      message: `${newOffer.company_name} has extended an offer of ${newOffer.package}. Inspect your offer in Placement Escrow.`,
+      type: 'offer_extended',
+      read: false,
+      createdAt: new Date().toISOString()
+    });
+
+    this.save();
+    return newOffer;
+  }
+
+  acceptOfferEntity(id: string, signature?: string): OfferModel | undefined {
+    const offer = this.getOfferEntityById(id);
+    if (!offer) return undefined;
+
+    offer.status = 'ACCEPTED';
+    offer.accepted_at = new Date().toISOString();
+    offer.signature = signature;
+
+    // Update in derived offers collection as well
+    const mirror = this.offers.find(o => o.id === id);
+    if (mirror) mirror.status = 'Accepted';
+
+    // Update student placement status
+    const student = this.getStudentProfile(offer.student_id);
+    if (student) {
+      student.placementStatus = 'Placed';
+      student.placedCompany = offer.company_name;
+      student.placedPackage = offer.package;
+    }
+
+    this.createAuditLog({
+      user_id: offer.student_id,
+      action: 'OFFER_ACCEPTED',
+      entity_type: 'Offer',
+      entity_id: offer.id,
+      details: `Student accepted offer from ${offer.company_name} (${offer.package}). Digital signature authenticated.`
+    });
+
+    this.save();
+    return offer;
+  }
+
+  // =============================================================
+  // RELATIONAL METHODS: ATTENDANCE
+  // =============================================================
+
+  getAttendanceRecords(driveId?: string): AttendanceModel[] {
+    if (!driveId) return this.attendances;
+    return this.attendances.filter(a => a.drive_id === driveId);
+  }
+
+  recordAttendance(data: Partial<AttendanceModel>): AttendanceModel {
+    const record: AttendanceModel = {
+      id: data.id || `att_${generateObjectId()}`,
+      drive_id: data.drive_id || '',
+      student_id: data.student_id || '',
+      check_in_time: data.check_in_time || new Date().toISOString(),
+      verified_by: data.verified_by || 'gate_scanner',
+      method: data.method || 'QR_SCAN',
+      created_at: new Date().toISOString()
+    };
+
+    this.attendances.push(record);
+    this.save();
+    return record;
+  }
+
+  // =============================================================
+  // AI SKILL VERIFICATION & ASSESSMENT METHODS
+  // =============================================================
+
+  getResumeAnalysis(studentId: string): ResumeExtractedData | undefined {
+    return this.resumeAnalyses[studentId];
+  }
+
+  saveResumeAnalysis(studentId: string, analysis: ResumeExtractedData): ResumeExtractedData {
+    this.resumeAnalyses[studentId] = analysis;
+    this.save();
+    return analysis;
+  }
+
+  getStudentResumeSkills(studentId: string): ResumeSkillModel[] {
+    return this.resumeSkills.filter(s => s.student_id === studentId);
+  }
+
+  setStudentResumeSkills(studentId: string, skills: Array<{ name: string; category?: string }>): ResumeSkillModel[] {
+    const existingScores = this.getStudentSkillScores(studentId);
+
+    const newExtracted: ResumeSkillModel[] = skills.map(sk => {
+      const matchScore = existingScores.find(sc => sc.skill_name.toLowerCase() === sk.name.toLowerCase());
+      return {
+        id: `rsk_${generateObjectId()}`,
+        student_id: studentId,
+        skill_name: sk.name,
+        category: (sk.category as any) || 'technology',
+        source: 'resume_extracted',
+        claimed_at: new Date().toISOString(),
+        is_verified: matchScore ? matchScore.verified_score >= 80 : false,
+        verified_score: matchScore ? matchScore.verified_score : undefined
+      };
+    });
+
+    // Remove old extracted skills for this student and insert new
+    this.resumeSkills = this.resumeSkills.filter(s => s.student_id !== studentId || s.source === 'manual_added');
+    this.resumeSkills.push(...newExtracted);
+    this.save();
+    return this.getStudentResumeSkills(studentId);
+  }
+
+  addStudentManualSkill(studentId: string, skillName: string, category = 'technology'): ResumeSkillModel {
+    const existing = this.resumeSkills.find(s => s.student_id === studentId && s.skill_name.toLowerCase() === skillName.toLowerCase());
+    if (existing) return existing;
+
+    const skill: ResumeSkillModel = {
+      id: `rsk_${generateObjectId()}`,
+      student_id: studentId,
+      skill_name: skillName,
+      category: category as any,
+      source: 'manual_added',
+      claimed_at: new Date().toISOString(),
+      is_verified: false
+    };
+
+    this.resumeSkills.push(skill);
+    this.save();
+    return skill;
+  }
+
+  getStudentSkillScores(studentId: string): SkillScoreModel[] {
+    return this.skillScores.filter(s => s.student_id === studentId);
+  }
+
+  updateStudentSkillScores(
+    studentId: string, 
+    breakdown: Record<string, { total: number; correct: number; percentage: number }>, 
+    level: number
+  ): SkillScoreModel[] {
+    const now = new Date().toISOString();
+
+    Object.entries(breakdown).forEach(([skillName, stat]) => {
+      const existingIdx = this.skillScores.findIndex(
+        s => s.student_id === studentId && s.skill_name.toLowerCase() === skillName.toLowerCase()
+      );
+
+      if (existingIdx >= 0) {
+        const current = this.skillScores[existingIdx];
+        const newScore = Math.max(current.verified_score, stat.percentage);
+        this.skillScores[existingIdx] = {
+          ...current,
+          verified_score: newScore,
+          status: newScore > 0 ? 'ASSESSMENT_VERIFIED' : 'CLAIMED_ONLY',
+          level_cleared: Math.max(current.level_cleared, stat.percentage >= 80 ? level : current.level_cleared),
+          last_assessed_at: now
+        };
+      } else {
+        this.skillScores.push({
+          id: `ssc_${generateObjectId()}`,
+          student_id: studentId,
+          skill_name: skillName,
+          claimed: true,
+          verified_score: stat.percentage,
+          category: 'skill',
+          status: stat.percentage > 0 ? 'ASSESSMENT_VERIFIED' : 'CLAIMED_ONLY',
+          level_cleared: stat.percentage >= 80 ? level : 0,
+          last_assessed_at: now
+        });
+      }
+
+      const rSkill = this.resumeSkills.find(
+        rs => rs.student_id === studentId && rs.skill_name.toLowerCase() === skillName.toLowerCase()
+      );
+      if (rSkill) {
+        rSkill.is_verified = stat.percentage >= 80;
+        rSkill.verified_score = stat.percentage;
+      }
+    });
+
+    this.save();
+    return this.getStudentSkillScores(studentId);
+  }
+
+  getAssessmentSettings(): AssessmentSettingsModel {
+    return this.assessmentSettings;
+  }
+
+  updateAssessmentSettings(updates: Partial<AssessmentSettingsModel>): AssessmentSettingsModel {
+    this.assessmentSettings = {
+      ...this.assessmentSettings,
+      ...updates
+    };
+    this.save();
+    return this.assessmentSettings;
+  }
+
+  createAssessmentSession(session: AssessmentSession): AssessmentSession {
+    this.assessmentSessions.unshift(session);
+    this.save();
+    return session;
+  }
+
+  getAssessmentSession(id: string): AssessmentSession | undefined {
+    return this.assessmentSessions.find(s => s.id === id);
+  }
+
+  updateAssessmentSession(id: string, updates: Partial<AssessmentSession>): AssessmentSession | undefined {
+    const session = this.getAssessmentSession(id);
+    if (!session) return undefined;
+    Object.assign(session, updates);
+    this.save();
+    return session;
+  }
+
+  saveAssessmentResult(result: AssessmentResultModel): AssessmentResultModel {
+    this.assessmentResults.unshift(result);
+
+    this.createAuditLog({
+      user_id: result.student_id,
+      user_name: result.student_name,
+      action: `ASSESSMENT_LEVEL_${result.level}_${result.status}`,
+      entity_type: 'AssessmentResult',
+      entity_id: result.id,
+      details: `Candidate completed Level ${result.level} assessment with ${result.score_percentage}% (${result.correct_answers}/${result.total_questions} correct). Status: ${result.status}.`
+    });
+
+    this.save();
+    return result;
+  }
+
+  getAssessmentResults(studentId?: string): AssessmentResultModel[] {
+    if (!studentId) return this.assessmentResults;
+    return this.assessmentResults.filter(r => r.student_id === studentId);
+  }
+
+  getAssessmentResultById(id: string): AssessmentResultModel | undefined {
+    return this.assessmentResults.find(r => r.id === id || r.assessment_id === id);
+  }
+
+  getCertificates(studentId?: string): CertificateModel[] {
+    if (!studentId) return this.certificates;
+    return this.certificates.filter(c => c.student_id === studentId);
+  }
+
+  getCertificateById(id: string): CertificateModel | undefined {
+    return this.certificates.find(c => c.id === id);
+  }
+
+  createCertificate(cert: Partial<CertificateModel>): CertificateModel {
+    const newCert: CertificateModel = {
+      id: cert.id || `cert_${generateObjectId()}`,
+      student_id: cert.student_id || '',
+      student_name: cert.student_name || 'Student Candidate',
+      certificate_name: cert.certificate_name || 'Technical Course Certificate',
+      skill_or_course_name: cert.skill_or_course_name || 'Computer Science',
+      issuing_organization: cert.issuing_organization || 'Authorized Institute',
+      issue_date: cert.issue_date || new Date().toISOString().split('T')[0],
+      certificate_id: cert.certificate_id,
+      file_url: cert.file_url || '#preview',
+      file_name: cert.file_name || 'Certificate.pdf',
+      file_type: cert.file_type || 'pdf',
+      verification_status: cert.verification_status || 'PENDING',
+      verification_type: cert.verification_type || 'STUDENT_UPLOADED',
+      verified_by: cert.verified_by,
+      verified_at: cert.verified_at,
+      created_at: new Date().toISOString()
+    };
+
+    this.certificates.unshift(newCert);
+
+    this.createAuditLog({
+      user_id: newCert.student_id,
+      user_name: newCert.student_name,
+      action: 'CERTIFICATE_UPLOADED',
+      entity_type: 'Certificate',
+      entity_id: newCert.id,
+      details: `Student uploaded certificate: ${newCert.certificate_name} (${newCert.skill_or_course_name}) issued by ${newCert.issuing_organization}.`
+    });
+
+    this.save();
+    return newCert;
+  }
+
+  verifyCertificate(
+    id: string, 
+    status: 'VERIFIED' | 'REJECTED', 
+    verifiedBy: string, 
+    rejectionReason?: string
+  ): CertificateModel | undefined {
+    const cert = this.getCertificateById(id);
+    if (!cert) return undefined;
+
+    cert.verification_status = status;
+    cert.verified_by = verifiedBy;
+    cert.verified_at = new Date().toISOString();
+    if (rejectionReason) cert.rejection_reason = rejectionReason;
+
+    this.createAuditLog({
+      user_id: verifiedBy,
+      action: `CERTIFICATE_${status}`,
+      entity_type: 'Certificate',
+      entity_id: cert.id,
+      details: `Certificate "${cert.certificate_name}" marked ${status} by ${verifiedBy}.${rejectionReason ? ` Reason: ${rejectionReason}` : ''}`
+    });
+
+    this.save();
+    return cert;
+  }
+
+  getCandidateVerifiedProfile(studentId: string): CandidateVerifiedSkillProfile | null {
+    const student = this.getStudentProfile(studentId);
+    if (!student) return null;
+
+    const resumeSkills = this.getStudentResumeSkills(studentId);
+    const verifiedSkills = this.getStudentSkillScores(studentId);
+    const certificates = this.getCertificates(studentId);
+    const results = this.getAssessmentResults(studentId);
+
+    const level1Passed = results.some(r => r.level === 1 && r.status === 'PASSED');
+    const level2Passed = results.some(r => r.level === 2 && r.status === 'PASSED');
+    const level3Passed = results.some(r => r.level === 3 && r.status === 'PASSED');
+
+    const highestLevel = level3Passed ? 3 : level2Passed ? 2 : level1Passed ? 1 : 0;
+
+    const assessedScores = verifiedSkills.filter(v => v.verified_score > 0);
+    const overallScore = assessedScores.length > 0 
+      ? Math.round(assessedScores.reduce((acc, s) => acc + s.verified_score, 0) / assessedScores.length)
+      : (results[0]?.score_percentage || 0);
+
+    const totalQuestions = results.reduce((acc, r) => acc + r.total_questions, 0);
+    const totalCorrect = results.reduce((acc, r) => acc + r.correct_answers, 0);
+    const avgResponseTime = results.length > 0
+      ? Math.round(results.reduce((acc, r) => acc + r.average_response_time_seconds, 0) / results.length)
+      : 42;
+
+    const manualSkills = resumeSkills.filter(s => s.source === 'manual_added').map(s => s.skill_name);
+
+    return {
+      student,
+      resume_skills: resumeSkills,
+      verified_skills: verifiedSkills,
+      additional_skills: manualSkills,
+      certifications: certificates,
+      highest_level_cleared: highestLevel,
+      level_progress: {
+        level1_cleared: level1Passed,
+        level2_cleared: level2Passed,
+        level3_cleared: level3Passed
+      },
+      overall_verified_score: overallScore,
+      latest_assessment_result: results[0],
+      total_questions_attempted: totalQuestions,
+      total_correct_answers: totalCorrect,
+      average_response_time_sec: avgResponseTime
+    };
+  }
+
+  getCandidatesVerifiedProfiles(filters?: {
+    skill?: string;
+    minScore?: number;
+    level?: number;
+    branch?: string;
+    minCgpa?: number;
+    search?: string;
+  }): CandidateVerifiedSkillProfile[] {
+    const students = this.getAllStudentProfiles();
+    const profiles: CandidateVerifiedSkillProfile[] = [];
+
+    students.forEach(st => {
+      const prof = this.getCandidateVerifiedProfile(st.userId);
+      if (!prof) return;
+
+      if (filters) {
+        if (filters.search) {
+          const q = filters.search.toLowerCase();
+          const matches = prof.student.fullName.toLowerCase().includes(q) ||
+            prof.student.email.toLowerCase().includes(q) ||
+            prof.resume_skills.some(s => s.skill_name.toLowerCase().includes(q));
+          if (!matches) return;
+        }
+
+        if (filters.skill) {
+          const reqSkill = filters.skill.toLowerCase();
+          const target = prof.verified_skills.find(v => v.skill_name.toLowerCase().includes(reqSkill));
+          if (!target) return;
+          if (filters.minScore && target.verified_score < filters.minScore) return;
+        }
+
+        if (filters.level && prof.highest_level_cleared < filters.level) return;
+        if (filters.branch && filters.branch !== 'All' && !prof.student.branch.toLowerCase().includes(filters.branch.toLowerCase())) return;
+        if (filters.minCgpa && prof.student.cgpa < filters.minCgpa) return;
+      }
+
+      profiles.push(prof);
+    });
+
+    return profiles;
+  }
+
+  // =============================================================
+  // SMART ROOM ALLOCATION & NOTIFICATION METHODS
+  // =============================================================
+
+  getCollegeRooms(): CollegeRoom[] {
+    return this.rooms;
+  }
+
+  createCollegeRoom(room: CollegeRoom): CollegeRoom {
+    const newRoom = { ...room, id: room.id || `room_${generateObjectId()}` };
+    this.rooms.push(newRoom);
+    this.save();
+    return newRoom;
+  }
+
+  updateCollegeRoom(id: string, updates: Partial<CollegeRoom>): CollegeRoom | undefined {
+    const idx = this.rooms.findIndex(r => r.id === id);
+    if (idx === -1) return undefined;
+    this.rooms[idx] = { ...this.rooms[idx], ...updates };
+    this.save();
+    return this.rooms[idx];
+  }
+
+  getAcademicSchedules(date?: string): AcademicSchedule[] {
+    if (date) {
+      return this.academicSchedules.filter(s => s.date === date);
+    }
+    return this.academicSchedules;
+  }
+
+  createAcademicSchedule(sched: AcademicSchedule): AcademicSchedule {
+    const newSched: AcademicSchedule = {
+      ...sched,
+      id: sched.id || `acad_${generateObjectId()}`,
+      status: sched.status || 'SCHEDULED'
+    };
+    this.academicSchedules.push(newSched);
+    this.save();
+    return newSched;
+  }
+
+  updateAcademicSchedule(id: string, updates: Partial<AcademicSchedule>): AcademicSchedule | undefined {
+    const idx = this.academicSchedules.findIndex(s => s.id === id);
+    if (idx === -1) return undefined;
+    this.academicSchedules[idx] = { ...this.academicSchedules[idx], ...updates };
+    this.save();
+    return this.academicSchedules[idx];
+  }
+
+  getPlacementAllocations(): PlacementDriveAllocation[] {
+    return this.placementAllocations;
+  }
+
+  getPlacementAllocationById(id: string): PlacementDriveAllocation | undefined {
+    return this.placementAllocations.find(a => a.id === id);
+  }
+
+  getAdministrationAlerts(): AdministrationAlert[] {
+    return this.adminAlerts;
+  }
+
+  suggestRoomsForAllocation(
+    date: string,
+    startTime: string,
+    endTime: string,
+    requiredCapacity: number,
+    currentAllocationId?: string
+  ) {
+    return suggestSuitableRooms(
+      date,
+      startTime,
+      endTime,
+      requiredCapacity,
+      this.rooms,
+      this.academicSchedules,
+      this.placementAllocations,
+      currentAllocationId
+    );
+  }
+
+  createPlacementAllocation(data: Partial<PlacementDriveAllocation>): {
+    allocation: PlacementDriveAllocation;
+    alert?: AdministrationAlert;
+  } {
+    const allocationId = data.id || `alloc_${generateObjectId()}`;
+    const date = data.date || new Date().toISOString().split('T')[0];
+    const startTime = data.startTime || '10:00';
+    const endTime = data.endTime || '13:00';
+    const requiredCapacity = data.requiredCapacity || data.registeredStudentsCount || 80;
+
+    // Check if target room is requested or find best room
+    let targetRoomId = data.allocatedRoomId;
+    let targetRoom = targetRoomId ? this.rooms.find(r => r.id === targetRoomId) : undefined;
+
+    if (!targetRoomId) {
+      // Suggest best room
+      const suggestions = this.suggestRoomsForAllocation(date, startTime, endTime, requiredCapacity);
+      if (suggestions.length > 0) {
+        targetRoom = suggestions[0].room;
+        targetRoomId = targetRoom.id;
+      }
+    }
+
+    // Detect conflicts in target room
+    let conflictStatus: 'NO_CONFLICT' | 'CONFLICT_DETECTED' | 'CONFLICT_RESOLVED' = 'NO_CONFLICT';
+    let conflictDetails: any = undefined;
+    let generatedAlert: AdministrationAlert | undefined = undefined;
+
+    if (targetRoomId) {
+      const conflict = detectRoomConflicts(
+        targetRoomId,
+        date,
+        startTime,
+        endTime,
+        allocationId,
+        this.rooms,
+        this.academicSchedules,
+        this.placementAllocations
+      );
+
+      if (conflict.hasConflict) {
+        conflictStatus = 'CONFLICT_DETECTED';
+        conflictDetails = {
+          conflictType: conflict.conflictType || 'CLASS_SCHEDULE',
+          conflictingEntityId: conflict.conflictingEntityId || '',
+          conflictingEntityTitle: conflict.conflictingEntityTitle || '',
+          instructor: conflict.instructor,
+          roomName: conflict.roomName || targetRoom?.name || 'Room',
+          timeSlot: conflict.timeSlot || `${startTime} - ${endTime}`,
+          detectedAt: new Date().toISOString()
+        };
+
+        // Create Administration Alert per user requirement:
+        // "Room Conflict Detected: Seminar Hall 1 is allocated for TCS placement at 10:00 AM, but a class is scheduled in the same room. Please change the classroom or reschedule the placement activity."
+        const alertMsg = conflict.message || `Room Conflict Detected: ${targetRoom?.name || 'Room'} is allocated for ${data.companyName || 'placement'} placement at ${startTime}, but a class is scheduled in the same room. Please change the classroom or reschedule the placement activity.`;
+
+        generatedAlert = {
+          id: `alert_${generateObjectId()}`,
+          allocationId,
+          companyName: data.companyName || 'Company Placement',
+          roomId: targetRoomId,
+          roomName: targetRoom?.name || 'Hall',
+          date,
+          timeSlot: `${startTime} - ${endTime}`,
+          conflictType: conflict.conflictType || 'CLASS_SCHEDULE',
+          conflictingScheduleId: conflict.conflictingEntityId || '',
+          conflictingScheduleTitle: conflict.conflictingEntityTitle || '',
+          conflictingInstructor: conflict.instructor,
+          alertMessage: alertMsg,
+          status: 'ACTIVE',
+          createdAt: new Date().toISOString()
+        };
+
+        this.adminAlerts.unshift(generatedAlert);
+
+        // Notify TPO / Admins
+        this.createNotification({
+          id: `notif_${generateObjectId()}`,
+          userId: 'all',
+          title: `⚠️ Administration Alert: Room Conflict (${targetRoom?.name})`,
+          message: alertMsg,
+          type: 'Conflict Alert',
+          read: false,
+          createdAt: new Date().toISOString()
+        });
+      }
+    }
+
+    const newAllocation: PlacementDriveAllocation = {
+      id: allocationId,
+      companyId: data.companyId,
+      companyName: data.companyName || 'Company',
+      jobId: data.jobId,
+      jobTitle: data.jobTitle || 'Graduate Trainee Engineer',
+      driveRound: data.driveRound || 'Online Technical Assessment',
+      date,
+      startTime,
+      endTime,
+      reportingTime: data.reportingTime || `${startTime} (Report 30 mins prior)`,
+      registeredStudentsCount: data.registeredStudentsCount || 60,
+      requiredCapacity,
+      allocatedRoomId: targetRoomId,
+      allocatedRoomName: targetRoom?.name,
+      allocatedRoomCapacity: targetRoom?.capacity,
+      allocatedRoomBlock: targetRoom ? `${targetRoom.block} (${targetRoom.floor})` : undefined,
+      registeredStudentIds: data.registeredStudentIds && data.registeredStudentIds.length > 0 
+        ? data.registeredStudentIds 
+        : ['user_student_1', 'user_student_2', 'user_student_3'],
+      conflictStatus,
+      conflictDetails,
+      allocationStatus: conflictStatus === 'CONFLICT_DETECTED' ? 'CONFLICT' : (targetRoomId ? 'ALLOCATED' : 'PENDING'),
+      notificationStatus: 'NOT_SENT',
+      notificationsSentCount: 0,
+      importantInstructions: data.importantInstructions || 'Carry College ID Card, 2 copies of verified resume, and standard examination stationery.',
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString()
+    };
+
+    this.placementAllocations.unshift(newAllocation);
+    this.save();
+
+    return { allocation: newAllocation, alert: generatedAlert };
+  }
+
+  updatePlacementAllocation(id: string, updates: Partial<PlacementDriveAllocation>): PlacementDriveAllocation | undefined {
+    const idx = this.placementAllocations.findIndex(a => a.id === id);
+    if (idx === -1) return undefined;
+
+    const existing = this.placementAllocations[idx];
+    const updated = { 
+      ...existing, 
+      ...updates, 
+      updatedAt: new Date().toISOString() 
+    };
+
+    // Re-check conflict if room or time changed
+    if (updates.allocatedRoomId || updates.date || updates.startTime || updates.endTime) {
+      if (updated.allocatedRoomId) {
+        const conflict = detectRoomConflicts(
+          updated.allocatedRoomId,
+          updated.date,
+          updated.startTime,
+          updated.endTime,
+          updated.id,
+          this.rooms,
+          this.academicSchedules,
+          this.placementAllocations
+        );
+
+        if (conflict.hasConflict) {
+          updated.conflictStatus = 'CONFLICT_DETECTED';
+          updated.conflictDetails = {
+            conflictType: conflict.conflictType || 'CLASS_SCHEDULE',
+            conflictingEntityId: conflict.conflictingEntityId || '',
+            conflictingEntityTitle: conflict.conflictingEntityTitle || '',
+            instructor: conflict.instructor,
+            roomName: conflict.roomName || 'Room',
+            timeSlot: conflict.timeSlot || `${updated.startTime} - ${updated.endTime}`,
+            detectedAt: new Date().toISOString()
+          };
+          updated.allocationStatus = 'CONFLICT';
+        } else {
+          updated.conflictStatus = 'NO_CONFLICT';
+          updated.conflictDetails = undefined;
+          if (updated.allocationStatus === 'CONFLICT') {
+            updated.allocationStatus = 'ALLOCATED';
+          }
+        }
+      }
+    }
+
+    this.placementAllocations[idx] = updated;
+    this.save();
+    return updated;
+  }
+
+  deletePlacementAllocation(id: string): boolean {
+    const idx = this.placementAllocations.findIndex(a => a.id === id);
+    if (idx === -1) return false;
+    this.placementAllocations.splice(idx, 1);
+    this.save();
+    return true;
+  }
+
+  autoAllocateAllPendingDrives(): {
+    allocatedCount: number;
+    conflictsCount: number;
+    allocations: PlacementDriveAllocation[];
+  } {
+    const pendingDrives = this.placementAllocations.filter(
+      a => !a.allocatedRoomId || a.allocationStatus === 'PENDING'
+    );
+
+    // Sort by largest required capacity first to avoid room starvation
+    pendingDrives.sort((a, b) => b.requiredCapacity - a.requiredCapacity);
+
+    let allocatedCount = 0;
+    let conflictsCount = 0;
+
+    for (const drive of pendingDrives) {
+      const suggestions = this.suggestRoomsForAllocation(
+        drive.date,
+        drive.startTime,
+        drive.endTime,
+        drive.requiredCapacity,
+        drive.id
+      );
+
+      if (suggestions.length > 0) {
+        const best = suggestions[0];
+        drive.allocatedRoomId = best.room.id;
+        drive.allocatedRoomName = best.room.name;
+        drive.allocatedRoomCapacity = best.room.capacity;
+        drive.allocatedRoomBlock = `${best.room.block} (${best.room.floor})`;
+        drive.updatedAt = new Date().toISOString();
+
+        if (best.hasConflict) {
+          drive.conflictStatus = 'CONFLICT_DETECTED';
+          drive.allocationStatus = 'CONFLICT';
+          drive.conflictDetails = {
+            conflictType: best.conflictDetails?.conflictType || 'CLASS_SCHEDULE',
+            conflictingEntityId: best.conflictDetails?.conflictingEntityId || '',
+            conflictingEntityTitle: best.conflictDetails?.conflictingEntityTitle || '',
+            instructor: best.conflictDetails?.instructor,
+            roomName: best.room.name,
+            timeSlot: best.conflictDetails?.timeSlot || `${drive.startTime} - ${drive.endTime}`,
+            detectedAt: new Date().toISOString()
+          };
+
+          // Generate Administration Alert
+          const alertMsg = best.conflictDetails?.message || `Room Conflict Detected: ${best.room.name} is allocated for ${drive.companyName} placement at ${drive.startTime}, but a class is scheduled in the same room. Please change the classroom or reschedule the placement activity.`;
+
+          this.adminAlerts.unshift({
+            id: `alert_${generateObjectId()}`,
+            allocationId: drive.id,
+            companyName: drive.companyName,
+            roomId: best.room.id,
+            roomName: best.room.name,
+            date: drive.date,
+            timeSlot: `${drive.startTime} - ${drive.endTime}`,
+            conflictType: best.conflictDetails?.conflictType || 'CLASS_SCHEDULE',
+            conflictingScheduleId: best.conflictDetails?.conflictingEntityId || '',
+            conflictingScheduleTitle: best.conflictDetails?.conflictingEntityTitle || '',
+            conflictingInstructor: best.conflictDetails?.instructor,
+            alertMessage: alertMsg,
+            status: 'ACTIVE',
+            createdAt: new Date().toISOString()
+          });
+
+          conflictsCount++;
+        } else {
+          drive.conflictStatus = 'NO_CONFLICT';
+          drive.allocationStatus = 'ALLOCATED';
+          allocatedCount++;
+        }
+      }
+    }
+
+    this.save();
+    return {
+      allocatedCount,
+      conflictsCount,
+      allocations: this.placementAllocations
+    };
+  }
+
+  resolveAdministrationConflict(
+    alertId: string,
+    action: ConflictResolutionAction,
+    payload: {
+      alternateRoomId?: string;
+      newTimeSlot?: { startTime: string; endTime: string };
+      note?: string;
+      resolvedBy?: string;
+    }
+  ): {
+    success: boolean;
+    alert: AdministrationAlert;
+    allocation?: PlacementDriveAllocation;
+    updatedSchedule?: AcademicSchedule;
+    message: string;
+  } {
+    const alert = this.adminAlerts.find(a => a.id === alertId);
+    if (!alert) {
+      throw new Error(`Administration Alert ${alertId} not found`);
+    }
+
+    const allocation = this.placementAllocations.find(a => a.id === alert.allocationId);
+    const schedule = this.academicSchedules.find(s => s.id === alert.conflictingScheduleId);
+
+    let resolutionMsg = '';
+
+    if (action === 'CHANGE_CLASSROOM') {
+      // 1. Change the classroom: Move the conflicting class to an alternate available room
+      if (!payload.alternateRoomId) {
+        throw new Error('Alternate room ID is required to move the classroom');
+      }
+
+      const newClassRoom = this.rooms.find(r => r.id === payload.alternateRoomId);
+      if (!newClassRoom) throw new Error('Target alternate classroom not found');
+
+      if (schedule) {
+        schedule.originalRoomId = schedule.roomId;
+        schedule.originalRoomName = schedule.roomName;
+        schedule.roomId = newClassRoom.id;
+        schedule.roomName = newClassRoom.name;
+        schedule.status = 'MOVED';
+        schedule.resolutionNote = `Relocated from ${alert.roomName} to ${newClassRoom.name} to accommodate ${alert.companyName} placement drive.`;
+      }
+
+      if (allocation) {
+        allocation.conflictStatus = 'CONFLICT_RESOLVED';
+        allocation.allocationStatus = 'ALLOCATED';
+        allocation.conflictDetails = undefined;
+      }
+
+      resolutionMsg = `Classroom successfully changed: '${schedule?.title || 'Academic Class'}' moved to ${newClassRoom.name}. Placement drive for ${alert.companyName} confirmed in ${alert.roomName}.`;
+    } 
+    else if (action === 'CHANGE_PLACEMENT_ROOM') {
+      // 2. Change the placement room: Move the placement drive to an alternate room
+      if (!payload.alternateRoomId) {
+        throw new Error('Alternate room ID is required to relocate placement drive');
+      }
+
+      const newPlacementRoom = this.rooms.find(r => r.id === payload.alternateRoomId);
+      if (!newPlacementRoom) throw new Error('Target alternate placement room not found');
+
+      if (allocation) {
+        allocation.allocatedRoomId = newPlacementRoom.id;
+        allocation.allocatedRoomName = newPlacementRoom.name;
+        allocation.allocatedRoomCapacity = newPlacementRoom.capacity;
+        allocation.allocatedRoomBlock = `${newPlacementRoom.block} (${newPlacementRoom.floor})`;
+        allocation.conflictStatus = 'CONFLICT_RESOLVED';
+        allocation.allocationStatus = 'ALLOCATED';
+        allocation.conflictDetails = undefined;
+
+        // If notifications were already sent to students, send immediate venue update
+        if (allocation.notificationStatus === 'SENT' || allocation.notificationStatus === 'UPDATED') {
+          this.dispatchUpdatedRoomNotification(
+            allocation,
+            `Placement venue relocated from ${alert.roomName} to ${newPlacementRoom.name} (${newPlacementRoom.block}).`
+          );
+        }
+      }
+
+      resolutionMsg = `Placement venue changed: ${alert.companyName} drive moved to ${newPlacementRoom.name}. Academic schedule in ${alert.roomName} left intact.`;
+    } 
+    else if (action === 'RESCHEDULE_CLASS') {
+      // 3. Reschedule the class to a non-conflicting time slot
+      if (!payload.newTimeSlot) {
+        throw new Error('New time slot (startTime, endTime) required to reschedule class');
+      }
+
+      if (schedule) {
+        const oldSlot = `${schedule.startTime} - ${schedule.endTime}`;
+        schedule.startTime = payload.newTimeSlot.startTime;
+        schedule.endTime = payload.newTimeSlot.endTime;
+        schedule.status = 'RESCHEDULED';
+        schedule.resolutionNote = `Rescheduled from ${oldSlot} to ${schedule.startTime} - ${schedule.endTime} to accommodate ${alert.companyName} placement drive.`;
+      }
+
+      if (allocation) {
+        allocation.conflictStatus = 'CONFLICT_RESOLVED';
+        allocation.allocationStatus = 'ALLOCATED';
+        allocation.conflictDetails = undefined;
+      }
+
+      resolutionMsg = `Class rescheduled: '${schedule?.title || 'Class'}' moved to ${payload.newTimeSlot.startTime} - ${payload.newTimeSlot.endTime}. Placement drive confirmed in ${alert.roomName}.`;
+    }
+
+    // Mark Alert as Resolved
+    alert.status = 'RESOLVED';
+    alert.resolutionAction = action;
+    alert.resolutionDetails = resolutionMsg;
+    alert.resolvedAt = new Date().toISOString();
+    alert.resolvedBy = payload.resolvedBy || 'TPO Placement Officer';
+
+    this.save();
+
+    return {
+      success: true,
+      alert,
+      allocation,
+      updatedSchedule: schedule,
+      message: resolutionMsg
+    };
+  }
+
+  confirmAllocationAndNotifyStudents(
+    allocationId: string,
+    customInstructions?: string
+  ): {
+    success: boolean;
+    notifiedCount: number;
+    allocation: PlacementDriveAllocation;
+  } {
+    const allocation = this.placementAllocations.find(a => a.id === allocationId);
+    if (!allocation) throw new Error('Placement allocation not found');
+
+    if (!allocation.allocatedRoomId || !allocation.allocatedRoomName) {
+      throw new Error('Cannot confirm allocation without an allocated room');
+    }
+
+    allocation.allocationStatus = 'CONFIRMED';
+    if (customInstructions) {
+      allocation.importantInstructions = customInstructions;
+    }
+
+    // Determine targeted recipient students: ONLY students registered for this company!
+    // We check registeredStudentIds, or find students who applied to this company's jobs in applications table
+    let targetStudentIds = allocation.registeredStudentIds || [];
+    if (targetStudentIds.length === 0 && allocation.companyName) {
+      const companyApps = this.applications.filter(
+        app => app.companyName.toLowerCase().includes(allocation.companyName.toLowerCase())
+      );
+      targetStudentIds = Array.from(new Set(companyApps.map(a => a.studentId)));
+    }
+
+    // Fallback: if no studentIds registered yet, notify all eligible students
+    if (targetStudentIds.length === 0) {
+      targetStudentIds = this.studentProfiles.map(s => s.userId);
+    }
+
+    const roomInfo = `${allocation.allocatedRoomName}${allocation.allocatedRoomBlock ? ` (${allocation.allocatedRoomBlock})` : ''}`;
+
+    // Dispatch Room Allotment Notification only to registered students
+    targetStudentIds.forEach(studentId => {
+      this.createNotification({
+        id: `notif_${generateObjectId()}`,
+        userId: studentId,
+        title: `📍 Room Allotment: ${allocation.companyName} (${allocation.allocatedRoomName})`,
+        message: `Company: ${allocation.companyName} | Round: ${allocation.driveRound} | Date: ${allocation.date} | Time: ${allocation.startTime} - ${allocation.endTime} | Venue: ${roomInfo} | Reporting Time: ${allocation.reportingTime} | Instructions: ${allocation.importantInstructions}`,
+        type: 'Room Allotment',
+        read: false,
+        createdAt: new Date().toISOString(),
+        jobId: allocation.jobId,
+        linkTab: 'roomallocation'
+      });
+    });
+
+    allocation.notificationStatus = 'SENT';
+    allocation.notificationsSentCount = targetStudentIds.length;
+    allocation.lastNotifiedAt = new Date().toISOString();
+    allocation.updatedAt = new Date().toISOString();
+
+    this.save();
+
+    return {
+      success: true,
+      notifiedCount: targetStudentIds.length,
+      allocation
+    };
+  }
+
+  private dispatchUpdatedRoomNotification(
+    allocation: PlacementDriveAllocation,
+    reason: string
+  ) {
+    const targetStudentIds = allocation.registeredStudentIds || [];
+    const roomInfo = `${allocation.allocatedRoomName}${allocation.allocatedRoomBlock ? ` (${allocation.allocatedRoomBlock})` : ''}`;
+
+    targetStudentIds.forEach(studentId => {
+      this.createNotification({
+        id: `notif_${generateObjectId()}`,
+        userId: studentId,
+        title: `⚠️ Placement Venue Update: ${allocation.companyName} (${allocation.allocatedRoomName})`,
+        message: `Attention: The venue for ${allocation.companyName} placement drive on ${allocation.date} at ${allocation.startTime} has been updated to ${roomInfo}. Reporting Time: ${allocation.reportingTime}. Reason: ${reason} Instructions: ${allocation.importantInstructions}`,
+        type: 'Room Allotment',
+        read: false,
+        createdAt: new Date().toISOString(),
+        jobId: allocation.jobId,
+        linkTab: 'roomallocation'
+      });
+    });
+
+    allocation.notificationStatus = 'UPDATED';
+    allocation.updatedAt = new Date().toISOString();
+  }
+
+  getRoomAllocationStats(): RoomAllocationStats {
+    const totalRooms = this.rooms.length;
+    const totalCapacity = this.rooms.reduce((acc, r) => acc + (r.isActive ? r.capacity : 0), 0);
+    const activeAllocations = this.placementAllocations.filter(a => a.allocationStatus !== 'CANCELLED').length;
+    const confirmedAllocations = this.placementAllocations.filter(a => a.allocationStatus === 'CONFIRMED').length;
+    const conflictCount = this.adminAlerts.filter(a => a.status === 'ACTIVE').length;
+    const notificationsSentTotal = this.placementAllocations.reduce((acc, a) => acc + (a.notificationsSentCount || 0), 0);
+    
+    // Students accommodated today
+    const todayStr = '2026-09-30';
+    const studentsAccommodatedToday = this.placementAllocations
+      .filter(a => a.date === todayStr && a.allocatedRoomId)
+      .reduce((acc, a) => acc + (a.registeredStudentsCount || 0), 0);
+
+    return {
+      totalRooms,
+      totalCapacity,
+      activeAllocations,
+      confirmedAllocations,
+      conflictCount,
+      notificationsSentTotal,
+      studentsAccommodatedToday
+    };
+  }
 }
 
 export const db = new CampusDatabase();
+

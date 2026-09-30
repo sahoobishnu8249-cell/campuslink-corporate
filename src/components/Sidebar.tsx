@@ -16,7 +16,12 @@ import {
   AlertTriangle,
   Settings,
   Check,
-  UserPlus
+  UserPlus,
+  ShieldCheck,
+  BrainCircuit,
+  Award,
+  DoorOpen,
+  MapPin
 } from 'lucide-react';
 import { User } from '../types/index.ts';
 
@@ -44,7 +49,10 @@ export type NavTab =
   | 'interviews'
   | 'offers'
   | 'flow'
-  | 'register';
+  | 'register'
+  | 'passport'
+  | 'skillverification'
+  | 'roomallocation';
 
 interface SidebarProps {
   activeTab: NavTab;
@@ -123,6 +131,27 @@ export const Sidebar: React.FC<SidebarProps> = ({
       isActive: isResume
     },
     {
+      id: 'skillverification' as NavTab,
+      label: 'AI Skill Verification',
+      icon: BrainCircuit,
+      isActive: activeTab === 'skillverification',
+      badge: 'VERIFIED'
+    },
+    {
+      id: 'roomallocation' as NavTab,
+      label: 'Room Allocation',
+      icon: DoorOpen,
+      isActive: activeTab === 'roomallocation',
+      badge: 'SMART ALLOC'
+    },
+    {
+      id: 'passport' as NavTab,
+      label: 'Placement Passport™',
+      icon: ShieldCheck,
+      isActive: activeTab === 'passport',
+      badge: 'EXCLUSIVE'
+    },
+    {
       id: 'flow' as NavTab,
       label: 'Placement flow (8 steps)',
       icon: Sparkles,
@@ -185,7 +214,12 @@ export const Sidebar: React.FC<SidebarProps> = ({
               }`}
             >
               <Icon className={`w-4 h-4 shrink-0 ${active ? 'text-[#1C4631]' : 'text-[#7A7268]'}`} />
-              <span className="truncate">{item.label}</span>
+              <span className="truncate flex-1">{item.label}</span>
+              {'badge' in item && (
+                <span className="text-[9px] font-mono px-1.5 py-0.5 rounded font-bold bg-amber-400 text-slate-950 uppercase tracking-wider">
+                  {(item as any).badge}
+                </span>
+              )}
             </button>
           );
         })}
@@ -206,6 +240,20 @@ export const Sidebar: React.FC<SidebarProps> = ({
                 >
                   <BarChart3 className="w-4 h-4" />
                   <span>Placement Analytics</span>
+                </button>
+                <button
+                  onClick={() => handleNavClick('roomallocation')}
+                  className={`w-full flex items-center justify-between px-3.5 py-2 rounded-xl text-xs transition-colors ${
+                    activeTab === 'roomallocation' ? 'bg-[#DCE8DF] text-[#1C4631] font-bold' : 'text-[#5E574E] hover:bg-[#F0EAE1]'
+                  }`}
+                >
+                  <div className="flex items-center gap-3">
+                    <DoorOpen className="w-4 h-4 text-indigo-600" />
+                    <span>Room Allocation Hub</span>
+                  </div>
+                  <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-indigo-100 text-indigo-800">
+                    SMART
+                  </span>
                 </button>
                 <button
                   onClick={() => handleNavClick('atrisk')}

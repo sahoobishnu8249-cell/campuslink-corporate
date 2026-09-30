@@ -13,12 +13,13 @@
     {
       "id": "user_student_bishnu",
       "name": "Bishnu Sahoo",
-      "email": "sahoobishnu8249@gmail.com",
+      "email": "demo.bishnu@campus.edu",
       "role": "student",
       "avatar": "BS",
       "title": "Final Year B.Tech CSE",
       "department": "Computer Science & Engineering",
-      "createdAt": "2026-08-01T10:00:00Z"
+      "createdAt": "2026-08-01T10:00:00Z",
+      "college_id": "DEMO2026001"
     },
     {
       "id": "user_student_priya",
@@ -99,6 +100,139 @@
       "title": "Final Year B.Tech Computer Science & Engineering",
       "department": "Computer Science & Engineering",
       "createdAt": "2026-09-28T10:05:33.738Z"
+    },
+    {
+      "id": "user_student_9a070c9d3e30f7d9fbb2c173",
+      "_id": "user_student_9a070c9d3e30f7d9fbb2c173",
+      "name": "Bishnupriya Sahoo",
+      "email": "test.bishnu@campus.edu",
+      "college_id": "MCA2026777",
+      "phone": "+91 98765 43210",
+      "branch": "MCA",
+      "role": "student",
+      "email_verified": true,
+      "account_status": "active",
+      "avatar": "BS",
+      "title": "B.Tech MCA · 2026",
+      "department": "MCA",
+      "password_hash": "ad5837ba41f65dc68a20b9c441f64f84158158b18206c8b5f5b6920d7c73e980",
+      "created_at": "2026-09-28T20:16:19.459Z",
+      "updated_at": "2026-09-28T20:16:35.140Z",
+      "createdAt": "2026-09-28T20:16:19.459Z"
+    },
+    {
+      "id": "user_student_eabde0f1e4f5266763078d3e",
+      "_id": "user_student_eabde0f1e4f5266763078d3e",
+      "name": "Unverified Student",
+      "email": "unverified@campus.edu",
+      "college_id": "MCA2026888",
+      "phone": "+91 98765 00000",
+      "branch": "MCA",
+      "role": "student",
+      "email_verified": false,
+      "account_status": "pending_verification",
+      "avatar": "US",
+      "title": "B.Tech MCA · 2026",
+      "department": "MCA",
+      "password_hash": "ad5837ba41f65dc68a20b9c441f64f84158158b18206c8b5f5b6920d7c73e980",
+      "created_at": "2026-09-28T20:16:46.849Z",
+      "updated_at": "2026-09-28T20:16:46.849Z",
+      "createdAt": "2026-09-28T20:16:46.849Z"
+    },
+    {
+      "id": "user_student_b6853b9ec5277552f61ac347",
+      "_id": "user_student_b6853b9ec5277552f61ac347",
+      "name": "bishnupriya sahoo",
+      "email": "anjalibiswal032@gmail.com",
+      "college_id": "2505280017",
+      "phone": "8114712613",
+      "branch": "Computer Science & Engineering",
+      "role": "student",
+      "email_verified": false,
+      "account_status": "pending_verification",
+      "avatar": "BS",
+      "title": "B.Tech Computer Science & Engineering · 2026",
+      "department": "Computer Science & Engineering",
+      "password_hash": "0f455a9ade55d58b613409ac569e6b33ba5182f49af0e0e4ca747a88158648f9",
+      "created_at": "2026-09-28T20:19:05.439Z",
+      "updated_at": "2026-09-28T20:19:05.439Z",
+      "createdAt": "2026-09-28T20:19:05.439Z"
+    },
+    {
+      "id": "user_student_c6622f0e1449304f0f27a186",
+      "_id": "user_student_c6622f0e1449304f0f27a186",
+      "name": "Anjali Biswal",
+      "email": "biswalanjli2004@gmail.com",
+      "college_id": "2505280005",
+      "phone": "9040412804",
+      "branch": "Computer Science & Engineering",
+      "role": "student",
+      "email_verified": true,
+      "account_status": "active",
+      "avatar": "AB",
+      "title": "B.Tech Computer Science & Engineering · 2026",
+      "department": "Computer Science & Engineering",
+      "password_hash": "0f455a9ade55d58b613409ac569e6b33ba5182f49af0e0e4ca747a88158648f9",
+      "created_at": "2026-09-28T20:22:44.800Z",
+      "updated_at": "2026-09-28T20:23:36.543Z",
+      "createdAt": "2026-09-28T20:22:44.800Z"
+    },
+    {
+      "id": "user_student_b078fb0cca9b0275517b16ff",
+      "_id": "user_student_b078fb0cca9b0275517b16ff",
+      "name": "Bishnupriya Sahoo",
+      "email": "sahoobishnu8249@gmail.com",
+      "college_id": "MCA2026999",
+      "phone": "+91 98765 43210",
+      "branch": "MCA",
+      "role": "student",
+      "email_verified": false,
+      "account_status": "pending_verification",
+      "avatar": "BS",
+      "title": "B.Tech MCA · 2026",
+      "department": "MCA",
+      "password_hash": "ad5837ba41f65dc68a20b9c441f64f84158158b18206c8b5f5b6920d7c73e980",
+      "created_at": "2026-09-28T20:32:07.418Z",
+      "updated_at": "2026-09-28T20:32:07.418Z",
+      "createdAt": "2026-09-28T20:32:07.418Z"
+    },
+    {
+      "id": "user_student_9a13ca3502c7cf3265a4eed0",
+      "_id": "user_student_9a13ca3502c7cf3265a4eed0",
+      "name": "Bishnu Sahoo",
+      "email": "test.sahoo2026@gmail.com",
+      "college_id": "NIT2026001",
+      "phone": "+91 98765 43210",
+      "branch": "Computer Science & Engineering",
+      "role": "student",
+      "email_verified": true,
+      "account_status": "active",
+      "avatar": "BS",
+      "title": "B.Tech Computer Science & Engineering · 2026",
+      "department": "Computer Science & Engineering",
+      "password_hash": "ad5837ba41f65dc68a20b9c441f64f84158158b18206c8b5f5b6920d7c73e980",
+      "created_at": "2026-09-28T20:34:38.868Z",
+      "updated_at": "2026-09-28T20:34:42.272Z",
+      "createdAt": "2026-09-28T20:34:38.868Z"
+    },
+    {
+      "id": "user_student_3d086e8b18fc070363125955",
+      "_id": "user_student_3d086e8b18fc070363125955",
+      "name": "Hitesh lenka",
+      "email": "hiteshlenkamca295@gmail.com",
+      "college_id": "NIIBA001",
+      "phone": "7377052646",
+      "branch": "Computer Science & Engineering",
+      "role": "student",
+      "email_verified": true,
+      "account_status": "active",
+      "avatar": "HL",
+      "title": "B.Tech Computer Science & Engineering · 2026",
+      "department": "Computer Science & Engineering",
+      "password_hash": "e628dc8759810618ae7f3470758e1d5479d08e7186d0b067194140aeb7b78705",
+      "created_at": "2026-09-30T18:30:00.702Z",
+      "updated_at": "2026-09-30T18:30:08.863Z",
+      "createdAt": "2026-09-30T18:30:00.702Z"
     }
   ],
   "studentProfiles": [
@@ -186,10 +320,10 @@
     {
       "userId": "user_student_bishnu",
       "fullName": "Bishnu Sahoo",
-      "email": "sahoobishnu8249@gmail.com",
+      "email": "demo.bishnu@campus.edu",
       "phone": "+91 9810087654",
       "university": "National Institute of Technology",
-      "rollNumber": "2022UGComputer002",
+      "rollNumber": "DEMO2026001",
       "degree": "B.Tech",
       "branch": "Computer Science & Engineering",
       "graduationYear": 2026,
@@ -1788,6 +1922,416 @@
         "interview": 80
       },
       "isVerified": true
+    },
+    {
+      "userId": "user_student_9a070c9d3e30f7d9fbb2c173",
+      "fullName": "Bishnupriya Sahoo",
+      "email": "test.bishnu@campus.edu",
+      "phone": "+91 98765 43210",
+      "university": "National Institute of Technology",
+      "rollNumber": "MCA2026777",
+      "degree": "B.Tech",
+      "branch": "MCA",
+      "graduationYear": 2026,
+      "cgpa": 8.4,
+      "maxCgpa": 10,
+      "backlogs": 0,
+      "skills": [
+        "Python",
+        "React",
+        "SQL",
+        "TypeScript"
+      ],
+      "bio": "Enthusiastic MCA student eager to learn and excel in engineering challenges.",
+      "github": "https://github.com/bishnupriyasahoo",
+      "linkedin": "https://linkedin.com/in/bishnupriya-sahoo",
+      "portfolio": "https://bishnupriyasahoo.dev",
+      "resumeFilename": "Bishnupriya_Sahoo_Resume.pdf",
+      "resumeUrl": "#preview-resume",
+      "projects": [
+        {
+          "id": "proj_5acaef3bb2c4bb408979f8da",
+          "title": "Campus Career & Placement Intelligence",
+          "tech": "React, Node.js, AI Scoring",
+          "description": "Intelligent placement preparation and tracking engine with real-time feedback."
+        }
+      ],
+      "experience": [],
+      "certifications": [
+        "AWS Certified Cloud Practitioner"
+      ],
+      "targetRoles": [
+        "Software Engineer",
+        "Full Stack Developer"
+      ],
+      "aptitudeScore": 84,
+      "mockInterviewScore": 82,
+      "communicationScore": 84,
+      "readinessScore": 64,
+      "readinessLevel": "DEVELOPING",
+      "readinessBreakdown": {
+        "technical": 58,
+        "academic": 84,
+        "projects": 37,
+        "certifications": 25,
+        "aptitude": 84,
+        "communication": 84,
+        "interview": 82
+      },
+      "isVerified": true
+    },
+    {
+      "userId": "user_student_eabde0f1e4f5266763078d3e",
+      "fullName": "Unverified Student",
+      "email": "unverified@campus.edu",
+      "phone": "+91 98765 00000",
+      "university": "National Institute of Technology",
+      "rollNumber": "MCA2026888",
+      "degree": "B.Tech",
+      "branch": "MCA",
+      "graduationYear": 2026,
+      "cgpa": 8.4,
+      "maxCgpa": 10,
+      "backlogs": 0,
+      "skills": [
+        "Python",
+        "React",
+        "SQL",
+        "TypeScript"
+      ],
+      "bio": "Enthusiastic MCA student eager to learn and excel in engineering challenges.",
+      "github": "https://github.com/unverifiedstudent",
+      "linkedin": "https://linkedin.com/in/unverified-student",
+      "portfolio": "https://unverifiedstudent.dev",
+      "resumeFilename": "Unverified_Student_Resume.pdf",
+      "resumeUrl": "#preview-resume",
+      "projects": [
+        {
+          "id": "proj_4387c1059e420e492b0f4348",
+          "title": "Campus Career & Placement Intelligence",
+          "tech": "React, Node.js, AI Scoring",
+          "description": "Intelligent placement preparation and tracking engine with real-time feedback."
+        }
+      ],
+      "experience": [],
+      "certifications": [
+        "AWS Certified Cloud Practitioner"
+      ],
+      "targetRoles": [
+        "Software Engineer",
+        "Full Stack Developer"
+      ],
+      "aptitudeScore": 84,
+      "mockInterviewScore": 82,
+      "communicationScore": 84,
+      "readinessScore": 64,
+      "readinessLevel": "DEVELOPING",
+      "readinessBreakdown": {
+        "technical": 58,
+        "academic": 84,
+        "projects": 37,
+        "certifications": 25,
+        "aptitude": 84,
+        "communication": 84,
+        "interview": 82
+      },
+      "isVerified": false
+    },
+    {
+      "userId": "user_student_b6853b9ec5277552f61ac347",
+      "fullName": "bishnupriya sahoo",
+      "email": "anjalibiswal032@gmail.com",
+      "phone": "8114712613",
+      "university": "National Institute of Technology",
+      "rollNumber": "2505280017",
+      "degree": "B.Tech",
+      "branch": "Computer Science & Engineering",
+      "graduationYear": 2026,
+      "cgpa": 8.4,
+      "maxCgpa": 10,
+      "backlogs": 0,
+      "skills": [
+        "Python",
+        "React",
+        "SQL",
+        "TypeScript"
+      ],
+      "bio": "Enthusiastic Computer Science & Engineering student eager to learn and excel in engineering challenges.",
+      "github": "https://github.com/bishnupriyasahoo",
+      "linkedin": "https://linkedin.com/in/bishnupriya-sahoo",
+      "portfolio": "https://bishnupriyasahoo.dev",
+      "resumeFilename": "bishnupriya_sahoo_Resume.pdf",
+      "resumeUrl": "#preview-resume",
+      "projects": [
+        {
+          "id": "proj_fac5a2027692f607e658d476",
+          "title": "Campus Career & Placement Intelligence",
+          "tech": "React, Node.js, AI Scoring",
+          "description": "Intelligent placement preparation and tracking engine with real-time feedback."
+        }
+      ],
+      "experience": [],
+      "certifications": [
+        "AWS Certified Cloud Practitioner"
+      ],
+      "targetRoles": [
+        "Software Engineer",
+        "Full Stack Developer"
+      ],
+      "aptitudeScore": 84,
+      "mockInterviewScore": 82,
+      "communicationScore": 84,
+      "readinessScore": 64,
+      "readinessLevel": "DEVELOPING",
+      "readinessBreakdown": {
+        "technical": 58,
+        "academic": 84,
+        "projects": 37,
+        "certifications": 25,
+        "aptitude": 84,
+        "communication": 84,
+        "interview": 82
+      },
+      "isVerified": false
+    },
+    {
+      "userId": "user_student_c6622f0e1449304f0f27a186",
+      "fullName": "Anjali Biswal",
+      "email": "biswalanjli2004@gmail.com",
+      "phone": "9040412804",
+      "university": "National Institute of Technology",
+      "rollNumber": "2505280005",
+      "degree": "B.Tech",
+      "branch": "Computer Science & Engineering",
+      "graduationYear": 2026,
+      "cgpa": 8.4,
+      "maxCgpa": 10,
+      "backlogs": 0,
+      "skills": [
+        "Python",
+        "React",
+        "SQL",
+        "TypeScript"
+      ],
+      "bio": "Enthusiastic Computer Science & Engineering student eager to learn and excel in engineering challenges.",
+      "github": "https://github.com/anjalibiswal",
+      "linkedin": "https://linkedin.com/in/anjali-biswal",
+      "portfolio": "https://anjalibiswal.dev",
+      "resumeFilename": "Anjali_Biswal_Resume.pdf",
+      "resumeUrl": "#preview-resume",
+      "projects": [
+        {
+          "id": "proj_a9301a3c157963e7d6ab3e06",
+          "title": "Campus Career & Placement Intelligence",
+          "tech": "React, Node.js, AI Scoring",
+          "description": "Intelligent placement preparation and tracking engine with real-time feedback."
+        }
+      ],
+      "experience": [],
+      "certifications": [
+        "AWS Certified Cloud Practitioner"
+      ],
+      "targetRoles": [
+        "Software Engineer",
+        "Full Stack Developer"
+      ],
+      "aptitudeScore": 84,
+      "mockInterviewScore": 82,
+      "communicationScore": 84,
+      "readinessScore": 64,
+      "readinessLevel": "DEVELOPING",
+      "readinessBreakdown": {
+        "technical": 58,
+        "academic": 84,
+        "projects": 37,
+        "certifications": 25,
+        "aptitude": 84,
+        "communication": 84,
+        "interview": 82
+      },
+      "isVerified": true
+    },
+    {
+      "userId": "user_student_b078fb0cca9b0275517b16ff",
+      "fullName": "Bishnupriya Sahoo",
+      "email": "sahoobishnu8249@gmail.com",
+      "phone": "+91 98765 43210",
+      "university": "National Institute of Technology",
+      "rollNumber": "MCA2026999",
+      "degree": "B.Tech",
+      "branch": "MCA",
+      "graduationYear": 2026,
+      "cgpa": 8.4,
+      "maxCgpa": 10,
+      "backlogs": 0,
+      "skills": [
+        "Python",
+        "React",
+        "SQL",
+        "TypeScript"
+      ],
+      "bio": "Enthusiastic MCA student eager to learn and excel in engineering challenges.",
+      "github": "https://github.com/bishnupriyasahoo",
+      "linkedin": "https://linkedin.com/in/bishnupriya-sahoo",
+      "portfolio": "https://bishnupriyasahoo.dev",
+      "resumeFilename": "Bishnupriya_Sahoo_Resume.pdf",
+      "resumeUrl": "#preview-resume",
+      "projects": [
+        {
+          "id": "proj_c321b30c55ae301241d8b936",
+          "title": "Campus Career & Placement Intelligence",
+          "tech": "React, Node.js, AI Scoring",
+          "description": "Intelligent placement preparation and tracking engine with real-time feedback."
+        }
+      ],
+      "experience": [],
+      "certifications": [
+        "AWS Certified Cloud Practitioner"
+      ],
+      "targetRoles": [
+        "Software Engineer",
+        "Full Stack Developer"
+      ],
+      "aptitudeScore": 84,
+      "mockInterviewScore": 82,
+      "communicationScore": 84,
+      "readinessScore": 64,
+      "readinessLevel": "DEVELOPING",
+      "readinessBreakdown": {
+        "technical": 58,
+        "academic": 84,
+        "projects": 37,
+        "certifications": 25,
+        "aptitude": 84,
+        "communication": 84,
+        "interview": 82
+      },
+      "isVerified": false
+    },
+    {
+      "userId": "user_student_9a13ca3502c7cf3265a4eed0",
+      "fullName": "Bishnu Sahoo",
+      "email": "test.sahoo2026@gmail.com",
+      "phone": "+91 98765 43210",
+      "university": "National Institute of Technology",
+      "rollNumber": "NIT2026001",
+      "degree": "B.Tech",
+      "branch": "Computer Science & Engineering",
+      "graduationYear": 2026,
+      "cgpa": 8.4,
+      "maxCgpa": 10,
+      "backlogs": 0,
+      "skills": [
+        "Python",
+        "React",
+        "SQL",
+        "TypeScript"
+      ],
+      "bio": "Enthusiastic Computer Science & Engineering student eager to learn and excel in engineering challenges.",
+      "github": "https://github.com/bishnusahoo",
+      "linkedin": "https://linkedin.com/in/bishnu-sahoo",
+      "portfolio": "https://bishnusahoo.dev",
+      "resumeFilename": "Bishnu_Sahoo_Resume.pdf",
+      "resumeUrl": "#preview-resume",
+      "projects": [
+        {
+          "id": "proj_7df6c1611763f46b0fb52338",
+          "title": "Campus Career & Placement Intelligence",
+          "tech": "React, Node.js, AI Scoring",
+          "description": "Intelligent placement preparation and tracking engine with real-time feedback."
+        }
+      ],
+      "experience": [],
+      "certifications": [
+        "AWS Certified Cloud Practitioner"
+      ],
+      "targetRoles": [
+        "Software Engineer",
+        "Full Stack Developer"
+      ],
+      "aptitudeScore": 84,
+      "mockInterviewScore": 82,
+      "communicationScore": 84,
+      "readinessScore": 64,
+      "readinessLevel": "DEVELOPING",
+      "readinessBreakdown": {
+        "technical": 58,
+        "academic": 84,
+        "projects": 37,
+        "certifications": 25,
+        "aptitude": 84,
+        "communication": 84,
+        "interview": 82
+      },
+      "isVerified": true
+    },
+    {
+      "userId": "user_student_3d086e8b18fc070363125955",
+      "fullName": "Hitesh lenka",
+      "email": "hiteshlenkamca295@gmail.com",
+      "phone": "7377052646",
+      "university": "National Institute of Technology",
+      "rollNumber": "NIIBA001",
+      "degree": "B.Tech",
+      "branch": "Computer Science & Engineering",
+      "graduationYear": 2026,
+      "cgpa": 8.4,
+      "maxCgpa": 10,
+      "backlogs": 0,
+      "skills": [
+        "Python",
+        "React",
+        "SQL",
+        "TypeScript",
+        "Java",
+        "Django",
+        "Node.js",
+        "PostgreSQL",
+        "Git",
+        "Docker",
+        "AWS",
+        "REST APIs",
+        "System Design",
+        "FastAPI"
+      ],
+      "bio": "Enthusiastic Computer Science & Engineering student eager to learn and excel in engineering challenges.",
+      "github": "https://github.com/hiteshlenka",
+      "linkedin": "https://linkedin.com/in/hitesh-lenka",
+      "portfolio": "https://hiteshlenka.dev",
+      "resumeFilename": "Hitesh_lenka_Resume.pdf",
+      "resumeUrl": "#preview-resume",
+      "projects": [
+        {
+          "id": "proj_35ccb6e33e86104be1e8ec74",
+          "title": "Campus Career & Placement Intelligence",
+          "tech": "React, Node.js, AI Scoring",
+          "description": "Intelligent placement preparation and tracking engine with real-time feedback."
+        }
+      ],
+      "experience": [],
+      "certifications": [
+        "AWS Certified Cloud Practitioner"
+      ],
+      "targetRoles": [
+        "Software Engineer",
+        "Full Stack Developer"
+      ],
+      "aptitudeScore": 88,
+      "mockInterviewScore": 84,
+      "communicationScore": 84,
+      "readinessScore": 75,
+      "readinessLevel": "READY",
+      "readinessBreakdown": {
+        "technical": 100,
+        "academic": 84,
+        "projects": 37,
+        "certifications": 25,
+        "aptitude": 88,
+        "communication": 84,
+        "interview": 84
+      },
+      "isVerified": true,
+      "resumeScore": 95
     }
   ],
   "recruiterProfiles": [
@@ -1976,6 +2520,54 @@
   ],
   "jobs": [
     {
+      "id": "job_bb722baaef6590a93bd97470",
+      "companyId": "comp_technova",
+      "recruiterId": "user_student_3d086e8b18fc070363125955",
+      "companyName": "Hitesh lenka",
+      "companyLogo": "TECH",
+      "title": "AI Systems & Cloud Engineer",
+      "department": "Platform AI Engineering",
+      "location": "Bangalore / Hybrid",
+      "type": "Full-Time",
+      "workplaceType": "Hybrid",
+      "ctcOrStipend": "₹24 LPA",
+      "minCgpa": 7.5,
+      "allowedBranches": [
+        "Computer Science & Engineering",
+        "Information Technology",
+        "Artificial Intelligence & Data Science"
+      ],
+      "maxBacklogs": 0,
+      "targetBatches": [
+        2026
+      ],
+      "description": "High-growth platform engineering role focusing on neural inference and distributed systems.",
+      "responsibilities": [
+        "Architect clean backend & frontend solutions",
+        "Collaborate in agile sprints"
+      ],
+      "requirements": [
+        "Strong technical foundations",
+        "Proficient problem solving"
+      ],
+      "skills": [
+        "Python",
+        "PyTorch",
+        "React",
+        "Docker",
+        "SQL"
+      ],
+      "status": "Active",
+      "applicationDeadline": "2026-11-30",
+      "openingsCount": 8,
+      "applicantCount": 1,
+      "driveDate": "2026-11-15",
+      "driveTime": "10:00 AM - 05:00 PM",
+      "venue": "Turing Hall & Computing Lab 3",
+      "createdAt": "2026-09-30T18:53:50.526Z",
+      "updatedAt": "2026-09-30T18:53:50.526Z"
+    },
+    {
       "id": "job_meridian_ml",
       "companyId": "comp_meridian",
       "recruiterId": "user_recruiter_sarah",
@@ -2018,7 +2610,7 @@
       "status": "Active",
       "applicationDeadline": "2026-10-25",
       "openingsCount": 4,
-      "applicantCount": 38,
+      "applicantCount": 3,
       "driveDate": "2026-10-30",
       "driveTime": "09:00 AM - 05:00 PM",
       "venue": "AI Computing Hub",
@@ -2590,6 +3182,68 @@
   ],
   "drives": [
     {
+      "id": "drive_142e7c78281f91e7ec885085",
+      "companyId": "comp_meridian",
+      "companyName": "Meridian Labs",
+      "companyLogo": "CORP",
+      "title": "Campus Super-Drive: TechNova Solutions",
+      "role": "Campus Super-Drive: TechNova Solutions",
+      "type": "Full-Time",
+      "packageCtc": "₹18.0 LPA",
+      "location": "Campus Tech Tower",
+      "date": "2026-11-20",
+      "startTime": "10:00 AM",
+      "endTime": "05:00 PM",
+      "venue": "Turing Hall & Computing Lab 3",
+      "targetBatches": [
+        2026
+      ],
+      "allowedBranches": [
+        "Computer Science & Engineering",
+        "Information Technology"
+      ],
+      "eligibleBranches": [
+        "CSE",
+        "IT",
+        "ECE"
+      ],
+      "minCgpa": 7.5,
+      "openings": 12,
+      "status": "Upcoming",
+      "panelMembers": [
+        "Dr. Ananya Sen (TPO)",
+        "Vikas Mehta (VP Engineering)"
+      ],
+      "currentStage": "Registration",
+      "totalRegistered": 0,
+      "shortlistedCount": 20,
+      "offersReleased": 0,
+      "reportingTime": "09:00 AM",
+      "instructions": "Bring physical copy of Placement Passport with dynamic QR code.",
+      "schedule": [
+        {
+          "time": "09:00 AM",
+          "activity": "Gate QR Check-in & Security Clearance",
+          "hall": "Auditorium Gate 1"
+        },
+        {
+          "time": "10:00 AM",
+          "activity": "Online Coding / Technical Assessment",
+          "hall": "Central Lab 3"
+        },
+        {
+          "time": "01:30 PM",
+          "activity": "Technical Interview Panel 1",
+          "hall": "Room B-204"
+        },
+        {
+          "time": "04:00 PM",
+          "activity": "HR & Executive Round",
+          "hall": "Conference Hall"
+        }
+      ]
+    },
+    {
       "id": "drive_technova_01",
       "title": "TechNova Solutions Campus Placement Drive 2026",
       "companyId": "comp_technova",
@@ -2703,6 +3357,182 @@
     }
   ],
   "applications": [
+    {
+      "id": "app_02f263c0f04142c71b2e1c97",
+      "jobId": "job_bb722baaef6590a93bd97470",
+      "studentId": "user_student_3d086e8b18fc070363125955",
+      "jobTitle": "AI Systems & Cloud Engineer",
+      "companyName": "Hitesh lenka",
+      "companyLogo": "TECH",
+      "jobLocation": "Bangalore / Hybrid",
+      "jobType": "Full-Time",
+      "ctcOrStipend": "₹24 LPA",
+      "studentName": "Hitesh lenka",
+      "studentEmail": "hiteshlenkamca295@gmail.com",
+      "studentPhone": "7377052646",
+      "studentCgpa": 8.4,
+      "studentDegree": "B.Tech",
+      "studentBranch": "Computer Science & Engineering",
+      "studentGraduationYear": 2026,
+      "studentSkills": [
+        "Python",
+        "React",
+        "SQL",
+        "TypeScript",
+        "Java",
+        "Django",
+        "Node.js",
+        "PostgreSQL",
+        "Git",
+        "Docker",
+        "AWS",
+        "REST APIs",
+        "System Design",
+        "FastAPI"
+      ],
+      "studentResumeFilename": "Hitesh_lenka_Resume.pdf",
+      "studentResumeUrl": "#preview-resume",
+      "coverNote": "Excited to apply for AI Systems & Cloud Engineer at Hitesh lenka! My coursework in Computer Science & Engineering and project experience with Python, PyTorch, React align closely with your engineering requirements.",
+      "eligibilityStatus": "Eligible",
+      "eligibilityReasons": [
+        "All criteria met: CGPA, branch, and zero backlogs verified"
+      ],
+      "matchScore": 79,
+      "matchBreakdown": {
+        "technicalSkillMatch": 80,
+        "academicEligibility": 84,
+        "projectRelevance": 95,
+        "certificationMatch": 35,
+        "interviewPerformance": 84
+      },
+      "explainableMatch": {
+        "isShortlisted": true,
+        "summary": "Candidate is SHORTLISTED based on high technical skill alignment (80%), strong academic credentials (8.4/10.0), and verified mock assessment scores.",
+        "matchedSkills": [
+          "Python",
+          "React",
+          "Docker",
+          "SQL"
+        ],
+        "missingSkills": [
+          "PyTorch"
+        ],
+        "positiveFactors": [
+          "CGPA 8.40 satisfies the benchmark (>= 7.5)",
+          "Degree branch (Computer Science & Engineering) matches eligible hiring streams",
+          "Strong proficiency in core required skills: Python, React, Docker",
+          "Mock technical interview score (84/100) shows strong readiness"
+        ],
+        "gapFactors": [
+          "Lacks essential tooling/frameworks: PyTorch"
+        ],
+        "assessmentBenchmark": "Meets technical benchmark (Candidate: 84%, Benchmark: 75%)",
+        "recommendedAction": "Prepare for technical live coding round and review Hitesh lenka's system design requirements."
+      },
+      "stage": "screening",
+      "stageHistory": [
+        {
+          "stage": "applied",
+          "label": "Application Submitted",
+          "timestamp": "2026-09-30T18:55:13.090Z",
+          "note": "Submitted application for AI Systems & Cloud Engineer at Hitesh lenka."
+        },
+        {
+          "stage": "screening",
+          "label": "AI Shortlisted & Screened",
+          "timestamp": "2026-09-30T18:55:13.090Z",
+          "note": "Automated AI Shortlisting cleared: Match score 79%, CGPA 8.4 >= 7.5."
+        }
+      ],
+      "evaluations": [],
+      "createdAt": "2026-09-30T18:55:13.090Z",
+      "updatedAt": "2026-09-30T18:55:13.090Z"
+    },
+    {
+      "id": "app_db0a2fa57dd8d45c6cbbf4a3",
+      "jobId": "job_meridian_ml",
+      "studentId": "user_student_3d086e8b18fc070363125955",
+      "jobTitle": "ML Engineer Intern",
+      "companyName": "Meridian Labs",
+      "companyLogo": "MV",
+      "jobLocation": "Bangalore / Hybrid",
+      "jobType": "Internship",
+      "ctcOrStipend": "₹80,000 / mo (PPO ₹26 LPA)",
+      "studentName": "Hitesh lenka",
+      "studentEmail": "hiteshlenkamca295@gmail.com",
+      "studentPhone": "7377052646",
+      "studentCgpa": 8.4,
+      "studentDegree": "B.Tech",
+      "studentBranch": "Computer Science & Engineering",
+      "studentGraduationYear": 2026,
+      "studentSkills": [
+        "Python",
+        "React",
+        "SQL",
+        "TypeScript",
+        "Java",
+        "Django",
+        "Node.js",
+        "PostgreSQL",
+        "Git",
+        "Docker",
+        "AWS",
+        "REST APIs",
+        "System Design",
+        "FastAPI"
+      ],
+      "studentResumeFilename": "Hitesh_lenka_Resume.pdf",
+      "studentResumeUrl": "#preview-resume",
+      "coverNote": "Candidate matched through CAMPUSLINK AI flow with 88%+ cosine score.",
+      "eligibilityStatus": "Eligible",
+      "eligibilityReasons": [
+        "All criteria met: CGPA, branch, and zero backlogs verified"
+      ],
+      "matchScore": 62,
+      "matchBreakdown": {
+        "technicalSkillMatch": 60,
+        "academicEligibility": 84,
+        "projectRelevance": 35,
+        "certificationMatch": 35,
+        "interviewPerformance": 84
+      },
+      "explainableMatch": {
+        "isShortlisted": false,
+        "summary": "Candidate is NOT SHORTLISTED. Main gaps are: PyTorch, Machine Learning. Review recommended actions below.",
+        "matchedSkills": [
+          "Python",
+          "FastAPI",
+          "Docker"
+        ],
+        "missingSkills": [
+          "PyTorch",
+          "Machine Learning"
+        ],
+        "positiveFactors": [
+          "CGPA 8.40 satisfies the benchmark (>= 8)",
+          "Degree branch (Computer Science & Engineering) matches eligible hiring streams",
+          "Strong proficiency in core required skills: Python, FastAPI, Docker",
+          "Mock technical interview score (84/100) shows strong readiness"
+        ],
+        "gapFactors": [
+          "Lacks essential tooling/frameworks: PyTorch, Machine Learning"
+        ],
+        "assessmentBenchmark": "Meets technical benchmark (Candidate: 84%, Benchmark: 75%)",
+        "recommendedAction": "Complete targeted courses in PyTorch and Machine Learning, build a domain project, and retake the mock technical assessment."
+      },
+      "stage": "applied",
+      "stageHistory": [
+        {
+          "stage": "applied",
+          "label": "Application Submitted",
+          "timestamp": "2026-09-30T18:53:52.263Z",
+          "note": "Submitted application for ML Engineer Intern at Meridian Labs."
+        }
+      ],
+      "evaluations": [],
+      "createdAt": "2026-09-30T18:53:52.263Z",
+      "updatedAt": "2026-09-30T18:53:52.263Z"
+    },
     {
       "id": "app_meridian_aarav",
       "jobId": "job_meridian_ml",
@@ -3069,7 +3899,7 @@
     {
       "id": "app_technova_bishnu",
       "jobId": "job_technova_swe",
-      "studentId": "user_student_bishnu",
+      "studentId": "user_student_b078fb0cca9b0275517b16ff",
       "jobTitle": "Software Developer (Full Stack)",
       "companyName": "TechNova Solutions",
       "companyLogo": "TECH",
@@ -3191,7 +4021,7 @@
     {
       "id": "app_google_priya",
       "jobId": "job_cedar_data",
-      "studentId": "user_student_bishnu",
+      "studentId": "user_student_b078fb0cca9b0275517b16ff",
       "jobTitle": "Data Associate",
       "companyName": "Cedar Solutions",
       "companyLogo": "CS",
@@ -3786,6 +4616,125 @@
   ],
   "notifications": [
     {
+      "id": "notif_fba0ae22a71a9a7c8674f2dc",
+      "userId": "user_student_3",
+      "title": "📍 Room Allotment: Google (Seminar Hall 2)",
+      "message": "Company: Google | Round: Pre-Placement Talk (PPT) & Core Problem Solving Round | Date: 2026-09-30 | Time: 10:00 - 13:30 | Venue: Seminar Hall 2 (Block A - Ramanujan Wing (2nd Floor)) | Reporting Time: 09:30 AM (30 mins before start) | Instructions: Bring Google shortlisting confirmation barcode, valid government ID proof, and updated GitHub repository portfolio links.",
+      "type": "Room Allotment",
+      "read": false,
+      "createdAt": "2026-09-30T19:35:22.291Z",
+      "jobId": "job_google_swe",
+      "linkTab": "roomallocation"
+    },
+    {
+      "id": "notif_a7619375f9bbcc00aa240f52",
+      "userId": "user_student_1",
+      "title": "📍 Room Allotment: Google (Seminar Hall 2)",
+      "message": "Company: Google | Round: Pre-Placement Talk (PPT) & Core Problem Solving Round | Date: 2026-09-30 | Time: 10:00 - 13:30 | Venue: Seminar Hall 2 (Block A - Ramanujan Wing (2nd Floor)) | Reporting Time: 09:30 AM (30 mins before start) | Instructions: Bring Google shortlisting confirmation barcode, valid government ID proof, and updated GitHub repository portfolio links.",
+      "type": "Room Allotment",
+      "read": false,
+      "createdAt": "2026-09-30T19:35:22.289Z",
+      "jobId": "job_google_swe",
+      "linkTab": "roomallocation"
+    },
+    {
+      "id": "notif_becf8fd07cbc82376317e485",
+      "userId": "user_student_3d086e8b18fc070363125955",
+      "title": "Shortlisted for Hitesh lenka! 🎯",
+      "message": "Great news! Your match score of 79% earned you an automatic shortlist for AI Systems & Cloud Engineer.",
+      "type": "Shortlisted",
+      "read": false,
+      "createdAt": "2026-09-30T18:55:13.090Z",
+      "applicationId": "app_02f263c0f04142c71b2e1c97"
+    },
+    {
+      "id": "notif_993deec6c661a17c605c524c",
+      "userId": "all",
+      "title": "New Placement Drive: Campus Super-Drive: TechNova Solutions 📢",
+      "message": "Meridian Labs campus recruitment drive scheduled on 2026-11-20 at Turing Hall & Computing Lab 3.",
+      "type": "Drive Announcement",
+      "read": false,
+      "createdAt": "2026-09-30T18:53:54.108Z",
+      "linkTab": "drives"
+    },
+    {
+      "id": "notif_21cf382f4a329d62aed8a014",
+      "userId": "all",
+      "title": "🚀 New Drive Announced: Meridian Labs",
+      "message": "Meridian Labs is hiring for Campus Super-Drive: TechNova Solutions (₹18.0 LPA). Register before drive day.",
+      "type": "drive_announcement",
+      "read": false,
+      "createdAt": "2026-09-30T18:53:54.105Z"
+    },
+    {
+      "id": "notif_61ec4548b05ec9f05ba6d5ba",
+      "userId": "user_student_3d086e8b18fc070363125955",
+      "title": "Application Received - Meridian Labs",
+      "message": "Your application has been logged into the recruitment pipeline.",
+      "type": "status_change",
+      "read": false,
+      "createdAt": "2026-09-30T18:53:52.263Z",
+      "applicationId": "app_db0a2fa57dd8d45c6cbbf4a3"
+    },
+    {
+      "id": "notif_30c9307fae92cc086c9706eb",
+      "userId": "user_student_3d086e8b18fc070363125955",
+      "title": "🧠 AI Skill Extraction Completed",
+      "message": "Extracted 11 claimed skills across languages, frameworks, and databases. Click \"Verify Your Skills\" to take the AI assessment and gain verified recruiter credentials!",
+      "type": "Skill Recommendation",
+      "read": false,
+      "createdAt": "2026-09-30T18:46:43.832Z"
+    },
+    {
+      "id": "notif_11accd59568c8803ec8a775c",
+      "userId": "user_student_3d086e8b18fc070363125955",
+      "title": "🧠 AI Skill Extraction Completed",
+      "message": "Extracted 11 claimed skills across languages, frameworks, and databases. Click \"Verify Your Skills\" to take the AI assessment and gain verified recruiter credentials!",
+      "type": "Skill Recommendation",
+      "read": false,
+      "createdAt": "2026-09-30T18:46:33.511Z"
+    },
+    {
+      "id": "notif_52b27ce00b9d4b205cb2043c",
+      "userId": "user_student_3d086e8b18fc070363125955",
+      "title": "Account Verified! Welcome to CAMPUSLINK 🎓",
+      "message": "Your student email hiteshlenkamca295@gmail.com has been verified successfully. Welcome to your campus recruitment dashboard.",
+      "type": "Skill Recommendation",
+      "read": false,
+      "createdAt": "2026-09-30T18:30:08.864Z",
+      "linkTab": "overview"
+    },
+    {
+      "id": "notif_7d398e712e1795dcc2b64709",
+      "userId": "user_student_9a13ca3502c7cf3265a4eed0",
+      "title": "Account Verified! Welcome to CAMPUSLINK 🎓",
+      "message": "Your student email test.sahoo2026@gmail.com has been verified successfully. Welcome to your campus recruitment dashboard.",
+      "type": "Skill Recommendation",
+      "read": false,
+      "createdAt": "2026-09-28T20:34:42.274Z",
+      "linkTab": "overview"
+    },
+    {
+      "id": "notif_b3424e3fec006b13f9234e84",
+      "userId": "user_student_c6622f0e1449304f0f27a186",
+      "title": "Account Verified! Welcome to CAMPUSLINK 🎓",
+      "message": "Your student email biswalanjli2004@gmail.com has been verified successfully. Welcome to your campus recruitment dashboard.",
+      "type": "Skill Recommendation",
+      "read": false,
+      "createdAt": "2026-09-28T20:23:36.544Z",
+      "linkTab": "overview"
+    },
+    {
+      "id": "notif_c61f9e1222d93b8f41a75ff5",
+      "userId": "user_student_9a070c9d3e30f7d9fbb2c173",
+      "title": "Account Verified! Welcome to CAMPUSLINK 🎓",
+      "message": "Your student email test.bishnu@campus.edu has been verified successfully. Welcome to your campus recruitment dashboard.",
+      "type": "Skill Recommendation",
+      "read": false,
+      "createdAt": "2026-09-28T20:16:35.142Z",
+      "linkTab": "overview"
+    },
+    {
       "id": "notif_1",
       "userId": "user_student_bishnu",
       "title": "Technical Interview Scheduled ⚡",
@@ -3853,5 +4802,1495 @@
     "projectRelevance": 0.15,
     "certificationMatch": 0.1,
     "interviewPerformance": 0.15
-  }
+  },
+  "otpRecords": [
+    {
+      "_id": "8e2c83c130d63dbcc8e3a5df",
+      "user_id": "user_student_9a070c9d3e30f7d9fbb2c173",
+      "email": "test.bishnu@campus.edu",
+      "otp_hash": "fef0a52984e746b8e7ecebc9fd4651ac152a68fc5b892651f4d35bea9aae6542",
+      "expires_at": "2026-09-28T20:21:19.463Z",
+      "attempt_count": 1,
+      "verified": false,
+      "created_at": "2026-09-28T20:16:19.463Z"
+    },
+    {
+      "_id": "f9a57d8f9bca03704ec0aa7c",
+      "user_id": "user_student_9a070c9d3e30f7d9fbb2c173",
+      "email": "test.bishnu@campus.edu",
+      "otp_hash": "5866eac7d12fa0d2a8d509c3f41cdac7c07d72c4531b076094b7b265eb8307a2",
+      "expires_at": "2026-09-28T20:21:32.219Z",
+      "attempt_count": 0,
+      "verified": true,
+      "created_at": "2026-09-28T20:16:32.219Z",
+      "used_at": "2026-09-28T20:16:35.139Z"
+    },
+    {
+      "_id": "76e531a3c20af5f6f06bb630",
+      "user_id": "user_student_eabde0f1e4f5266763078d3e",
+      "email": "unverified@campus.edu",
+      "otp_hash": "4374e72d5b9f159009f3b6a49d51b5d03a39568546d6cac7e7eb6dbe3c04afda",
+      "expires_at": "2026-09-28T20:21:46.852Z",
+      "attempt_count": 0,
+      "verified": false,
+      "created_at": "2026-09-28T20:16:46.852Z"
+    },
+    {
+      "_id": "f0428481ebf62529e8dbe6b0",
+      "user_id": "user_student_eabde0f1e4f5266763078d3e",
+      "email": "unverified@campus.edu",
+      "otp_hash": "9bdb9d1a4a250282088513f0af58de076c5e83c6784db368fd03c4056b05ce9c",
+      "expires_at": "2026-09-28T20:21:50.652Z",
+      "attempt_count": 0,
+      "verified": false,
+      "created_at": "2026-09-28T20:16:50.652Z"
+    },
+    {
+      "_id": "2803bf67edbbcdeb1bb77427",
+      "user_id": "user_student_b6853b9ec5277552f61ac347",
+      "email": "anjalibiswal032@gmail.com",
+      "otp_hash": "c69bf3e5a684009631f9684e786f73e1e56ea73b40de9dd90ff6cdbd8298061f",
+      "expires_at": "2026-09-28T20:24:05.443Z",
+      "attempt_count": 0,
+      "verified": false,
+      "created_at": "2026-09-28T20:19:05.443Z"
+    },
+    {
+      "_id": "47ff2c9a591f7bce86e65bfc",
+      "user_id": "user_student_c6622f0e1449304f0f27a186",
+      "email": "biswalanjli2004@gmail.com",
+      "otp_hash": "659223beeccd18175347e276bb241610ef7d2c16b3f1494cc560b44a89501a70",
+      "expires_at": "2026-09-28T20:27:44.805Z",
+      "attempt_count": 1,
+      "verified": true,
+      "created_at": "2026-09-28T20:22:44.805Z",
+      "used_at": "2026-09-28T20:23:36.541Z"
+    },
+    {
+      "_id": "52bdc25ed0a31016c8b44fa3",
+      "user_id": "user_student_b078fb0cca9b0275517b16ff",
+      "email": "sahoobishnu8249@gmail.com",
+      "otp_hash": "9aa88ae7288d57a837ecfd0e1ac08c8400f4fbcd86a7e9e4d85fd2b906dce4cd",
+      "expires_at": "2026-09-28T20:37:07.421Z",
+      "attempt_count": 0,
+      "verified": false,
+      "created_at": "2026-09-28T20:32:07.421Z"
+    },
+    {
+      "_id": "853aebb516235d6806618a38",
+      "user_id": "user_student_9a13ca3502c7cf3265a4eed0",
+      "email": "test.sahoo2026@gmail.com",
+      "otp_hash": "2dd7dc98b2761d98dac92959c2af92ca9bbc98cbbf19d9c77128d749bcf3ba06",
+      "expires_at": "2026-09-28T20:39:38.872Z",
+      "attempt_count": 0,
+      "verified": true,
+      "created_at": "2026-09-28T20:34:38.872Z",
+      "used_at": "2026-09-28T20:34:42.270Z"
+    },
+    {
+      "_id": "9d6f13abd150f98d6a0b6091",
+      "user_id": "user_student_3d086e8b18fc070363125955",
+      "email": "hiteshlenkamca295@gmail.com",
+      "otp_hash": "e4a397239202f827e7b8e078655ab1bd76f067d800e86de5879639c6301031be",
+      "expires_at": "2026-09-30T18:35:00.706Z",
+      "attempt_count": 0,
+      "verified": true,
+      "created_at": "2026-09-30T18:30:00.706Z",
+      "used_at": "2026-09-30T18:30:08.860Z"
+    }
+  ],
+  "passports": [
+    {
+      "id": "passport_user_student_aarav",
+      "student_id": "user_student_aarav",
+      "passport_number": "CL-2026-CSE-0001",
+      "status": "VERIFIED",
+      "academic_verified": true,
+      "eligibility_verified": true,
+      "tpo_verified": true,
+      "attendance_verified": true,
+      "documents_verified": true,
+      "qr_token": "QR_TOK_AARAV_8f2c31e9a44b",
+      "verified_at": "2026-08-15T10:00:00Z",
+      "expires_at": "2027-07-31T23:59:59Z",
+      "created_at": "2026-08-01T09:00:00Z",
+      "updated_at": "2026-08-15T10:00:00Z",
+      "blockchain_hash": "0x8f2c31e9a44b9123",
+      "metrics": {
+        "cgpa": 8.78,
+        "backlogs": 0,
+        "ats_score": 92,
+        "readiness_score": 84
+      }
+    },
+    {
+      "id": "passport_user_student_bishnu",
+      "student_id": "user_student_bishnu",
+      "passport_number": "CL-2026-MCA-8924",
+      "status": "VERIFIED",
+      "academic_verified": true,
+      "eligibility_verified": true,
+      "tpo_verified": true,
+      "attendance_verified": true,
+      "documents_verified": true,
+      "qr_token": "QR_TOK_BISHNU_7c91a03f4112",
+      "verified_at": "2026-08-18T11:00:00Z",
+      "expires_at": "2027-07-31T23:59:59Z",
+      "created_at": "2026-08-01T10:00:00Z",
+      "updated_at": "2026-08-18T11:00:00Z",
+      "blockchain_hash": "0x7c91a03f411288dd",
+      "metrics": {
+        "cgpa": 8.65,
+        "backlogs": 0,
+        "ats_score": 88,
+        "readiness_score": 82
+      }
+    },
+    {
+      "id": "passport_user_student_priya",
+      "student_id": "user_student_priya",
+      "passport_number": "CL-2026-AID-1002",
+      "status": "VERIFIED",
+      "academic_verified": true,
+      "eligibility_verified": true,
+      "tpo_verified": true,
+      "attendance_verified": true,
+      "documents_verified": true,
+      "qr_token": "QR_TOK_PRIYA_b19284cf734a",
+      "verified_at": "2026-08-10T12:00:00Z",
+      "expires_at": "2027-07-31T23:59:59Z",
+      "created_at": "2026-08-01T09:00:00Z",
+      "updated_at": "2026-08-10T12:00:00Z",
+      "blockchain_hash": "0xb19284cf734a0122",
+      "metrics": {
+        "cgpa": 9.4,
+        "backlogs": 0,
+        "ats_score": 96,
+        "readiness_score": 94
+      }
+    },
+    {
+      "id": "passport_user_student_3d086e8b18fc070363125955",
+      "student_id": "user_student_3d086e8b18fc070363125955",
+      "passport_number": "CL-2026-COM-A001",
+      "status": "VERIFIED",
+      "academic_verified": true,
+      "eligibility_verified": true,
+      "tpo_verified": true,
+      "attendance_verified": true,
+      "documents_verified": true,
+      "qr_token": "QR_TOK_user_student_3d086e8b18fc070363125955_9ecf19005b06",
+      "verified_at": "2026-09-30T18:30:21.446Z",
+      "expires_at": "2027-09-30T18:30:21.446Z",
+      "created_at": "2026-09-30T18:30:21.446Z",
+      "updated_at": "2026-09-30T18:30:21.446Z",
+      "blockchain_hash": "0x6c8ecaf84323bd70",
+      "metrics": {
+        "cgpa": 8.4,
+        "backlogs": 0,
+        "ats_score": 90,
+        "readiness_score": 64
+      }
+    }
+  ],
+  "passportVerifications": [],
+  "studentSkills": [],
+  "driveCandidates": [
+    {
+      "id": "dc_1",
+      "drive_id": "drive_google_campus",
+      "student_id": "user_student_priya",
+      "student_name": "Priya Sharma",
+      "roll_number": "2022UGAI002",
+      "branch": "AI & Data Science",
+      "cgpa": 9.4,
+      "attendance_status": "CHECKED_IN",
+      "check_in_time": "2026-08-20T08:30:00Z",
+      "current_stage": "TECH_ROUND_1",
+      "token_number": "B-15",
+      "created_at": "2026-08-20T08:30:00Z"
+    },
+    {
+      "id": "dc_2",
+      "drive_id": "drive_google_campus",
+      "student_id": "user_student_rahul",
+      "student_name": "Rahul Verma",
+      "roll_number": "2022UGIT003",
+      "branch": "Information Technology",
+      "cgpa": 8.85,
+      "attendance_status": "CHECKED_IN",
+      "check_in_time": "2026-08-20T08:35:00Z",
+      "current_stage": "TECH_ROUND_1",
+      "token_number": "B-16",
+      "created_at": "2026-08-20T08:35:00Z"
+    },
+    {
+      "id": "dc_3",
+      "drive_id": "drive_google_campus",
+      "student_id": "user_student_ananya",
+      "student_name": "Ananya Patel",
+      "roll_number": "2022UGEC004",
+      "branch": "ECE",
+      "cgpa": 8.6,
+      "attendance_status": "CHECKED_IN",
+      "check_in_time": "2026-08-20T08:40:00Z",
+      "current_stage": "TECH_ROUND_1",
+      "token_number": "B-17",
+      "created_at": "2026-08-20T08:40:00Z"
+    },
+    {
+      "id": "dc_4",
+      "drive_id": "drive_google_campus",
+      "student_id": "user_student_aarav",
+      "student_name": "Aarav Reddy",
+      "roll_number": "2022UGCS001",
+      "branch": "Computer Science",
+      "cgpa": 8.78,
+      "attendance_status": "CHECKED_IN",
+      "check_in_time": "2026-08-20T08:45:00Z",
+      "current_stage": "TECH_ROUND_1",
+      "token_number": "B-18",
+      "created_at": "2026-08-20T08:45:00Z"
+    }
+  ],
+  "interviewQueues": [
+    {
+      "id": "q_1",
+      "drive_id": "drive_google_campus",
+      "candidate_id": "dc_1",
+      "student_id": "user_student_priya",
+      "student_name": "Priya Sharma",
+      "student_roll": "2022UGAI002",
+      "token_number": "B-15",
+      "room": "Room B-204 (Tech Panel 2)",
+      "round": "Tech Round 1",
+      "status": "IN_PROGRESS",
+      "queue_position": 1,
+      "called_at": "2026-08-20T09:00:00Z",
+      "created_at": "2026-08-20T08:30:00Z"
+    },
+    {
+      "id": "q_2",
+      "drive_id": "drive_google_campus",
+      "candidate_id": "dc_2",
+      "student_id": "user_student_rahul",
+      "student_name": "Rahul Verma",
+      "student_roll": "2022UGIT003",
+      "token_number": "B-16",
+      "room": "Room B-204 (Tech Panel 2)",
+      "round": "Tech Round 1",
+      "status": "WAITING",
+      "queue_position": 2,
+      "created_at": "2026-08-20T08:35:00Z"
+    },
+    {
+      "id": "q_3",
+      "drive_id": "drive_google_campus",
+      "candidate_id": "dc_3",
+      "student_id": "user_student_ananya",
+      "student_name": "Ananya Patel",
+      "student_roll": "2022UGEC004",
+      "token_number": "B-17",
+      "room": "Room B-204 (Tech Panel 2)",
+      "round": "Tech Round 1",
+      "status": "WAITING",
+      "queue_position": 3,
+      "created_at": "2026-08-20T08:40:00Z"
+    },
+    {
+      "id": "q_4",
+      "drive_id": "drive_google_campus",
+      "candidate_id": "dc_4",
+      "student_id": "user_student_aarav",
+      "student_name": "Aarav Reddy",
+      "student_roll": "2022UGCS001",
+      "token_number": "B-18",
+      "room": "Room B-204 (Tech Panel 2)",
+      "round": "Tech Round 1",
+      "status": "WAITING",
+      "queue_position": 4,
+      "created_at": "2026-08-20T08:45:00Z"
+    }
+  ],
+  "interviewRounds": [],
+  "placementPolicies": [
+    {
+      "id": "policy_aicte_2026",
+      "name": "University Placement Council Regulation 2026",
+      "description": "Standard 3-Tier Policy (Regular, Dream, Super Dream) enforcing single offer holding with merit-based upgrade guarantees and anti-hoarding controls.",
+      "conditions": {
+        "min_cgpa_standard": 6.5,
+        "max_active_backlogs": 0,
+        "mandatory_attendance_pct": 85
+      },
+      "offer_categories": {
+        "regular_max_lpa": 6,
+        "dream_min_lpa": 6,
+        "dream_max_lpa": 12,
+        "super_dream_min_lpa": 12
+      },
+      "upgrade_rules": {
+        "allow_dream_if_regular_held": true,
+        "allow_super_dream_always": true,
+        "min_ctc_multiplier_for_upgrade": 1.4,
+        "max_total_offers_per_student": 2
+      },
+      "active": true,
+      "created_by": "user_officer_rajesh",
+      "created_at": "2026-07-01T00:00:00Z",
+      "updated_at": "2026-08-01T00:00:00Z"
+    }
+  ],
+  "policyDecisions": [],
+  "offerEntities": [],
+  "attendances": [],
+  "auditLogs": [
+    {
+      "id": "audit_7bfb78a3087408ed43caa339",
+      "user_id": "user_student_3d086e8b18fc070363125955",
+      "user_name": "System Operator",
+      "action": "PASSPORT_CREATED",
+      "entity_type": "PlacementPassport",
+      "entity_id": "passport_user_student_3d086e8b18fc070363125955",
+      "details": "Placement Passport CL-2026-COM-A001 generated for student.",
+      "ip_address": "127.0.0.1",
+      "timestamp": "2026-09-30T18:30:21.446Z"
+    },
+    {
+      "id": "audit_1",
+      "user_id": "user_officer_rajesh",
+      "user_name": "Dr. Rajesh Swaminathan",
+      "action": "POLICY_EVALUATION",
+      "entity_type": "PlacementPolicy",
+      "entity_id": "policy_aicte_2026",
+      "details": "Student Priya Sharma approved for Super Dream upgrade to Google India (₹34.5 LPA) under AICTE Rule 4.2.",
+      "timestamp": "2026-08-22T14:15:00Z"
+    },
+    {
+      "id": "audit_2",
+      "user_id": "user_officer_rajesh",
+      "user_name": "Dr. Rajesh Swaminathan",
+      "action": "PASSPORT_VERIFIED",
+      "entity_type": "PlacementPassport",
+      "entity_id": "passport_user_student_aarav",
+      "details": "All 4 seals verified: Academic CGPA 8.78, TPO clearance, ATS 92%, and BGV passed.",
+      "timestamp": "2026-08-15T10:05:00Z"
+    }
+  ],
+  "resumeSkills": [
+    {
+      "id": "rsk_1",
+      "student_id": "user_student_aarav",
+      "skill_name": "Python",
+      "category": "programming",
+      "source": "resume_extracted",
+      "claimed_at": "2026-08-01T09:00:00Z",
+      "is_verified": true,
+      "verified_score": 92
+    },
+    {
+      "id": "rsk_2",
+      "student_id": "user_student_aarav",
+      "skill_name": "Django",
+      "category": "framework",
+      "source": "resume_extracted",
+      "claimed_at": "2026-08-01T09:00:00Z",
+      "is_verified": true,
+      "verified_score": 86
+    },
+    {
+      "id": "rsk_3",
+      "student_id": "user_student_aarav",
+      "skill_name": "React",
+      "category": "framework",
+      "source": "resume_extracted",
+      "claimed_at": "2026-08-01T09:00:00Z",
+      "is_verified": true,
+      "verified_score": 89
+    },
+    {
+      "id": "rsk_4",
+      "student_id": "user_student_aarav",
+      "skill_name": "SQL",
+      "category": "database",
+      "source": "resume_extracted",
+      "claimed_at": "2026-08-01T09:00:00Z",
+      "is_verified": true,
+      "verified_score": 78
+    },
+    {
+      "id": "rsk_5",
+      "student_id": "user_student_aarav",
+      "skill_name": "AWS",
+      "category": "cloud",
+      "source": "resume_extracted",
+      "claimed_at": "2026-08-01T09:00:00Z",
+      "is_verified": true,
+      "verified_score": 64
+    },
+    {
+      "id": "rsk_6",
+      "student_id": "user_student_aarav",
+      "skill_name": "TypeScript",
+      "category": "programming",
+      "source": "resume_extracted",
+      "claimed_at": "2026-08-01T09:00:00Z",
+      "is_verified": true,
+      "verified_score": 85
+    },
+    {
+      "id": "rsk_7",
+      "student_id": "user_student_aarav",
+      "skill_name": "Docker",
+      "category": "tool",
+      "source": "resume_extracted",
+      "claimed_at": "2026-08-01T09:00:00Z",
+      "is_verified": false
+    },
+    {
+      "id": "rsk_8",
+      "student_id": "user_student_aarav",
+      "skill_name": "Git",
+      "category": "tool",
+      "source": "resume_extracted",
+      "claimed_at": "2026-08-01T09:00:00Z",
+      "is_verified": false
+    },
+    {
+      "id": "rsk_9",
+      "student_id": "user_student_priya",
+      "skill_name": "Python",
+      "category": "programming",
+      "source": "resume_extracted",
+      "claimed_at": "2026-08-05T11:00:00Z",
+      "is_verified": true,
+      "verified_score": 95
+    },
+    {
+      "id": "rsk_10",
+      "student_id": "user_student_priya",
+      "skill_name": "Machine Learning",
+      "category": "technology",
+      "source": "resume_extracted",
+      "claimed_at": "2026-08-05T11:00:00Z",
+      "is_verified": true,
+      "verified_score": 91
+    },
+    {
+      "id": "rsk_11",
+      "student_id": "user_student_priya",
+      "skill_name": "SQL",
+      "category": "database",
+      "source": "resume_extracted",
+      "claimed_at": "2026-08-05T11:00:00Z",
+      "is_verified": true,
+      "verified_score": 84
+    },
+    {
+      "id": "rsk_12",
+      "student_id": "user_student_rahul",
+      "skill_name": "Java",
+      "category": "programming",
+      "source": "resume_extracted",
+      "claimed_at": "2026-08-10T12:00:00Z",
+      "is_verified": true,
+      "verified_score": 88
+    },
+    {
+      "id": "rsk_13",
+      "student_id": "user_student_rahul",
+      "skill_name": "Spring Boot",
+      "category": "framework",
+      "source": "resume_extracted",
+      "claimed_at": "2026-08-10T12:00:00Z",
+      "is_verified": true,
+      "verified_score": 82
+    },
+    {
+      "id": "rsk_14",
+      "student_id": "user_student_rahul",
+      "skill_name": "PostgreSQL",
+      "category": "database",
+      "source": "resume_extracted",
+      "claimed_at": "2026-08-10T12:00:00Z",
+      "is_verified": true,
+      "verified_score": 80
+    },
+    {
+      "id": "rsk_ac26226137a7ceaaf09ebbf7",
+      "student_id": "user_student_3d086e8b18fc070363125955",
+      "skill_name": "Python",
+      "category": "programming",
+      "source": "resume_extracted",
+      "claimed_at": "2026-09-30T18:46:43.827Z",
+      "is_verified": false
+    },
+    {
+      "id": "rsk_0e52879a40f6fa0f8f747ee6",
+      "student_id": "user_student_3d086e8b18fc070363125955",
+      "skill_name": "Java",
+      "category": "programming",
+      "source": "resume_extracted",
+      "claimed_at": "2026-09-30T18:46:43.827Z",
+      "is_verified": false
+    },
+    {
+      "id": "rsk_a7cfc976b8cac67909b5b244",
+      "student_id": "user_student_3d086e8b18fc070363125955",
+      "skill_name": "TypeScript",
+      "category": "programming",
+      "source": "resume_extracted",
+      "claimed_at": "2026-09-30T18:46:43.827Z",
+      "is_verified": false
+    },
+    {
+      "id": "rsk_5fec811acd608bdd8adfd31c",
+      "student_id": "user_student_3d086e8b18fc070363125955",
+      "skill_name": "React",
+      "category": "framework",
+      "source": "resume_extracted",
+      "claimed_at": "2026-09-30T18:46:43.827Z",
+      "is_verified": false
+    },
+    {
+      "id": "rsk_acd15fa905b019e5e32987f1",
+      "student_id": "user_student_3d086e8b18fc070363125955",
+      "skill_name": "Django",
+      "category": "framework",
+      "source": "resume_extracted",
+      "claimed_at": "2026-09-30T18:46:43.827Z",
+      "is_verified": false
+    },
+    {
+      "id": "rsk_ae5835e41c06ad529ce16530",
+      "student_id": "user_student_3d086e8b18fc070363125955",
+      "skill_name": "Node.js",
+      "category": "framework",
+      "source": "resume_extracted",
+      "claimed_at": "2026-09-30T18:46:43.827Z",
+      "is_verified": false
+    },
+    {
+      "id": "rsk_6e643ae6bd6fc093f78abc50",
+      "student_id": "user_student_3d086e8b18fc070363125955",
+      "skill_name": "PostgreSQL",
+      "category": "database",
+      "source": "resume_extracted",
+      "claimed_at": "2026-09-30T18:46:43.827Z",
+      "is_verified": false
+    },
+    {
+      "id": "rsk_f1e2081d159a3788af92e066",
+      "student_id": "user_student_3d086e8b18fc070363125955",
+      "skill_name": "Git",
+      "category": "tool",
+      "source": "resume_extracted",
+      "claimed_at": "2026-09-30T18:46:43.827Z",
+      "is_verified": false
+    },
+    {
+      "id": "rsk_4d4e35573507fa4199949eb7",
+      "student_id": "user_student_3d086e8b18fc070363125955",
+      "skill_name": "Docker",
+      "category": "tool",
+      "source": "resume_extracted",
+      "claimed_at": "2026-09-30T18:46:43.827Z",
+      "is_verified": false
+    },
+    {
+      "id": "rsk_2430fcfa6fc93f3f1181cd2e",
+      "student_id": "user_student_3d086e8b18fc070363125955",
+      "skill_name": "AWS",
+      "category": "cloud",
+      "source": "resume_extracted",
+      "claimed_at": "2026-09-30T18:46:43.827Z",
+      "is_verified": false
+    },
+    {
+      "id": "rsk_373959ca9b63dc2aeb4510ee",
+      "student_id": "user_student_3d086e8b18fc070363125955",
+      "skill_name": "REST APIs",
+      "category": "technology",
+      "source": "resume_extracted",
+      "claimed_at": "2026-09-30T18:46:43.827Z",
+      "is_verified": false
+    }
+  ],
+  "skillScores": [
+    {
+      "id": "ssc_1",
+      "student_id": "user_student_aarav",
+      "skill_name": "Python",
+      "claimed": true,
+      "verified_score": 92,
+      "category": "programming",
+      "status": "ASSESSMENT_VERIFIED",
+      "level_cleared": 2,
+      "last_assessed_at": "2026-09-20T14:30:00Z"
+    },
+    {
+      "id": "ssc_2",
+      "student_id": "user_student_aarav",
+      "skill_name": "Django",
+      "claimed": true,
+      "verified_score": 86,
+      "category": "framework",
+      "status": "ASSESSMENT_VERIFIED",
+      "level_cleared": 2,
+      "last_assessed_at": "2026-09-20T14:30:00Z"
+    },
+    {
+      "id": "ssc_3",
+      "student_id": "user_student_aarav",
+      "skill_name": "React",
+      "claimed": true,
+      "verified_score": 89,
+      "category": "framework",
+      "status": "ASSESSMENT_VERIFIED",
+      "level_cleared": 2,
+      "last_assessed_at": "2026-09-20T14:30:00Z"
+    },
+    {
+      "id": "ssc_4",
+      "student_id": "user_student_aarav",
+      "skill_name": "SQL",
+      "claimed": true,
+      "verified_score": 78,
+      "category": "database",
+      "status": "ASSESSMENT_VERIFIED",
+      "level_cleared": 1,
+      "last_assessed_at": "2026-09-18T10:00:00Z"
+    },
+    {
+      "id": "ssc_5",
+      "student_id": "user_student_aarav",
+      "skill_name": "AWS",
+      "claimed": true,
+      "verified_score": 64,
+      "category": "cloud",
+      "status": "ASSESSMENT_VERIFIED",
+      "level_cleared": 1,
+      "last_assessed_at": "2026-09-18T10:00:00Z"
+    },
+    {
+      "id": "ssc_6",
+      "student_id": "user_student_aarav",
+      "skill_name": "TypeScript",
+      "claimed": true,
+      "verified_score": 85,
+      "category": "programming",
+      "status": "ASSESSMENT_VERIFIED",
+      "level_cleared": 2,
+      "last_assessed_at": "2026-09-20T14:30:00Z"
+    },
+    {
+      "id": "ssc_7",
+      "student_id": "user_student_aarav",
+      "skill_name": "Docker",
+      "claimed": true,
+      "verified_score": 0,
+      "category": "tool",
+      "status": "CLAIMED_ONLY",
+      "level_cleared": 0
+    },
+    {
+      "id": "ssc_8",
+      "student_id": "user_student_aarav",
+      "skill_name": "Git",
+      "claimed": true,
+      "verified_score": 0,
+      "category": "tool",
+      "status": "CLAIMED_ONLY",
+      "level_cleared": 0
+    },
+    {
+      "id": "ssc_9",
+      "student_id": "user_student_priya",
+      "skill_name": "Python",
+      "claimed": true,
+      "verified_score": 95,
+      "category": "programming",
+      "status": "ASSESSMENT_VERIFIED",
+      "level_cleared": 3,
+      "last_assessed_at": "2026-09-22T11:00:00Z"
+    },
+    {
+      "id": "ssc_10",
+      "student_id": "user_student_priya",
+      "skill_name": "Machine Learning",
+      "claimed": true,
+      "verified_score": 91,
+      "category": "technology",
+      "status": "ASSESSMENT_VERIFIED",
+      "level_cleared": 3,
+      "last_assessed_at": "2026-09-22T11:00:00Z"
+    },
+    {
+      "id": "ssc_11",
+      "student_id": "user_student_priya",
+      "skill_name": "SQL",
+      "claimed": true,
+      "verified_score": 84,
+      "category": "database",
+      "status": "ASSESSMENT_VERIFIED",
+      "level_cleared": 2,
+      "last_assessed_at": "2026-09-22T11:00:00Z"
+    },
+    {
+      "id": "ssc_12",
+      "student_id": "user_student_rahul",
+      "skill_name": "Java",
+      "claimed": true,
+      "verified_score": 88,
+      "category": "programming",
+      "status": "ASSESSMENT_VERIFIED",
+      "level_cleared": 2,
+      "last_assessed_at": "2026-09-24T16:00:00Z"
+    },
+    {
+      "id": "ssc_13",
+      "student_id": "user_student_rahul",
+      "skill_name": "Spring Boot",
+      "claimed": true,
+      "verified_score": 82,
+      "category": "framework",
+      "status": "ASSESSMENT_VERIFIED",
+      "level_cleared": 2,
+      "last_assessed_at": "2026-09-24T16:00:00Z"
+    }
+  ],
+  "assessmentSessions": [
+    {
+      "id": "sess_08811f6c1e8a31d5d98b1f2d",
+      "student_id": "user_student_3d086e8b18fc070363125955",
+      "level": 1,
+      "status": "IN_PROGRESS",
+      "current_question_index": 0,
+      "questions": [
+        {
+          "id": "q_javascript_L1_76477cad24f80640",
+          "question": "What is the output of the following JavaScript statement?\n\nconsole.log(typeof null === \"object\" && typeof undefined === \"undefined\");",
+          "options": [
+            "false",
+            "undefined",
+            "TypeError",
+            "true"
+          ],
+          "correctAnswer": 3,
+          "explanation": "In JavaScript, typeof null returns \"object\" (a legacy specification design) and typeof undefined returns \"undefined\", so both evaluate to true.",
+          "skill": "JavaScript",
+          "difficulty": "BASIC",
+          "questionType": "code_output",
+          "timeLimitSeconds": 60,
+          "level": 1
+        },
+        {
+          "id": "q_python_L1_02bb4d80fd2929e0",
+          "question": "In Python, which of the following data structures is immutable by default?",
+          "options": [
+            "List",
+            "Dictionary",
+            "Tuple",
+            "Set"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Tuples in Python are immutable sequence objects; once created, their elements cannot be reassigned or modified in-place.",
+          "skill": "Python",
+          "difficulty": "BASIC",
+          "questionType": "concept",
+          "timeLimitSeconds": 60,
+          "level": 1
+        },
+        {
+          "id": "q_sql_L1_537429cb354ae39d",
+          "question": "Which SQL clause is used to filter records based on group aggregate values (e.g. COUNT(*) > 5)?",
+          "options": [
+            "GROUP FILTER",
+            "WHERE",
+            "ORDER BY",
+            "HAVING"
+          ],
+          "correctAnswer": 3,
+          "explanation": "The WHERE clause filters individual rows before grouping, while the HAVING clause filters groups after the GROUP BY aggregate has been evaluated.",
+          "skill": "SQL",
+          "difficulty": "BASIC",
+          "questionType": "concept",
+          "timeLimitSeconds": 60,
+          "level": 1
+        },
+        {
+          "id": "q_python_L1_deb25c73bdc4f2a6",
+          "question": "What is the output of the following Python code snippet?\n\nnums = [1, 2, 3]\nnums.append([4, 5])\nprint(len(nums))",
+          "options": [
+            "Error: append() takes 1 integer",
+            "5",
+            "4",
+            "3"
+          ],
+          "correctAnswer": 2,
+          "explanation": "append([4, 5]) appends the entire list [4, 5] as a single nested element at index 3, making len(nums) equal to 4.",
+          "skill": "Python",
+          "difficulty": "BASIC",
+          "questionType": "code_output",
+          "timeLimitSeconds": 60,
+          "level": 1
+        },
+        {
+          "id": "q_git_L1_d773f9246f2d5db3",
+          "question": "Which Git command creates a new branch named \"feature-login\" and immediately switches to it?",
+          "options": [
+            "git branch feature-login",
+            "git merge feature-login",
+            "git checkout -b feature-login",
+            "git commit -m \"feature-login\""
+          ],
+          "correctAnswer": 2,
+          "explanation": "git checkout -b <branch> (or git switch -c <branch>) atomically creates the branch and updates HEAD to point to it.",
+          "skill": "Git",
+          "difficulty": "BASIC",
+          "questionType": "concept",
+          "timeLimitSeconds": 60,
+          "level": 1
+        }
+      ],
+      "answers": [],
+      "passing_threshold_pct": 80,
+      "started_at": "2026-09-30T18:46:53.846Z",
+      "total_questions": 5,
+      "time_limit_per_question_sec": 60
+    }
+  ],
+  "assessmentResults": [
+    {
+      "id": "res_l1_aarav",
+      "assessment_id": "sess_seed_l1",
+      "student_id": "user_student_aarav",
+      "student_name": "Aarav Reddy",
+      "level": 1,
+      "status": "PASSED",
+      "passing_threshold_pct": 80,
+      "total_questions": 5,
+      "correct_answers": 5,
+      "incorrect_answers": 0,
+      "score_percentage": 100,
+      "total_time_taken_seconds": 180,
+      "average_response_time_seconds": 36,
+      "skill_breakdown": {
+        "Python": {
+          "total": 2,
+          "correct": 2,
+          "percentage": 100
+        },
+        "React": {
+          "total": 2,
+          "correct": 2,
+          "percentage": 100
+        },
+        "SQL": {
+          "total": 1,
+          "correct": 1,
+          "percentage": 100
+        }
+      },
+      "ai_summary": "Flawless fundamental knowledge across Python, React, and SQL syntax. Cleared Level 1 with 100% score.",
+      "next_level_unlocked": true,
+      "completed_at": "2026-09-18T10:15:00Z"
+    },
+    {
+      "id": "res_l2_aarav",
+      "assessment_id": "sess_seed_l2",
+      "student_id": "user_student_aarav",
+      "student_name": "Aarav Reddy",
+      "level": 2,
+      "status": "PASSED",
+      "passing_threshold_pct": 80,
+      "total_questions": 5,
+      "correct_answers": 4,
+      "incorrect_answers": 1,
+      "score_percentage": 80,
+      "total_time_taken_seconds": 240,
+      "average_response_time_seconds": 48,
+      "skill_breakdown": {
+        "Python": {
+          "total": 2,
+          "correct": 2,
+          "percentage": 100
+        },
+        "Django": {
+          "total": 1,
+          "correct": 1,
+          "percentage": 100
+        },
+        "React": {
+          "total": 1,
+          "correct": 1,
+          "percentage": 100
+        },
+        "SQL": {
+          "total": 1,
+          "correct": 0,
+          "percentage": 0
+        }
+      },
+      "ai_summary": "Demonstrated solid intermediate scenario skills in Python generators, Django query optimization, and React memory caching. Minor gap noted in complex SQL query plans.",
+      "next_level_unlocked": true,
+      "completed_at": "2026-09-20T14:45:00Z"
+    }
+  ],
+  "certificates": [
+    {
+      "id": "cert_1",
+      "student_id": "user_student_aarav",
+      "student_name": "Aarav Reddy",
+      "certificate_name": "AWS Certified Cloud Practitioner",
+      "skill_or_course_name": "AWS",
+      "issuing_organization": "Amazon Web Services",
+      "issue_date": "2026-01-20",
+      "certificate_id": "AWS-CCP-98241",
+      "file_url": "#cert-preview",
+      "file_name": "AWS_Cloud_Practitioner.pdf",
+      "file_type": "pdf",
+      "verification_status": "VERIFIED",
+      "verification_type": "AI_PLATFORM_VERIFIED",
+      "verified_by": "CAMPUSLINK AI Verifier",
+      "verified_at": "2026-01-22T08:00:00Z",
+      "created_at": "2026-01-20T10:00:00Z"
+    },
+    {
+      "id": "cert_2",
+      "student_id": "user_student_aarav",
+      "student_name": "Aarav Reddy",
+      "certificate_name": "Meta Front-End Developer Professional",
+      "skill_or_course_name": "React",
+      "issuing_organization": "Meta / Coursera",
+      "issue_date": "2025-11-15",
+      "certificate_id": "META-FE-7721",
+      "file_url": "#cert-preview",
+      "file_name": "Meta_FrontEnd_Cert.pdf",
+      "file_type": "pdf",
+      "verification_status": "VERIFIED",
+      "verification_type": "STUDENT_UPLOADED",
+      "verified_by": "Dr. Rajesh Rao (TPO)",
+      "verified_at": "2025-11-18T14:30:00Z",
+      "created_at": "2025-11-15T12:00:00Z"
+    },
+    {
+      "id": "cert_3",
+      "student_id": "user_student_aarav",
+      "student_name": "Aarav Reddy",
+      "certificate_name": "Advanced PostgreSQL Performance Tuning",
+      "skill_or_course_name": "PostgreSQL",
+      "issuing_organization": "Database Engineering Institute",
+      "issue_date": "2026-03-01",
+      "certificate_id": "PG-DBA-4401",
+      "file_url": "#cert-preview",
+      "file_name": "PostgreSQL_Cert.pdf",
+      "file_type": "pdf",
+      "verification_status": "PENDING",
+      "verification_type": "STUDENT_UPLOADED",
+      "created_at": "2026-03-01T15:00:00Z"
+    },
+    {
+      "id": "cert_4",
+      "student_id": "user_student_priya",
+      "student_name": "Priya Sharma",
+      "certificate_name": "TensorFlow Developer Certificate",
+      "skill_or_course_name": "Machine Learning",
+      "issuing_organization": "Google Developers",
+      "issue_date": "2025-12-05",
+      "certificate_id": "TF-DEV-1940",
+      "file_url": "#cert-preview",
+      "file_name": "TF_Dev_Certificate.pdf",
+      "file_type": "pdf",
+      "verification_status": "VERIFIED",
+      "verification_type": "AI_PLATFORM_VERIFIED",
+      "verified_by": "CAMPUSLINK AI Verifier",
+      "verified_at": "2025-12-07T09:15:00Z",
+      "created_at": "2025-12-05T09:00:00Z"
+    }
+  ],
+  "assessmentSettings": {
+    "passing_threshold_percentage": 80,
+    "level1_time_limit_sec": 60,
+    "level2_time_limit_sec": 60,
+    "level3_time_limit_sec": 90,
+    "questions_per_level": 5,
+    "strong_skill_threshold": 85,
+    "developing_skill_threshold": 70,
+    "auto_advance_levels": true
+  },
+  "resumeAnalyses": {
+    "user_student_3d086e8b18fc070363125955": {
+      "programmingLanguages": [
+        "Python",
+        "Java",
+        "TypeScript"
+      ],
+      "frameworks": [
+        "React",
+        "Django",
+        "Node.js"
+      ],
+      "technologies": [
+        "REST APIs"
+      ],
+      "databases": [
+        "PostgreSQL"
+      ],
+      "tools": [
+        "Git",
+        "Docker"
+      ],
+      "cloudTechnologies": [
+        "AWS"
+      ],
+      "softSkills": [
+        "Problem Solving",
+        "Team Collaboration"
+      ],
+      "certifications": [
+        "AWS Cloud Practitioner",
+        "Google Data Engineering"
+      ],
+      "projects": [
+        {
+          "title": "Full-Stack Placement & Analytics Platform",
+          "tech": "Python, Java, React",
+          "description": "Engineered responsive web architecture, REST endpoints, and relational database schema."
+        },
+        {
+          "title": "Distributed Microservice & API Gateway",
+          "tech": "Node.js, PostgreSQL, Docker",
+          "description": "Implemented token verification, rate limiting, and automated telemetry pipelines."
+        }
+      ],
+      "internships": [
+        {
+          "role": "Software Development Intern",
+          "company": "Campus Corporate Partner Labs",
+          "duration": "Jan 2026 - Present",
+          "description": "Built REST APIs, automated test suites, and optimized database indexing."
+        }
+      ],
+      "education": [
+        {
+          "degree": "Bachelor of Technology (B.Tech)",
+          "institution": "National Institute of Technology",
+          "year": "2026",
+          "cgpa": "8.65 / 10.0"
+        }
+      ],
+      "experience": [],
+      "allSkills": [
+        "Python",
+        "Java",
+        "TypeScript",
+        "React",
+        "Django",
+        "Node.js",
+        "PostgreSQL",
+        "Git",
+        "Docker",
+        "AWS",
+        "REST APIs"
+      ],
+      "atsScore": 95,
+      "summary": "Technical candidate with claimed proficiency in Python, Java, TypeScript and React, Django, Node.js. Pending objective AI verification assessment."
+    }
+  },
+  "rooms": [
+    {
+      "id": "room_sh1",
+      "code": "SH-101",
+      "name": "Seminar Hall 1",
+      "block": "Block B - APJ Abdul Kalam Wing",
+      "floor": "1st Floor",
+      "capacity": 150,
+      "type": "Seminar Hall",
+      "facilities": [
+        "Dual Laser Projectors",
+        "Surround Sound System",
+        "Central AC",
+        "High-Speed WiFi",
+        "Podium Mic",
+        "CCTV"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "room_sh2",
+      "code": "SH-201",
+      "name": "Seminar Hall 2",
+      "block": "Block A - Ramanujan Wing",
+      "floor": "2nd Floor",
+      "capacity": 120,
+      "type": "Seminar Hall",
+      "facilities": [
+        "4K Smart Interactive Board",
+        "AC",
+        "Wireless Mics",
+        "LAN Ports",
+        "Live Streaming Setup"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "room_audi",
+      "code": "AUD-MAIN",
+      "name": "Main University Auditorium",
+      "block": "Central Administrative Complex",
+      "floor": "Ground Floor",
+      "capacity": 500,
+      "type": "Auditorium",
+      "facilities": [
+        "Grand Stage & Lighting",
+        "Acoustic Wall Panels",
+        "Dual Projection",
+        "Central AC",
+        "Green Rooms",
+        "VIP Lounge"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "room_cslab1",
+      "code": "CS-LAB1",
+      "name": "Turing Computing Complex (Lab 1)",
+      "block": "Central IT Block",
+      "floor": "2nd Floor",
+      "capacity": 90,
+      "type": "Computer Lab",
+      "facilities": [
+        "90 i7 Workstations",
+        "Dedicated Gigabit LAN",
+        "Online Exam Server",
+        "Dual AC",
+        "UPS Backup (4 Hrs)"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "room_cslab2",
+      "code": "CS-LAB2",
+      "name": "Lovelace Computing Complex (Lab 2)",
+      "block": "Central IT Block",
+      "floor": "3rd Floor",
+      "capacity": 75,
+      "type": "Computer Lab",
+      "facilities": [
+        "75 Workstations",
+        "Secure Browser Lockdown",
+        "Audio Headsets",
+        "AC",
+        "Power Backup"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "room_lh204",
+      "code": "LH-204",
+      "name": "APJ Kalam Lecture Hall 204",
+      "block": "Science & Engineering Block",
+      "floor": "2nd Floor",
+      "capacity": 80,
+      "type": "Classroom",
+      "facilities": [
+        "Tiered Gallery Seating",
+        "Ultra-HD Projector",
+        "Whiteboard",
+        "Air Conditioning",
+        "WiFi 6"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "room_lh101",
+      "code": "LH-101",
+      "name": "Ramanujan Lecture Hall 101",
+      "block": "Block A - Ramanujan Wing",
+      "floor": "Ground Floor",
+      "capacity": 90,
+      "type": "Classroom",
+      "facilities": [
+        "Tiered Seating",
+        "Digital Smart Screen",
+        "Sound System",
+        "AC"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "room_conf_tpo",
+      "code": "TPO-CONF",
+      "name": "Corporate Placement Suite & GD Room",
+      "block": "Training & Placement Block",
+      "floor": "1st Floor",
+      "capacity": 40,
+      "type": "Conference Room",
+      "facilities": [
+        "Roundtable GD Setup",
+        "Video Conferencing Suite",
+        "Individual Interview Cabins",
+        "Executive AC"
+      ],
+      "isActive": true
+    }
+  ],
+  "academicSchedules": [
+    {
+      "id": "acad_1",
+      "code": "CS301",
+      "title": "CS301 - Distributed Systems (B.Tech 3rd Yr)",
+      "type": "Class",
+      "roomId": "room_sh1",
+      "roomName": "Seminar Hall 1",
+      "instructor": "Dr. V. Swaminathan (Dept of CSE)",
+      "department": "Computer Science & Engineering",
+      "date": "2026-09-30",
+      "startTime": "10:00",
+      "endTime": "11:30",
+      "registeredCount": 85,
+      "status": "SCHEDULED"
+    },
+    {
+      "id": "acad_2",
+      "code": "EC402",
+      "title": "EC402 - Digital Signal Processing",
+      "type": "Class",
+      "roomId": "room_lh101",
+      "roomName": "Ramanujan Lecture Hall 101",
+      "instructor": "Prof. Ananya Sen (Dept of ECE)",
+      "department": "Electronics & Communication",
+      "date": "2026-09-30",
+      "startTime": "11:00",
+      "endTime": "12:30",
+      "registeredCount": 70,
+      "status": "SCHEDULED"
+    },
+    {
+      "id": "acad_3",
+      "code": "CS204-LAB",
+      "title": "CS204 - Advanced Data Structures Laboratory",
+      "type": "Laboratory",
+      "roomId": "room_cslab1",
+      "roomName": "Turing Computing Complex (Lab 1)",
+      "instructor": "Prof. Rajeshwar Rao",
+      "department": "Computer Science & Engineering",
+      "date": "2026-09-30",
+      "startTime": "14:00",
+      "endTime": "16:30",
+      "registeredCount": 65,
+      "status": "SCHEDULED"
+    },
+    {
+      "id": "acad_4",
+      "code": "EXAM-M3",
+      "title": "University Mid-Term: Engineering Mathematics III",
+      "type": "Examination",
+      "roomId": "room_lh204",
+      "roomName": "APJ Kalam Lecture Hall 204",
+      "instructor": "Dean of Academic Examinations",
+      "department": "All Engineering Disciplines",
+      "date": "2026-09-30",
+      "startTime": "09:00",
+      "endTime": "11:00",
+      "registeredCount": 75,
+      "status": "SCHEDULED"
+    },
+    {
+      "id": "acad_5",
+      "code": "AI-WORKSHOP",
+      "title": "National AI & Cloud Robotics Hands-on Workshop",
+      "type": "Workshop",
+      "roomId": "room_cslab2",
+      "roomName": "Lovelace Computing Complex (Lab 2)",
+      "instructor": "Guest Faculty: Dr. Arvind Patel (Industry Fellow)",
+      "department": "Innovation & Research Cell",
+      "date": "2026-10-01",
+      "startTime": "10:00",
+      "endTime": "13:00",
+      "registeredCount": 60,
+      "status": "SCHEDULED"
+    }
+  ],
+  "placementAllocations": [
+    {
+      "id": "alloc_tcs_01",
+      "companyId": "comp_tcs",
+      "companyName": "Tata Consultancy Services (TCS)",
+      "jobId": "job_tcs_digital",
+      "jobTitle": "Digital Systems Engineer & Prime Analyst",
+      "driveRound": "Online Aptitude & Technical Coding Assessment",
+      "date": "2026-09-30",
+      "startTime": "10:00",
+      "endTime": "13:00",
+      "reportingTime": "09:30 AM (30 mins before start)",
+      "registeredStudentsCount": 130,
+      "requiredCapacity": 130,
+      "allocatedRoomId": "room_sh1",
+      "allocatedRoomName": "Seminar Hall 1",
+      "allocatedRoomCapacity": 150,
+      "allocatedRoomBlock": "Block B - APJ Abdul Kalam Wing (1st Floor)",
+      "registeredStudentIds": [
+        "user_student_1",
+        "user_student_2",
+        "user_student_4",
+        "user_student_5"
+      ],
+      "conflictStatus": "CONFLICT_DETECTED",
+      "conflictDetails": {
+        "conflictType": "CLASS_SCHEDULE",
+        "conflictingEntityId": "acad_1",
+        "conflictingEntityTitle": "CS301 - Distributed Systems (B.Tech 3rd Yr)",
+        "instructor": "Dr. V. Swaminathan (Dept of CSE)",
+        "roomName": "Seminar Hall 1",
+        "timeSlot": "10:00 - 11:30",
+        "detectedAt": "2026-09-30T19:33:40.708Z"
+      },
+      "allocationStatus": "CONFLICT",
+      "notificationStatus": "NOT_SENT",
+      "notificationsSentCount": 0,
+      "importantInstructions": "Mandatory physical college ID card, 2 copies of verified ATS resume, college formal uniform. Laptops required with charging adapters for coding section.",
+      "createdAt": "2026-09-28T09:00:00Z",
+      "updatedAt": "2026-09-30T19:33:40.708Z"
+    },
+    {
+      "id": "alloc_google_01",
+      "companyId": "comp_google",
+      "companyName": "Google",
+      "jobId": "job_google_swe",
+      "jobTitle": "Software Development Engineer - Campus Graduate",
+      "driveRound": "Pre-Placement Talk (PPT) & Core Problem Solving Round",
+      "date": "2026-09-30",
+      "startTime": "10:00",
+      "endTime": "13:30",
+      "reportingTime": "09:30 AM (30 mins before start)",
+      "registeredStudentsCount": 65,
+      "requiredCapacity": 70,
+      "allocatedRoomId": "room_sh2",
+      "allocatedRoomName": "Seminar Hall 2",
+      "allocatedRoomCapacity": 120,
+      "allocatedRoomBlock": "Block A - Ramanujan Wing (2nd Floor)",
+      "registeredStudentIds": [
+        "user_student_1",
+        "user_student_3"
+      ],
+      "conflictStatus": "NO_CONFLICT",
+      "allocationStatus": "CONFIRMED",
+      "notificationStatus": "SENT",
+      "notificationsSentCount": 2,
+      "lastNotifiedAt": "2026-09-30T19:35:22.293Z",
+      "importantInstructions": "Bring Google shortlisting confirmation barcode, valid government ID proof, and updated GitHub repository portfolio links.",
+      "createdAt": "2026-09-27T11:00:00Z",
+      "updatedAt": "2026-09-30T19:35:22.293Z"
+    },
+    {
+      "id": "alloc_infosys_01",
+      "companyId": "comp_infosys",
+      "companyName": "Infosys",
+      "jobId": "job_infosys_sp",
+      "jobTitle": "Specialist Programmer (SP) & Digital Specialist Engineer",
+      "driveRound": "Pre-Placement Talk & Technical Elimination Test",
+      "date": "2026-09-30",
+      "startTime": "14:00",
+      "endTime": "17:00",
+      "reportingTime": "01:30 PM (30 mins before start)",
+      "registeredStudentsCount": 110,
+      "requiredCapacity": 110,
+      "allocatedRoomId": "room_sh1",
+      "allocatedRoomName": "Seminar Hall 1",
+      "allocatedRoomCapacity": 150,
+      "allocatedRoomBlock": "Block B - APJ Abdul Kalam Wing (1st Floor)",
+      "registeredStudentIds": [
+        "user_student_2",
+        "user_student_4",
+        "user_student_5"
+      ],
+      "conflictStatus": "NO_CONFLICT",
+      "allocationStatus": "CONFIRMED",
+      "notificationStatus": "SENT",
+      "notificationsSentCount": 110,
+      "lastNotifiedAt": "2026-09-29T17:30:00Z",
+      "importantInstructions": "Students must carry college ID card, blue/black ballpoint pens, and 2 passport size photographs.",
+      "createdAt": "2026-09-28T14:00:00Z",
+      "updatedAt": "2026-09-29T17:30:00Z"
+    },
+    {
+      "id": "alloc_microsoft_01",
+      "companyId": "comp_microsoft",
+      "companyName": "Microsoft",
+      "jobId": "job_ms_sde",
+      "jobTitle": "Software Engineer - Azure Core & Cloud AI",
+      "driveRound": "Online Hands-on Systems & Algorithmic Hackathon",
+      "date": "2026-10-01",
+      "startTime": "09:30",
+      "endTime": "13:00",
+      "reportingTime": "09:00 AM (30 mins before start)",
+      "registeredStudentsCount": 80,
+      "requiredCapacity": 80,
+      "allocatedRoomId": "room_cslab1",
+      "allocatedRoomName": "Turing Computing Complex (Lab 1)",
+      "allocatedRoomCapacity": 90,
+      "allocatedRoomBlock": "Central IT Block (2nd Floor)",
+      "registeredStudentIds": [
+        "user_student_1",
+        "user_student_3"
+      ],
+      "conflictStatus": "NO_CONFLICT",
+      "allocationStatus": "ALLOCATED",
+      "notificationStatus": "NOT_SENT",
+      "notificationsSentCount": 0,
+      "importantInstructions": "High-speed LAN stations will be provided. Please keep your HackerRank/Codility credentials logged in with 2FA enabled.",
+      "createdAt": "2026-09-29T10:00:00Z",
+      "updatedAt": "2026-09-30T19:33:40.708Z"
+    },
+    {
+      "id": "alloc_amazon_01",
+      "companyId": "comp_amazon",
+      "companyName": "Amazon",
+      "jobId": "job_amazon_sde1",
+      "jobTitle": "SDE-1 (AWS Distributed Systems)",
+      "driveRound": "AWS Systems Architecture & Coding Assessment",
+      "date": "2026-10-01",
+      "startTime": "10:00",
+      "endTime": "13:30",
+      "reportingTime": "09:30 AM (30 mins before start)",
+      "registeredStudentsCount": 85,
+      "requiredCapacity": 85,
+      "registeredStudentIds": [
+        "user_student_1",
+        "user_student_2",
+        "user_student_3"
+      ],
+      "conflictStatus": "NO_CONFLICT",
+      "allocationStatus": "ALLOCATED",
+      "notificationStatus": "NOT_SENT",
+      "notificationsSentCount": 0,
+      "importantInstructions": "Carry 2 copies of verified resume with ATS score >= 80%. Laptops allowed for technical whiteboard phase.",
+      "createdAt": "2026-09-29T15:00:00Z",
+      "updatedAt": "2026-09-30T19:34:53.490Z",
+      "allocatedRoomId": "room_lh101",
+      "allocatedRoomName": "Ramanujan Lecture Hall 101",
+      "allocatedRoomCapacity": 90,
+      "allocatedRoomBlock": "Block A - Ramanujan Wing (Ground Floor)"
+    }
+  ],
+  "adminAlerts": [
+    {
+      "id": "alert_tcs_sh1_01",
+      "allocationId": "alloc_tcs_01",
+      "companyName": "Tata Consultancy Services (TCS)",
+      "roomId": "room_sh1",
+      "roomName": "Seminar Hall 1",
+      "date": "2026-09-30",
+      "timeSlot": "10:00 - 13:00",
+      "conflictType": "CLASS_SCHEDULE",
+      "conflictingScheduleId": "acad_1",
+      "conflictingScheduleTitle": "CS301 - Distributed Systems (B.Tech 3rd Yr)",
+      "conflictingInstructor": "Dr. V. Swaminathan (Dept of CSE)",
+      "alertMessage": "Room Conflict Detected: Seminar Hall 1 is allocated for TCS placement at 10:00 AM, but a class is scheduled in the same room. Please change the classroom or reschedule the placement activity.",
+      "status": "ACTIVE",
+      "createdAt": "2026-09-30T08:30:00Z"
+    }
+  ]
 }

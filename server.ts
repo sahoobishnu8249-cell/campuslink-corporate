@@ -13,6 +13,7 @@ async function startServer() {
 
   // Mount Backend API routes
   app.use('/api', apiRouter);
+  app.use(apiRouter);
 
   if (!isProd) {
     // Mount Vite middleware in development

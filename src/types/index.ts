@@ -1,14 +1,67 @@
-export type UserRole = 'student' | 'recruiter' | 'tpo';
+export type UserRole = 'student' | 'recruiter' | 'tpo' | 'admin';
+
+export type AccountStatus = 'pending_verification' | 'active' | 'suspended';
 
 export interface User {
+  _id?: string;
   id: string;
   name: string;
   email: string;
+  college_id?: string;
+  phone?: string;
+  branch?: string;
   role: UserRole;
+  email_verified?: boolean;
+  account_status?: AccountStatus;
   avatar?: string;
   title?: string;
   department?: string;
+  password_hash?: string;
+  created_at?: string;
+  updated_at?: string;
   createdAt: string;
+}
+
+export interface OtpRecord {
+  _id: string;
+  user_id: string;
+  email: string;
+  otp_hash: string;
+  expires_at: string;
+  attempt_count: number;
+  verified: boolean;
+  created_at: string;
+  used_at?: string;
+}
+
+export interface AuthRegisterResponse {
+  success: boolean;
+  message: string;
+  verification_required: boolean;
+  email: string;
+  maskedEmail?: string;
+  previewOtp?: string;
+}
+
+export interface AuthVerifyOtpResponse {
+  success: boolean;
+  message: string;
+  verified: boolean;
+  access_token: string;
+  user: User;
+  profile?: StudentProfile | RecruiterProfile | null;
+}
+
+export interface AuthLoginResponse {
+  success: boolean;
+  message?: string;
+  verification_required?: boolean;
+  access_token?: string;
+  verified?: boolean;
+  email?: string;
+  user?: User;
+  profile?: StudentProfile | RecruiterProfile | null;
+  previewOtp?: string;
 }
 
 export interface StudentProject {
@@ -73,9 +126,42 @@ export interface StudentProfile {
   readinessLevel: ReadinessLevel;
   readinessBreakdown: ReadinessBreakdown;
   isVerified: boolean;
+  avatar?: string;
+  atsScore?: number;
+  joiningStatus?: string;
   placementStatus?: 'Not Placed' | 'In Process' | 'Placed';
   placedCompany?: string;
   placedPackage?: string;
+  joiningDate?: string;
+  joiningLocation?: string;
+}
+
+export function calculateProfileCompletion(student?: StudentProfile | null): number {
+  if (!student) return 0;
+  let score = 0;
+  // 1. Personal & Contact Info (20%)
+  if (student.fullName && student.email && student.phone && student.branch) score += 20;
+  else if (student.fullName && student.email) score += 10;
+
+  // 2. Academic Info (15%)
+  if (student.cgpa > 0 && student.graduationYear > 0) score += 15;
+  else if (student.cgpa > 0) score += 10;
+
+  // 3. Resume Uploaded (20%)
+  if (student.resumeFilename || student.resumeUrl) score += 20;
+
+  // 4. Skills Added (15%)
+  if (student.skills && student.skills.length >= 5) score += 15;
+  else if (student.skills && student.skills.length > 0) score += 10;
+
+  // 5. Projects Added (15%)
+  if (student.projects && student.projects.length >= 2) score += 15;
+  else if (student.projects && student.projects.length > 0) score += 10;
+
+  // 6. Certifications (15%)
+  if (student.certifications && student.certifications.length > 0) score += 15;
+
+  return Math.min(100, Math.max(0, score));
 }
 
 export interface Company {
@@ -158,12 +244,23 @@ export interface Drive {
   venue: string;
   targetBatches: number[];
   allowedBranches: string[];
+  eligibleBranches?: string[];
   minCgpa: number;
   openings: number;
   status: 'Upcoming' | 'In Progress' | 'Completed' | 'Postponed';
   panelMembers: string[];
   shortlistedCount: number;
   conflictDetails?: ConflictCheckResult;
+  role?: string;
+  type?: string;
+  packageCtc?: string;
+  location?: string;
+  currentStage?: string;
+  totalRegistered?: number;
+  offersReleased?: number;
+  reportingTime?: string;
+  instructions?: string;
+  schedule?: Array<{ time: string; activity: string; hall: string }>;
 }
 
 export interface ConflictCheckResult {
@@ -231,7 +328,7 @@ export interface OfferDetails {
   joiningDate: string;
   validTill: string;
   offerLetterUrl?: string;
-  status: 'Offer Generated' | 'Pending Acceptance' | 'Accepted' | 'Declined' | 'Deferred' | 'Withdrawn' | 'Joined';
+  status: 'Offer Generated' | 'Pending Acceptance' | 'Accepted' | 'Declined' | 'Deferred' | 'Withdrawn' | 'Joined' | 'Offered' | 'Selected';
   terms?: string;
 }
 
@@ -339,7 +436,7 @@ export interface OfferRecord {
   offerDate: string;
   joiningDate: string;
   validTill: string;
-  status: 'Offer Generated' | 'Pending Acceptance' | 'Accepted' | 'Declined' | 'Deferred' | 'Withdrawn' | 'Joined';
+  status: 'Offer Generated' | 'Pending Acceptance' | 'Accepted' | 'Declined' | 'Deferred' | 'Withdrawn' | 'Joined' | 'Offered' | 'Selected';
   offerLetterUrl: string;
   terms: string;
 }
@@ -368,11 +465,20 @@ export type NotificationType =
   | 'Joining Reminder' 
   | 'Skill Recommendation'
   | 'Conflict Alert'
-  | 'status_change';
+  | 'Room Allotment'
+  | 'New Application'
+  | 'Offer Accepted'
+  | 'Offer Declined'
+  | 'status_change'
+  | 'drive_announcement'
+  | 'offer_extended'
+  | string;
 
 export interface NotificationItem {
   id: string;
   userId: string;
+  userEmail?: string;
+  targetRole?: 'student' | 'tpo' | 'recruiter' | 'all' | string;
   title: string;
   message: string;
   type: NotificationType;
@@ -476,3 +582,539 @@ export interface ChatMessage {
   timestamp: string;
   suggestions?: string[];
 }
+
+// -------------------------------------------------------------
+// CAMPUSLINK PLACEMENT PASSPORT™ & LIVE DRIVE WAR-ROOM TYPES
+// -------------------------------------------------------------
+export interface VerificationSeal {
+  id: string;
+  name: string;
+  issuer: string;
+  status: 'VERIFIED' | 'PENDING' | 'EXPIRING';
+  verifiedAt: string;
+  hash: string;
+  details: string;
+}
+
+export interface PlacementPassport {
+  id: string;
+  studentId: string;
+  passportNumber: string;
+  issueDate: string;
+  expiryDate: string;
+  blockchainHash: string;
+  qrPayload: string;
+  seals: {
+    academic: VerificationSeal;
+    tpoClearance: VerificationSeal;
+    technicalATS: VerificationSeal;
+    backgroundCheck: VerificationSeal;
+  };
+  metrics: {
+    cgpa: number;
+    backlogs: number;
+    atsScore: number;
+    readinessScore: number;
+    githubCommits: number;
+    leetCodeSolved: number;
+    verifiedSkillsCount: number;
+  };
+  policyTier: {
+    currentStatus: 'ELIGIBLE' | 'PLACED_DREAM_ONLY' | 'LOCKED_LIMIT_REACHED';
+    allowedTier: 'REGULAR' | 'DREAM' | 'SUPER_DREAM';
+    offersHeldCount: number;
+    maxAllowedOffers: number;
+    currentHighestCtcLPA: number;
+  };
+}
+
+export interface LiveDriveToken {
+  id: string;
+  driveId: string;
+  companyName: string;
+  companyLogo: string;
+  role: string;
+  packageCtc: string;
+  date: string;
+  venue: string;
+  studentTokenNumber: string;
+  currentServedToken: string;
+  estimatedWaitMinutes: number;
+  hallName: string;
+  roomNumber: string;
+  stage: 'GATE_CHECKIN' | 'APTITUDE_TEST' | 'TECH_ROUND_1' | 'TECH_ROUND_2' | 'HR_ROUND' | 'OFFERED' | 'COMPLETED';
+  status: 'QUEUED' | 'IN_ROOM' | 'CLEARED' | 'ON_HOLD';
+  interviewerName?: string;
+  announcementAlert?: string;
+}
+
+export interface DriveHallCandidate {
+  id: string;
+  studentId: string;
+  name: string;
+  rollNo: string;
+  branch: string;
+  cgpa: number;
+  tokenNumber: string;
+  stage: 'GATE_CHECKIN' | 'APTITUDE_TEST' | 'TECH_ROUND_1' | 'TECH_ROUND_2' | 'HR_ROUND' | 'OFFERED';
+  checkInTime: string;
+  passportHash: string;
+  isVerified: boolean;
+  score: number;
+}
+
+// =============================================================
+// RELATIONAL ENTITY MODELS & BACKEND CONTRACTS
+// =============================================================
+
+export type PassportStatus = 'PENDING' | 'UNDER_REVIEW' | 'VERIFIED' | 'EXPIRED' | 'REVOKED';
+
+export interface PlacementPassportModel {
+  id: string;
+  student_id: string;
+  passport_number: string;
+  status: PassportStatus;
+  academic_verified: boolean;
+  eligibility_verified: boolean;
+  tpo_verified: boolean;
+  attendance_verified: boolean;
+  documents_verified: boolean;
+  qr_token: string;
+  verified_at?: string;
+  expires_at: string;
+  created_at: string;
+  updated_at: string;
+  blockchain_hash?: string;
+  metrics?: {
+    cgpa: number;
+    backlogs: number;
+    ats_score: number;
+    readiness_score: number;
+  };
+}
+
+export interface PassportVerificationModel {
+  id: string;
+  passport_id: string;
+  verifier_id: string;
+  verifier_role: string;
+  seal_type: 'ACADEMIC' | 'TPO' | 'ATS' | 'BGV';
+  status: 'VERIFIED' | 'REJECTED' | 'PENDING';
+  notes?: string;
+  verified_at: string;
+}
+
+export interface StudentSkillModel {
+  id: string;
+  student_id: string;
+  skill_name: string;
+  proficiency: 'Beginner' | 'Intermediate' | 'Advanced' | 'Expert';
+  verified: boolean;
+  verified_by?: string;
+  created_at: string;
+}
+
+export interface DriveCandidateModel {
+  id: string;
+  drive_id: string;
+  student_id: string;
+  student_name: string;
+  roll_number: string;
+  branch: string;
+  cgpa: number;
+  attendance_status: 'REGISTERED' | 'CHECKED_IN' | 'ABSENT';
+  check_in_time?: string;
+  current_stage: 'GATE_CHECKIN' | 'APTITUDE_TEST' | 'TECH_ROUND_1' | 'TECH_ROUND_2' | 'HR_ROUND' | 'OFFERED' | 'REJECTED';
+  token_number: string;
+  created_at: string;
+}
+
+export type QueueStatus = 'WAITING' | 'CALLED' | 'IN_PROGRESS' | 'COMPLETED' | 'SKIPPED' | 'ABSENT';
+
+export interface InterviewQueueModel {
+  id: string;
+  drive_id: string;
+  candidate_id: string;
+  student_id: string;
+  student_name: string;
+  student_roll: string;
+  token_number: string;
+  room: string;
+  round: string;
+  status: QueueStatus;
+  queue_position: number;
+  called_at?: string;
+  completed_at?: string;
+  created_at: string;
+}
+
+export interface InterviewRoundModel {
+  id: string;
+  drive_id: string;
+  round_number: number;
+  round_name: string;
+  room: string;
+  interviewer_name: string;
+  status: 'SCHEDULED' | 'ACTIVE' | 'COMPLETED';
+  created_at: string;
+}
+
+export interface PlacementPolicyModel {
+  id: string;
+  name: string;
+  description: string;
+  conditions: {
+    min_cgpa_standard?: number;
+    max_active_backlogs?: number;
+    mandatory_attendance_pct?: number;
+  };
+  offer_categories: {
+    regular_max_lpa: number;
+    dream_min_lpa: number;
+    dream_max_lpa: number;
+    super_dream_min_lpa: number;
+  };
+  upgrade_rules: {
+    allow_dream_if_regular_held: boolean;
+    allow_super_dream_always: boolean;
+    min_ctc_multiplier_for_upgrade: number;
+    max_total_offers_per_student: number;
+  };
+  active: boolean;
+  created_by: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface PolicyDecisionModel {
+  id: string;
+  student_id: string;
+  student_name: string;
+  drive_id?: string;
+  current_offer_id?: string;
+  current_package_lpa?: number;
+  new_company: string;
+  new_package: number;
+  new_offer_category: 'REGULAR' | 'DREAM' | 'SUPER_DREAM';
+  decision: 'ELIGIBLE' | 'NOT_ELIGIBLE';
+  reason: string;
+  applicable_rule: string;
+  required_condition?: string;
+  timestamp: string;
+  override_status?: 'NONE' | 'OVERRIDDEN';
+  override_reason?: string;
+  overridden_by?: string;
+}
+
+export interface OfferModel {
+  id: string;
+  student_id: string;
+  student_name?: string;
+  company_id: string;
+  company_name: string;
+  package: string;
+  package_lpa: number;
+  category: 'REGULAR' | 'DREAM' | 'SUPER_DREAM';
+  status: 'ISSUED' | 'ACCEPTED' | 'REJECTED' | 'JOINED';
+  issued_at: string;
+  accepted_at?: string;
+  joining_date?: string;
+  location?: string;
+  signature?: string;
+}
+
+export interface AttendanceModel {
+  id: string;
+  drive_id: string;
+  student_id: string;
+  check_in_time: string;
+  verified_by: string;
+  method: 'QR_SCAN' | 'MANUAL';
+  created_at: string;
+}
+
+export interface AuditLogModel {
+  id: string;
+  user_id: string;
+  user_name?: string;
+  action: string;
+  entity_type: string;
+  entity_id: string;
+  details: string;
+  ip_address?: string;
+  timestamp: string;
+  override_status?: string;
+  override_reason?: string;
+  overridden_by?: string;
+}
+
+// =============================================================
+// AI SKILL VERIFICATION & ASSESSMENT SYSTEM TYPES
+// =============================================================
+
+export interface ResumeExtractedData {
+  programmingLanguages: string[];
+  frameworks: string[];
+  technologies: string[];
+  databases: string[];
+  tools: string[];
+  cloudTechnologies: string[];
+  softSkills: string[];
+  certifications: string[];
+  projects: Array<{ title: string; tech: string; description: string }>;
+  internships: Array<{ role: string; company: string; duration: string; description: string }>;
+  education: Array<{ degree: string; institution: string; year: string; cgpa?: string }>;
+  experience: Array<{ role: string; organization: string; duration: string }>;
+  allSkills: string[];
+  atsScore: number;
+  summary: string;
+}
+
+export interface ResumeSkillModel {
+  id: string;
+  student_id: string;
+  skill_name: string;
+  category: 'programming' | 'framework' | 'database' | 'tool' | 'cloud' | 'soft_skill' | 'technology';
+  source: 'resume_extracted' | 'manual_added';
+  claimed_at: string;
+  is_verified: boolean;
+  verified_score?: number;
+}
+
+export interface SkillScoreModel {
+  id: string;
+  student_id: string;
+  skill_name: string;
+  claimed: boolean;
+  verified_score: number; // 0 - 100
+  category: string;
+  status: 'CLAIMED_ONLY' | 'ASSESSMENT_VERIFIED';
+  level_cleared: number; // 1, 2, 3
+  last_assessed_at?: string;
+}
+
+export interface AssessmentQuestion {
+  id: string;
+  question: string;
+  options: string[];
+  correctAnswer?: number; // Kept secure on backend during active test
+  explanation?: string;
+  skill: string;
+  difficulty: 'BASIC' | 'INTERMEDIATE' | 'ADVANCED';
+  questionType: 'mcq' | 'code_output' | 'debugging' | 'scenario' | 'concept';
+  timeLimitSeconds: number; // 1 min (60s)
+  level: 1 | 2 | 3;
+}
+
+export interface StudentAnswer {
+  question_id: string;
+  selected_option: number;
+  is_correct?: boolean;
+  time_taken_seconds: number;
+  answered_at: string;
+}
+
+export interface AssessmentSession {
+  id: string;
+  student_id: string;
+  level: 1 | 2 | 3;
+  status: 'IN_PROGRESS' | 'COMPLETED' | 'EXPIRED';
+  current_question_index: number;
+  questions: AssessmentQuestion[];
+  answers: StudentAnswer[];
+  passing_threshold_pct: number;
+  started_at: string;
+  completed_at?: string;
+  total_questions: number;
+  time_limit_per_question_sec: number;
+}
+
+export interface AssessmentResultModel {
+  id: string;
+  assessment_id: string;
+  student_id: string;
+  student_name: string;
+  level: 1 | 2 | 3;
+  status: 'PASSED' | 'FAILED';
+  passing_threshold_pct: number;
+  total_questions: number;
+  correct_answers: number;
+  incorrect_answers: number;
+  score_percentage: number;
+  total_time_taken_seconds: number;
+  average_response_time_seconds: number;
+  skill_breakdown: Record<string, { total: number; correct: number; percentage: number }>;
+  ai_summary: string;
+  next_level_unlocked: boolean;
+  completed_at: string;
+}
+
+export interface CertificateModel {
+  id: string;
+  student_id: string;
+  student_name: string;
+  certificate_name: string;
+  skill_or_course_name: string;
+  issuing_organization: string;
+  issue_date: string;
+  certificate_id?: string;
+  file_url: string;
+  file_name: string;
+  file_type: 'pdf' | 'jpg' | 'jpeg' | 'png';
+  verification_status: 'PENDING' | 'VERIFIED' | 'REJECTED';
+  verification_type: 'AI_PLATFORM_VERIFIED' | 'STUDENT_UPLOADED';
+  verified_by?: string;
+  verified_at?: string;
+  rejection_reason?: string;
+  created_at: string;
+}
+
+export interface AssessmentSettingsModel {
+  passing_threshold_percentage: number; // default 80
+  level1_time_limit_sec: number; // 60
+  level2_time_limit_sec: number; // 60
+  level3_time_limit_sec: number; // 60
+  questions_per_level: number; // 5
+  strong_skill_threshold: number; // 85
+  developing_skill_threshold: number; // 70
+  auto_advance_levels: boolean;
+}
+
+export interface CandidateVerifiedSkillProfile {
+  student: StudentProfile;
+  resume_skills: ResumeSkillModel[];
+  verified_skills: SkillScoreModel[];
+  additional_skills: string[];
+  certifications: CertificateModel[];
+  highest_level_cleared: number;
+  level_progress: {
+    level1_cleared: boolean;
+    level2_cleared: boolean;
+    level3_cleared: boolean;
+  };
+  overall_verified_score: number;
+  latest_assessment_result?: AssessmentResultModel;
+  total_questions_attempted: number;
+  total_correct_answers: number;
+  average_response_time_sec: number;
+}
+
+// =============================================================
+// SMART PLACEMENT ROOM ALLOCATION & NOTIFICATION TYPES
+// =============================================================
+
+export type RoomType = 'Seminar Hall' | 'Auditorium' | 'Computer Lab' | 'Classroom' | 'Conference Room';
+
+export interface CollegeRoom {
+  id: string;
+  name: string;
+  block: string;
+  floor: string;
+  capacity: number;
+  type: RoomType;
+  facilities: string[];
+  isActive: boolean;
+  code: string;
+}
+
+export type AcademicScheduleType = 'Class' | 'Examination' | 'Workshop' | 'Laboratory';
+export type AcademicScheduleStatus = 'SCHEDULED' | 'MOVED' | 'RESCHEDULED' | 'CANCELLED';
+
+export interface AcademicSchedule {
+  id: string;
+  title: string;
+  code: string;
+  type: AcademicScheduleType;
+  roomId: string;
+  roomName: string;
+  instructor: string;
+  department: string;
+  date: string; // YYYY-MM-DD
+  startTime: string; // HH:mm
+  endTime: string; // HH:mm
+  registeredCount: number;
+  status: AcademicScheduleStatus;
+  originalRoomId?: string;
+  originalRoomName?: string;
+  resolutionNote?: string;
+}
+
+export type AllocationConflictStatus = 'NO_CONFLICT' | 'CONFLICT_DETECTED' | 'CONFLICT_RESOLVED';
+export type PlacementAllocationStatus = 'PENDING' | 'SUGGESTED' | 'ALLOCATED' | 'CONFLICT' | 'CONFIRMED' | 'COMPLETED' | 'CANCELLED';
+export type AllocationNotificationStatus = 'NOT_SENT' | 'SENT' | 'UPDATED';
+
+export interface PlacementDriveAllocation {
+  id: string;
+  companyId?: string;
+  companyName: string;
+  jobId?: string;
+  jobTitle?: string;
+  driveRound: string;
+  date: string; // YYYY-MM-DD
+  startTime: string; // HH:mm
+  endTime: string; // HH:mm
+  reportingTime: string;
+  registeredStudentsCount: number;
+  requiredCapacity: number;
+  allocatedRoomId?: string;
+  allocatedRoomName?: string;
+  allocatedRoomCapacity?: number;
+  allocatedRoomBlock?: string;
+  registeredStudentIds: string[];
+  conflictStatus: AllocationConflictStatus;
+  conflictDetails?: {
+    conflictType: 'CLASS_SCHEDULE' | 'EXAMINATION' | 'WORKSHOP' | 'OVERLAPPING_PLACEMENT';
+    conflictingEntityId: string;
+    conflictingEntityTitle: string;
+    instructor?: string;
+    roomName: string;
+    timeSlot: string;
+    detectedAt: string;
+  };
+  allocationStatus: PlacementAllocationStatus;
+  notificationStatus: AllocationNotificationStatus;
+  notificationsSentCount: number;
+  lastNotifiedAt?: string;
+  importantInstructions: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export type ConflictResolutionAction = 
+  | 'CHANGE_CLASSROOM' 
+  | 'CHANGE_PLACEMENT_ROOM' 
+  | 'RESCHEDULE_CLASS' 
+  | 'RESCHEDULE_PLACEMENT';
+
+export interface AdministrationAlert {
+  id: string;
+  allocationId: string;
+  companyName: string;
+  roomId: string;
+  roomName: string;
+  date: string;
+  timeSlot: string;
+  conflictType: 'CLASS_SCHEDULE' | 'EXAMINATION' | 'WORKSHOP' | 'OVERLAPPING_PLACEMENT';
+  conflictingScheduleId: string;
+  conflictingScheduleTitle: string;
+  conflictingInstructor?: string;
+  alertMessage: string;
+  status: 'ACTIVE' | 'RESOLVED' | 'DISMISSED';
+  resolutionAction?: ConflictResolutionAction;
+  resolutionDetails?: string;
+  resolvedAt?: string;
+  resolvedBy?: string;
+  createdAt: string;
+}
+
+export interface RoomAllocationStats {
+  totalRooms: number;
+  totalCapacity: number;
+  activeAllocations: number;
+  confirmedAllocations: number;
+  conflictCount: number;
+  notificationsSentTotal: number;
+  studentsAccommodatedToday: number;
+}
+
+

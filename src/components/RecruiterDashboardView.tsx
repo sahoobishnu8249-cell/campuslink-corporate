@@ -23,6 +23,7 @@ interface RecruiterDashboardViewProps {
   onCreateJob: () => void;
   onAdvanceStage: (appId: string, stage: any) => Promise<void>;
   onViewCandidate: (student: StudentProfile) => void;
+  onNavigateTab?: (tab: any) => void;
 }
 
 export const RecruiterDashboardView: React.FC<RecruiterDashboardViewProps> = ({
@@ -31,7 +32,8 @@ export const RecruiterDashboardView: React.FC<RecruiterDashboardViewProps> = ({
   students,
   onCreateJob,
   onAdvanceStage,
-  onViewCandidate
+  onViewCandidate,
+  onNavigateTab
 }) => {
   const [selectedJobId, setSelectedJobId] = useState<string>('All');
   const [filterBranch, setFilterBranch] = useState<string>('All');
@@ -73,13 +75,24 @@ export const RecruiterDashboardView: React.FC<RecruiterDashboardViewProps> = ({
           </p>
         </div>
 
-        <button
-          onClick={onCreateJob}
-          className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs rounded-xl shadow-xs transition-colors flex items-center gap-2 self-start sm:self-auto"
-        >
-          <Plus className="w-4 h-4" />
-          <span>Post New Campus Job / Drive</span>
-        </button>
+        <div className="flex items-center gap-2 self-start sm:self-auto">
+          {onNavigateTab && (
+            <button
+              onClick={() => onNavigateTab('skillverification')}
+              className="px-4 py-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-300 font-bold text-xs rounded-xl shadow-xs transition-colors flex items-center gap-2"
+            >
+              <Award className="w-4 h-4 text-emerald-600" />
+              <span>AI Verified Candidates Filter</span>
+            </button>
+          )}
+          <button
+            onClick={onCreateJob}
+            className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs rounded-xl shadow-xs transition-colors flex items-center gap-2"
+          >
+            <Plus className="w-4 h-4" />
+            <span>Post New Campus Job / Drive</span>
+          </button>
+        </div>
       </div>
 
       {/* KPI Stats */}
